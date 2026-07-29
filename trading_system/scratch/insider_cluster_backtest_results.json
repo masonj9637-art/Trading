@@ -1,0 +1,66 @@
+{
+  "total_evaluated_clusters": 49,
+  "transaction_cost_bps": 20,
+  "is_count": 34,
+  "oos_count": 15,
+  "is_stats": {
+    "count": 34,
+    "mean_60d_net_%": 3.578672663820195,
+    "median_60d_net_%": 1.6137071550253483,
+    "win_rate_60d_%": 52.94117647058824,
+    "sharpe_60d": 0.40071953929618764,
+    "mean_120d_net_%": 3.6795751547850584,
+    "median_120d_net_%": 3.873955567138351,
+    "win_rate_120d_%": 61.76470588235294,
+    "sharpe_120d": 0.27602858447478196
+  },
+  "is_baseline_stats": {
+    "count": 21,
+    "mean_60d_net_%": -2.3687061479852294,
+    "median_60d_net_%": -1.9781316348195375,
+    "win_rate_60d_%": 47.61904761904761,
+    "sharpe_60d": -0.27315426147726324,
+    "mean_120d_net_%": 2.9155516360439044,
+    "median_120d_net_%": -0.3096491228070152,
+    "win_rate_120d_%": 47.61904761904761,
+    "sharpe_120d": 0.15803175482667223
+  },
+  "oos_stats": {
+    "count": 15,
+    "mean_60d_net_%": -3.2974983740652437,
+    "median_60d_net_%": -2.6520914898001187,
+    "win_rate_60d_%": 40.0,
+    "sharpe_60d": -0.3789296500306308,
+    "mean_120d_net_%": 1.0192713514666758,
+    "median_120d_net_%": 5.944726083401472,
+    "win_rate_120d_%": 60.0,
+    "sharpe_120d": 0.06723677367705219
+  },
+  "oos_baseline_stats": {
+    "count": 11,
+    "mean_60d_net_%": -0.9713321424193185,
+    "median_60d_net_%": -0.5277494537509099,
+    "win_rate_60d_%": 45.45454545454545,
+    "sharpe_60d": -0.12040137756413052,
+    "mean_120d_net_%": -5.736867240424552,
+    "median_120d_net_%": -5.953578445130519,
+    "win_rate_120d_%": 36.36363636363637,
+    "sharpe_120d": -0.7084699448969191
+  },
+  "is_regime": {
+    "strength_count": 17,
+    "strength_mean_60d_%": 1.8602083198922825,
+    "strength_mean_120d_%": 1.9621422636215442,
+    "weakness_count": 17,
+    "weakness_mean_60d_%": 5.297137007748107,
+    "weakness_mean_120d_%": 5.3970080459485725
+  },
+  "oos_regime": {
+    "strength_count": 8,
+    "strength_mean_60d_%": 1.8432229208069613,
+    "strength_mean_120d_%": 4.459119831702427,
+    "weakness_count": 7,
+    "weakness_mean_60d_%": -9.172608425347764,
+    "weakness_mean_120d_%": -2.911984054517041
+  }
+}

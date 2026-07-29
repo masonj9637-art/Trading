@@ -1,0 +1,380 @@
+{
+  "EMPD": {
+    "name": "Empery Digital Inc.",
+    "cik": "0001829794",
+    "market_cap": "$96.1M",
+    "mc_val": 96.13658176463127
+  },
+  "CD": {
+    "name": "Chaince Digital Holdings Inc.",
+    "cik": "0001527762",
+    "market_cap": "$227.2M",
+    "mc_val": 227.2092596660137
+  },
+  "CNTN": {
+    "name": "Canton Strategic Holdings, Inc.",
+    "cik": "0001861657",
+    "market_cap": "$158.9M",
+    "mc_val": 158.87251862701035
+  },
+  "HODO": {
+    "name": "House of Doge Inc.",
+    "cik": "0001903595",
+    "market_cap": "$91.1M",
+    "mc_val": 91.08000361919403
+  },
+  "GHI": {
+    "name": "Greystone Housing Impact Investors LP",
+    "cik": "0001059142",
+    "market_cap": "$118.0M",
+    "mc_val": 118.04818049303054
+  },
+  "ZSQR": {
+    "name": "Z Squared Inc.",
+    "cik": "0001759186",
+    "market_cap": "$251.0M",
+    "mc_val": 251.01527530992317
+  },
+  "AGPU": {
+    "name": "Axe Compute Inc.",
+    "cik": "0001446159",
+    "market_cap": "$83.8M",
+    "mc_val": 83.79315992005348
+  },
+  "FWDI": {
+    "name": "Forward Industries, Inc.",
+    "cik": "0000038264",
+    "market_cap": "$314.2M",
+    "mc_val": 314.1888235407772
+  },
+  "EXOD": {
+    "name": "Exodus Movement, Inc.",
+    "cik": "0001821534",
+    "market_cap": "$161.2M",
+    "mc_val": 161.16867349530887
+  },
+  "FRMM": {
+    "name": "FORUM MARKETS Inc",
+    "cik": "0001690080",
+    "market_cap": "$74.9M",
+    "mc_val": 74.90152315785409
+  },
+  "CPSS": {
+    "name": "CONSUMER PORTFOLIO SERVICES, INC.",
+    "cik": "0000889609",
+    "market_cap": "$204.6M",
+    "mc_val": 204.61747457187653
+  },
+  "SUIG": {
+    "name": "SUI Group Holdings Ltd.",
+    "cik": "0001425355",
+    "market_cap": "$84.9M",
+    "mc_val": 84.9449961423874
+  },
+  "OPRT": {
+    "name": "Oportun Financial Corp",
+    "cik": "0001538716",
+    "market_cap": "$243.5M",
+    "mc_val": 243.53518366427326
+  },
+  "DGXX": {
+    "name": "Digi Power X Inc.",
+    "cik": "0001854368",
+    "market_cap": "$391.5M",
+    "mc_val": 391.5365929111843
+  },
+  "ABTC": {
+    "name": "American Bitcoin Corp.",
+    "cik": "0001755953",
+    "market_cap": "$445.3M",
+    "mc_val": 445.2999930381775
+  },
+  "TONX": {
+    "name": "TON Strategy Co",
+    "cik": "0001566610",
+    "market_cap": "$196.2M",
+    "mc_val": 196.16124260735393
+  },
+  "BTCS": {
+    "name": "BTCS Inc.",
+    "cik": "0001436229",
+    "market_cap": "$50.3M",
+    "mc_val": 50.27312423530507
+  },
+  "UPXI": {
+    "name": "UPEXI, INC.",
+    "cik": "0001775194",
+    "market_cap": "$59.2M",
+    "mc_val": 59.20994658236575
+  },
+  "SNFCA": {
+    "name": "SECURITY NATIONAL FINANCIAL CORP",
+    "cik": "0000318673",
+    "market_cap": "$243.0M",
+    "mc_val": 243.0385861726074
+  },
+  "USBC": {
+    "name": "USBC, Inc.",
+    "cik": "0001074828",
+    "market_cap": "$130.4M",
+    "mc_val": 130.41652672172398
+  },
+  "LPRO": {
+    "name": "Open Lending Corp",
+    "cik": "0001806201",
+    "market_cap": "$370.3M",
+    "mc_val": 370.34940098093415
+  },
+  "PBFS": {
+    "name": "Pioneer Bancorp, Inc./MD",
+    "cik": "0001769663",
+    "market_cap": "$433.3M",
+    "mc_val": 433.3271384988728
+  },
+  "CZNC": {
+    "name": "CITIZENS & NORTHERN CORP",
+    "cik": "0000810958",
+    "market_cap": "$416.7M",
+    "mc_val": 416.73979446078107
+  },
+  "OPHC": {
+    "name": "OptimumBank Holdings, Inc.",
+    "cik": "0001288855",
+    "market_cap": "$73.4M",
+    "mc_val": 73.36481097400045
+  },
+  "HNVR": {
+    "name": "Hanover Bancorp, Inc. /NY",
+    "cik": "0001828588",
+    "market_cap": "$177.4M",
+    "mc_val": 177.41363274211884
+  },
+  "AVBH": {
+    "name": "Avidbank Holdings, Inc.",
+    "cik": "0001443575",
+    "market_cap": "$349.0M",
+    "mc_val": 349.0316273065033
+  },
+  "FBLA": {
+    "name": "FB Bancorp, Inc. /MD/",
+    "cik": "0002013639",
+    "market_cap": "$249.2M",
+    "mc_val": 249.21016161302376
+  },
+  "FINW": {
+    "name": "Finwise Bancorp",
+    "cik": "0001856365",
+    "market_cap": "$183.8M",
+    "mc_val": 183.79798089862442
+  },
+  "FUSB": {
+    "name": "FIRST US BANCSHARES, INC.",
+    "cik": "0000717806",
+    "market_cap": "$91.4M",
+    "mc_val": 91.35885062050247
+  },
+  "NKSH": {
+    "name": "NATIONAL BANKSHARES INC",
+    "cik": "0000796534",
+    "market_cap": "$228.5M",
+    "mc_val": 228.49855760219575
+  },
+  "LVLU": {
+    "name": "Lulu's Fashion Lounge Holdings, Inc.",
+    "cik": "0001780201",
+    "market_cap": "$53.0M",
+    "mc_val": 52.996987
+  },
+  "MSIF": {
+    "name": "MSC INCOME FUND, INC.",
+    "cik": "0001535778",
+    "market_cap": "$496.1M",
+    "mc_val": 496.0767862323847
+  },
+  "SEVN": {
+    "name": "Seven Hills Realty Trust",
+    "cik": "0001452477",
+    "market_cap": "$176.9M",
+    "mc_val": 176.92728118605615
+  },
+  "PKBK": {
+    "name": "PARKE BANCORP, INC.",
+    "cik": "0001315399",
+    "market_cap": "$385.4M",
+    "mc_val": 385.3581172222214
+  },
+  "BWFG": {
+    "name": "Bankwell Financial Group, Inc.",
+    "cik": "0001505732",
+    "market_cap": "$482.9M",
+    "mc_val": 482.93551016677856
+  },
+  "FCCO": {
+    "name": "FIRST COMMUNITY CORP /SC/",
+    "cik": "0000932781",
+    "market_cap": "$309.8M",
+    "mc_val": 309.75675299591063
+  },
+  "USCB": {
+    "name": "USCB FINANCIAL HOLDINGS, INC.",
+    "cik": "0001901637",
+    "market_cap": "$372.0M",
+    "mc_val": 372.03565832767487
+  },
+  "RM": {
+    "name": "Regional Management Corp.",
+    "cik": "0001519401",
+    "market_cap": "$378.5M",
+    "mc_val": 378.5468465702057
+  },
+  "MVBF": {
+    "name": "MVB FINANCIAL CORP",
+    "cik": "0001277902",
+    "market_cap": "$368.0M",
+    "mc_val": 368.02115679704286
+  },
+  "GBFH": {
+    "name": "GBank Financial Holdings Inc.",
+    "cik": "0001791145",
+    "market_cap": "$437.9M",
+    "mc_val": 437.8728548320007
+  },
+  "STEX": {
+    "name": "Streamex Corp.",
+    "cik": "0001530766",
+    "market_cap": "$79.7M",
+    "mc_val": 79.66596003883367
+  },
+  "BRBS": {
+    "name": "BLUE RIDGE BANKSHARES, INC.",
+    "cik": "0000842717",
+    "market_cap": "$304.8M",
+    "mc_val": 304.8007097221138
+  },
+  "USIO": {
+    "name": "Usio, Inc.",
+    "cik": "0001088034",
+    "market_cap": "$52.2M",
+    "mc_val": 52.15642826523614
+  },
+  "BCRD": {
+    "name": "BlueOne Card, Inc.",
+    "cik": "0001496690",
+    "market_cap": "$93.2M",
+    "mc_val": 93.166515
+  },
+  "JMSB": {
+    "name": "John Marshall Bancorp, Inc.",
+    "cik": "0001710482",
+    "market_cap": "$312.2M",
+    "mc_val": 312.16238460344886
+  },
+  "ACH": {
+    "name": "ACCENDRA HEALTH INC/VA/",
+    "cik": "0000075252",
+    "market_cap": "$239.7M",
+    "mc_val": 239.70699602430915
+  },
+  "TYGO": {
+    "name": "TIGO ENERGY, INC.",
+    "cik": "0001855447",
+    "market_cap": "$134.4M",
+    "mc_val": 134.3621039321165
+  },
+  "INRE": {
+    "name": "Inland Real Estate Income Trust, Inc.",
+    "cik": "0001528985",
+    "market_cap": "$385.0M",
+    "mc_val": 385.010418
+  },
+  "RGP": {
+    "name": "RESOURCES CONNECTION, INC.",
+    "cik": "0001084765",
+    "market_cap": "$129.1M",
+    "mc_val": 129.07833311260987
+  },
+  "HNST": {
+    "name": "Honest Company, Inc.",
+    "cik": "0001530979",
+    "market_cap": "$409.5M",
+    "mc_val": 409.4924509493744
+  },
+  "STRT": {
+    "name": "STRATTEC SECURITY CORP",
+    "cik": "0000933034",
+    "market_cap": "$358.6M",
+    "mc_val": 358.62452890473173
+  },
+  "ADV": {
+    "name": "Advantage Solutions Inc.",
+    "cik": "0001776661",
+    "market_cap": "$449.4M",
+    "mc_val": 449.38045385650634
+  },
+  "RDNW": {
+    "name": "RideNow Group, Inc.",
+    "cik": "0001596961",
+    "market_cap": "$246.6M",
+    "mc_val": 246.5720494880562
+  },
+  "BXC": {
+    "name": "BlueLinx Holdings Inc.",
+    "cik": "0001301787",
+    "market_cap": "$446.7M",
+    "mc_val": 446.70948487499237
+  },
+  "ACNT": {
+    "name": "ASCENT INDUSTRIES CO.",
+    "cik": "0000095953",
+    "market_cap": "$137.1M",
+    "mc_val": 137.10972223956108
+  },
+  "EPSN": {
+    "name": "Epsilon Energy Ltd.",
+    "cik": "0001726126",
+    "market_cap": "$179.4M",
+    "mc_val": 179.37429361748076
+  },
+  "TPVG": {
+    "name": "TriplePoint Venture Growth BDC Corp.",
+    "cik": "0001580345",
+    "market_cap": "$179.4M",
+    "mc_val": 179.44749911745643
+  },
+  "ELMD": {
+    "name": "Electromed, Inc.",
+    "cik": "0001488917",
+    "market_cap": "$316.1M",
+    "mc_val": 316.132846046875
+  },
+  "EP": {
+    "name": "EMPIRE PETROLEUM CORP",
+    "cik": "0000887396",
+    "market_cap": "$105.1M",
+    "mc_val": 105.05142273436833
+  },
+  "CNDT": {
+    "name": "CONDUENT Inc",
+    "cik": "0001677703",
+    "market_cap": "$226.4M",
+    "mc_val": 226.4413543564739
+  },
+  "SNWV": {
+    "name": "SANUWAVE Health, Inc.",
+    "cik": "0001417663",
+    "market_cap": "$50.9M",
+    "mc_val": 50.905938576049806
+  },
+  "VRNO": {
+    "name": "Verano Holdings Corp.",
+    "cik": "0001848416",
+    "market_cap": "$402.1M",
+    "mc_val": 402.1146586296296
+  },
+  "HURA": {
+    "name": "TuHURA Biosciences, Inc./NV",
+    "cik": "0001498382",
+    "market_cap": "$136.9M",
+    "mc_val": 136.91744127323915
+  }
+}

@@ -1,0 +1,53 @@
+# Environment variables and secrets
+.env
+.env.*
+*.env
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+trading_system/venv/
+*/venv/
+
+# Large Model Files, Checkpoints & Pickles
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.h5
+*.ckpt
+*.pkl
+*.idx
+model_data_old/
+models/
+*.zip
+
+# Logs & Audit files
+*.log
+logs/
+trading_system/logs/
+daily_cron.log
+.run_state.json
+
+# Databases & Cache
+*.db
+*.sqlite
+*.sqlite3
+.pytest_cache/
+.coverage
+htmlcov/
+.nox/
+.hypothesis/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*.swo

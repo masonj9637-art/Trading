@@ -1,0 +1,614 @@
+{
+  "IMA": {
+    "name": "ImageneBio, Inc.",
+    "cik": "0001835579",
+    "market_cap": "$62.8M",
+    "mc_val": 62.82475603619098
+  },
+  "IKT": {
+    "name": "Inhibikase Therapeutics, Inc.",
+    "cik": "0001750149",
+    "market_cap": "$365.9M",
+    "mc_val": 365.88602989936066
+  },
+  "ARTV": {
+    "name": "Artiva Biotherapeutics, Inc.",
+    "cik": "0001817241",
+    "market_cap": "$492.2M",
+    "mc_val": 492.198451300478
+  },
+  "AVXL": {
+    "name": "ANAVEX LIFE SCIENCES CORP.",
+    "cik": "0001314052",
+    "market_cap": "$229.8M",
+    "mc_val": 229.8259616075735
+  },
+  "KLRS": {
+    "name": "Kalaris Therapeutics, Inc.",
+    "cik": "0001754068",
+    "market_cap": "$93.3M",
+    "mc_val": 93.26573157520676
+  },
+  "ARMP": {
+    "name": "Armata Pharmaceuticals, Inc.",
+    "cik": "0000921114",
+    "market_cap": "$191.6M",
+    "mc_val": 191.63042049776553
+  },
+  "VXRT": {
+    "name": "Vaxart, Inc.",
+    "cik": "0000072444",
+    "market_cap": "$117.4M",
+    "mc_val": 117.39174989247918
+  },
+  "CRDF": {
+    "name": "Cardiff Oncology, Inc.",
+    "cik": "0001213037",
+    "market_cap": "$65.2M",
+    "mc_val": 65.20019860263348
+  },
+  "ENTX": {
+    "name": "Entera Bio Ltd.",
+    "cik": "0001638097",
+    "market_cap": "$105.0M",
+    "mc_val": 104.98820406081963
+  },
+  "OTLK": {
+    "name": "Outlook Therapeutics, Inc.",
+    "cik": "0001649989",
+    "market_cap": "$246.8M",
+    "mc_val": 246.8360471683829
+  },
+  "AGEN": {
+    "name": "AGENUS INC",
+    "cik": "0001098972",
+    "market_cap": "$257.8M",
+    "mc_val": 257.76665027279904
+  },
+  "VYGR": {
+    "name": "Voyager Therapeutics, Inc.",
+    "cik": "0001640266",
+    "market_cap": "$186.7M",
+    "mc_val": 186.70177164399934
+  },
+  "OCGN": {
+    "name": "Ocugen, Inc.",
+    "cik": "0001372299",
+    "market_cap": "$429.9M",
+    "mc_val": 429.92275066320803
+  },
+  "KYTX": {
+    "name": "Kyverna Therapeutics, Inc.",
+    "cik": "0001994702",
+    "market_cap": "$443.2M",
+    "mc_val": 443.1970931608467
+  },
+  "ALEC": {
+    "name": "Alector, Inc.",
+    "cik": "0001653087",
+    "market_cap": "$165.4M",
+    "mc_val": 165.42752968881868
+  },
+  "IVVD": {
+    "name": "Invivyd, Inc.",
+    "cik": "0001832038",
+    "market_cap": "$179.5M",
+    "mc_val": 179.47485998316765
+  },
+  "LENZ": {
+    "name": "LENZ Therapeutics, Inc.",
+    "cik": "0001815776",
+    "market_cap": "$158.3M",
+    "mc_val": 158.33969568037605
+  },
+  "TNYA": {
+    "name": "Tenaya Therapeutics, Inc.",
+    "cik": "0001858848",
+    "market_cap": "$167.8M",
+    "mc_val": 167.76183582345735
+  },
+  "DTIL": {
+    "name": "PRECISION BIOSCIENCES INC",
+    "cik": "0001357874",
+    "market_cap": "$189.1M",
+    "mc_val": 189.13046854144477
+  },
+  "XFOR": {
+    "name": "X4 Pharmaceuticals, Inc",
+    "cik": "0001501697",
+    "market_cap": "$376.3M",
+    "mc_val": 376.3355879395027
+  },
+  "CMPX": {
+    "name": "Compass Therapeutics, Inc.",
+    "cik": "0001738021",
+    "market_cap": "$381.8M",
+    "mc_val": 381.7863591905737
+  },
+  "AUTL": {
+    "name": "Autolus Therapeutics plc",
+    "cik": "0001730463",
+    "market_cap": "$404.5M",
+    "mc_val": 404.53779116371965
+  },
+  "TARA": {
+    "name": "Protara Therapeutics, Inc.",
+    "cik": "0001359931",
+    "market_cap": "$227.1M",
+    "mc_val": 227.0651153359785
+  },
+  "LXEO": {
+    "name": "Lexeo Therapeutics, Inc.",
+    "cik": "0001907108",
+    "market_cap": "$369.8M",
+    "mc_val": 369.8368991353626
+  },
+  "BDTX": {
+    "name": "Black Diamond Therapeutics, Inc.",
+    "cik": "0001701541",
+    "market_cap": "$105.4M",
+    "mc_val": 105.43526607265305
+  },
+  "ATRA": {
+    "name": "Atara Biotherapeutics, Inc.",
+    "cik": "0001604464",
+    "market_cap": "$73.6M",
+    "mc_val": 73.61310592742157
+  },
+  "PLX": {
+    "name": "Protalix BioTherapeutics, Inc.",
+    "cik": "0001006281",
+    "market_cap": "$191.0M",
+    "mc_val": 190.95478231930733
+  },
+  "CCCC": {
+    "name": "C4 Therapeutics, Inc.",
+    "cik": "0001662579",
+    "market_cap": "$403.6M",
+    "mc_val": 403.570370844512
+  },
+  "CGTX": {
+    "name": "COGNITION THERAPEUTICS INC",
+    "cik": "0001455365",
+    "market_cap": "$85.9M",
+    "mc_val": 85.93599505282909
+  },
+  "ACOG": {
+    "name": "Alpha Cognition Inc.",
+    "cik": "0001655923",
+    "market_cap": "$179.2M",
+    "mc_val": 179.2008659526062
+  },
+  "LONA": {
+    "name": "LeonaBio, Inc.",
+    "cik": "0001620463",
+    "market_cap": "$68.0M",
+    "mc_val": 68.00903920999527
+  },
+  "INKT": {
+    "name": "MiNK Therapeutics, Inc.",
+    "cik": "0001840229",
+    "market_cap": "$51.6M",
+    "mc_val": 51.612471929600716
+  },
+  "TCRX": {
+    "name": "TScan Therapeutics, Inc.",
+    "cik": "0001783328",
+    "market_cap": "$55.3M",
+    "mc_val": 55.31293297963214
+  },
+  "EDIT": {
+    "name": "Editas Medicine, Inc.",
+    "cik": "0001650664",
+    "market_cap": "$419.0M",
+    "mc_val": 418.95082066705226
+  },
+  "CRBU": {
+    "name": "Caribou Biosciences, Inc.",
+    "cik": "0001619856",
+    "market_cap": "$161.7M",
+    "mc_val": 161.66433677707016
+  },
+  "ABOS": {
+    "name": "Acumen Pharmaceuticals, Inc.",
+    "cik": "0001576885",
+    "market_cap": "$156.7M",
+    "mc_val": 156.73385411052703
+  },
+  "IPSC": {
+    "name": "Century Therapeutics, Inc.",
+    "cik": "0001850119",
+    "market_cap": "$391.4M",
+    "mc_val": 391.36994928997996
+  },
+  "FATE": {
+    "name": "FATE THERAPEUTICS INC",
+    "cik": "0001434316",
+    "market_cap": "$293.7M",
+    "mc_val": 293.72914649680996
+  },
+  "NMRA": {
+    "name": "Neumora Therapeutics, Inc.",
+    "cik": "0001885522",
+    "market_cap": "$289.0M",
+    "mc_val": 289.04341003795054
+  },
+  "CHRS": {
+    "name": "Coherus Oncology, Inc.",
+    "cik": "0001512762",
+    "market_cap": "$220.6M",
+    "mc_val": 220.57734890927077
+  },
+  "LCTX": {
+    "name": "Lineage Cell Therapeutics, Inc.",
+    "cik": "0000876343",
+    "market_cap": "$266.7M",
+    "mc_val": 266.74918872621595
+  },
+  "CABA": {
+    "name": "Cabaletta Bio, Inc.",
+    "cik": "0001759138",
+    "market_cap": "$443.5M",
+    "mc_val": 443.50904978503513
+  },
+  "PALI": {
+    "name": "PALISADE BIO, INC.",
+    "cik": "0001357459",
+    "market_cap": "$351.0M",
+    "mc_val": 351.03493008541585
+  },
+  "FENC": {
+    "name": "FENNEC PHARMACEUTICALS INC.",
+    "cik": "0001211583",
+    "market_cap": "$352.6M",
+    "mc_val": 352.58084124887466
+  },
+  "STRO": {
+    "name": "SUTRO BIOPHARMA, INC.",
+    "cik": "0001382101",
+    "market_cap": "$391.1M",
+    "mc_val": 391.06236672112084
+  },
+  "PROK": {
+    "name": "PROKIDNEY CORP.",
+    "cik": "0001850270",
+    "market_cap": "$311.9M",
+    "mc_val": 311.9035598461261
+  },
+  "SGMT": {
+    "name": "Sagimet Biosciences Inc.",
+    "cik": "0001400118",
+    "market_cap": "$432.9M",
+    "mc_val": 432.880181203867
+  },
+  "ALDX": {
+    "name": "Aldeyra Therapeutics, Inc.",
+    "cik": "0001341235",
+    "market_cap": "$93.5M",
+    "mc_val": 93.49765252366734
+  },
+  "QTTB": {
+    "name": "Q32 Bio Inc.",
+    "cik": "0001661998",
+    "market_cap": "$456.9M",
+    "mc_val": 456.92156271990393
+  },
+  "LYEL": {
+    "name": "Lyell Immunopharma, Inc.",
+    "cik": "0001806952",
+    "market_cap": "$313.2M",
+    "mc_val": 313.16568869663047
+  },
+  "PRTA": {
+    "name": "PROTHENA CORP PUBLIC LTD CO",
+    "cik": "0001559053",
+    "market_cap": "$446.6M",
+    "mc_val": 446.5730976301775
+  },
+  "CAMP": {
+    "name": "Camp4 Therapeutics Corp",
+    "cik": "0001736730",
+    "market_cap": "$156.3M",
+    "mc_val": 156.29665750479697
+  },
+  "BMEA": {
+    "name": "Biomea Fusion, Inc.",
+    "cik": "0001840439",
+    "market_cap": "$91.1M",
+    "mc_val": 91.0972937104988
+  },
+  "PMVP": {
+    "name": "PMV Pharmaceuticals, Inc.",
+    "cik": "0001699382",
+    "market_cap": "$70.9M",
+    "mc_val": 70.9312510687511
+  },
+  "IBIO": {
+    "name": "iBio, Inc.",
+    "cik": "0001420720",
+    "market_cap": "$69.5M",
+    "mc_val": 69.5499842155708
+  },
+  "AARD": {
+    "name": "Aardvark Therapeutics, Inc.",
+    "cik": "0001774857",
+    "market_cap": "$139.8M",
+    "mc_val": 139.83976669814967
+  },
+  "RNTX": {
+    "name": "Rein Therapeutics, Inc.",
+    "cik": "0001420565",
+    "market_cap": "$68.4M",
+    "mc_val": 68.4397819423337
+  },
+  "EVMN": {
+    "name": "Evommune, Inc.",
+    "cik": "0002044725",
+    "market_cap": "$407.7M",
+    "mc_val": 407.72797136806486
+  },
+  "XLO": {
+    "name": "Xilio Therapeutics, Inc.",
+    "cik": "0001840233",
+    "market_cap": "$54.6M",
+    "mc_val": 54.63940784903812
+  },
+  "NKTX": {
+    "name": "Nkarta, Inc.",
+    "cik": "0001787400",
+    "market_cap": "$164.6M",
+    "mc_val": 164.55431998845148
+  },
+  "AQST": {
+    "name": "Aquestive Therapeutics, Inc.",
+    "cik": "0001398733",
+    "market_cap": "$473.0M",
+    "mc_val": 473.01054236690715
+  },
+  "GUTS": {
+    "name": "FRACTYL HEALTH, INC.",
+    "cik": "0001572616",
+    "market_cap": "$120.0M",
+    "mc_val": 120.04966701890213
+  },
+  "HURA": {
+    "name": "TuHURA Biosciences, Inc./NV",
+    "cik": "0001498382",
+    "market_cap": "$136.9M",
+    "mc_val": 136.91744127323915
+  },
+  "LRMR": {
+    "name": "Larimar Therapeutics, Inc.",
+    "cik": "0001374690",
+    "market_cap": "$416.6M",
+    "mc_val": 416.57060114691734
+  },
+  "NTHI": {
+    "name": "NEONC TECHNOLOGIES HOLDINGS, INC.",
+    "cik": "0001979414",
+    "market_cap": "$94.1M",
+    "mc_val": 94.13267291766644
+  },
+  "VNDA": {
+    "name": "Vanda Pharmaceuticals Inc.",
+    "cik": "0001347178",
+    "market_cap": "$322.3M",
+    "mc_val": 322.32662034896373
+  },
+  "CLNN": {
+    "name": "Clene Inc.",
+    "cik": "0001822791",
+    "market_cap": "$70.0M",
+    "mc_val": 70.02512260372687
+  },
+  "MIST": {
+    "name": "Milestone Pharmaceuticals Inc.",
+    "cik": "0001408443",
+    "market_cap": "$149.4M",
+    "mc_val": 149.3975819365263
+  },
+  "IMDX": {
+    "name": "Insight Molecular Diagnostics Inc.",
+    "cik": "0001642380",
+    "market_cap": "$160.2M",
+    "mc_val": 160.1592295517721
+  },
+  "IRD": {
+    "name": "Opus Genetics, Inc.",
+    "cik": "0001228627",
+    "market_cap": "$241.1M",
+    "mc_val": 241.0922444992733
+  },
+  "ANIK": {
+    "name": "Anika Therapeutics, Inc.",
+    "cik": "0000898437",
+    "market_cap": "$195.2M",
+    "mc_val": 195.19350509513856
+  },
+  "NERV": {
+    "name": "Minerva Neurosciences, Inc.",
+    "cik": "0001598646",
+    "market_cap": "$207.3M",
+    "mc_val": 207.31974616390895
+  },
+  "OSTX": {
+    "name": "OS Therapies Inc",
+    "cik": "0001795091",
+    "market_cap": "$69.5M",
+    "mc_val": 69.47944281150913
+  },
+  "CLPT": {
+    "name": "ClearPoint Neuro, Inc.",
+    "cik": "0001285550",
+    "market_cap": "$434.5M",
+    "mc_val": 434.5487610059338
+  },
+  "UNCY": {
+    "name": "Unicycive Therapeutics, Inc.",
+    "cik": "0001766140",
+    "market_cap": "$149.6M",
+    "mc_val": 149.56592846496105
+  },
+  "ONCY": {
+    "name": "ONCOLYTICS BIOTECH INC",
+    "cik": "0001129928",
+    "market_cap": "$101.2M",
+    "mc_val": 101.2480526685419
+  },
+  "GALT": {
+    "name": "GALECTIN THERAPEUTICS INC",
+    "cik": "0001133416",
+    "market_cap": "$227.2M",
+    "mc_val": 227.2063012403016
+  },
+  "INO": {
+    "name": "INOVIO PHARMACEUTICALS, INC.",
+    "cik": "0001055726",
+    "market_cap": "$83.9M",
+    "mc_val": 83.91870017076253
+  },
+  "TNXP": {
+    "name": "Tonix Pharmaceuticals Holding Corp.",
+    "cik": "0001430306",
+    "market_cap": "$169.3M",
+    "mc_val": 169.289180795743
+  },
+  "AKBA": {
+    "name": "Akebia Therapeutics, Inc.",
+    "cik": "0001517022",
+    "market_cap": "$327.3M",
+    "mc_val": 327.2750641349299
+  },
+  "SPRO": {
+    "name": "Spero Therapeutics, Inc.",
+    "cik": "0001701108",
+    "market_cap": "$67.2M",
+    "mc_val": 67.16572994732917
+  },
+  "IMUX": {
+    "name": "IMMUNIC, INC.",
+    "cik": "0001280776",
+    "market_cap": "$194.5M",
+    "mc_val": 194.51477360267162
+  },
+  "VANI": {
+    "name": "Vivani Medical, Inc.",
+    "cik": "0001266806",
+    "market_cap": "$119.9M",
+    "mc_val": 119.86679332639694
+  },
+  "ALXO": {
+    "name": "ALX ONCOLOGY HOLDINGS INC",
+    "cik": "0001810182",
+    "market_cap": "$271.8M",
+    "mc_val": 271.81708977341606
+  },
+  "CPIX": {
+    "name": "CUMBERLAND PHARMACEUTICALS INC",
+    "cik": "0001087294",
+    "market_cap": "$104.7M",
+    "mc_val": 104.6570043954606
+  },
+  "PTHS": {
+    "name": "Pelthos Therapeutics Inc.",
+    "cik": "0001919246",
+    "market_cap": "$98.7M",
+    "mc_val": 98.70831667414666
+  },
+  "SPRB": {
+    "name": "SPRUCE BIOSCIENCES, INC.",
+    "cik": "0001683553",
+    "market_cap": "$123.8M",
+    "mc_val": 123.82499183960724
+  },
+  "GOSS": {
+    "name": "Gossamer Bio, Inc.",
+    "cik": "0001728117",
+    "market_cap": "$69.7M",
+    "mc_val": 69.66065701087395
+  },
+  "KROS": {
+    "name": "Keros Therapeutics, Inc.",
+    "cik": "0001664710",
+    "market_cap": "$200.7M",
+    "mc_val": 200.68923397498799
+  },
+  "ANTX": {
+    "name": "AN2 Therapeutics, Inc.",
+    "cik": "0001880438",
+    "market_cap": "$177.2M",
+    "mc_val": 177.19951486781503
+  },
+  "CNTX": {
+    "name": "Context Therapeutics Inc.",
+    "cik": "0001842952",
+    "market_cap": "$54.4M",
+    "mc_val": 54.42003633556753
+  },
+  "KRRO": {
+    "name": "Korro Bio, Inc.",
+    "cik": "0001703647",
+    "market_cap": "$166.3M",
+    "mc_val": 166.29223977875805
+  },
+  "FHTX": {
+    "name": "Foghorn Therapeutics Inc.",
+    "cik": "0001822462",
+    "market_cap": "$297.7M",
+    "mc_val": 297.6795946189127
+  },
+  "RLYB": {
+    "name": "Rallybio Corp",
+    "cik": "0001739410",
+    "market_cap": "$87.0M",
+    "mc_val": 86.97998942092896
+  },
+  "ENTA": {
+    "name": "ENANTA PHARMACEUTICALS INC",
+    "cik": "0001177648",
+    "market_cap": "$376.6M",
+    "mc_val": 376.5650154537392
+  },
+  "ELTX": {
+    "name": "Elicio Therapeutics, Inc.",
+    "cik": "0001601485",
+    "market_cap": "$82.7M",
+    "mc_val": 82.73300110477257
+  },
+  "RNAC": {
+    "name": "Cartesian Therapeutics, Inc.",
+    "cik": "0001453687",
+    "market_cap": "$232.7M",
+    "mc_val": 232.70159312163162
+  },
+  "DWTX": {
+    "name": "Dogwood Therapeutics, Inc.",
+    "cik": "0001818844",
+    "market_cap": "$51.8M",
+    "mc_val": 51.78951033713436
+  },
+  "ARCT": {
+    "name": "Arcturus Therapeutics Holdings Inc.",
+    "cik": "0001768224",
+    "market_cap": "$164.6M",
+    "mc_val": 164.56956842574596
+  },
+  "VTVT": {
+    "name": "vTv Therapeutics Inc.",
+    "cik": "0001641489",
+    "market_cap": "$124.7M",
+    "mc_val": 124.69778503900909
+  },
+  "ANVS": {
+    "name": "Annovis Bio, Inc.",
+    "cik": "0001477845",
+    "market_cap": "$74.4M",
+    "mc_val": 74.448269
+  },
+  "UPB": {
+    "name": "Upstream Bio, Inc.",
+    "cik": "0002022626",
+    "market_cap": "$348.3M",
+    "mc_val": 348.2879219898944
+  }
+}

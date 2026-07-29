@@ -1,0 +1,113 @@
+{
+  "is_date_range": [
+    "2023-07-11",
+    "2025-08-08"
+  ],
+  "oos_date_range": [
+    "2025-08-08",
+    "2026-07-23"
+  ],
+  "liquid_universe_count": 127,
+  "total_events_count": 1504,
+  "is_q80_threshold": 0.0679110512129381,
+  "is_q20_threshold": -0.10339262230841773,
+  "cost_bps": 10.0,
+  "results": {
+    "IS_Q5_20d": {
+      "label": "IS Top-Quintile (Q5) 20d Drift",
+      "count": 211,
+      "mean": 1.7487954610367777,
+      "median": -0.5024144869215206,
+      "win_rate": 48.34123222748815,
+      "std": 23.178674836825238
+    },
+    "IS_Q5_60d": {
+      "label": "IS Top-Quintile (Q5) 60d Drift",
+      "count": 211,
+      "mean": 0.8429169397715214,
+      "median": -4.600000000000004,
+      "win_rate": 42.65402843601896,
+      "std": 47.87208049519173
+    },
+    "OOS_Q5_20d": {
+      "label": "OOS Top-Quintile (Q5) 20d Drift",
+      "count": 102,
+      "mean": 8.439822509178368,
+      "median": -1.9351882598227583,
+      "win_rate": 47.05882352941176,
+      "std": 52.837943877475126
+    },
+    "OOS_Q5_60d": {
+      "label": "OOS Top-Quintile (Q5) 60d Drift",
+      "count": 81,
+      "mean": 11.475340346774676,
+      "median": -2.171005917159759,
+      "win_rate": 44.44444444444444,
+      "std": 70.99848564809439
+    },
+    "IS_Q1_20d": {
+      "label": "IS Bottom-Quintile (Q1) 20d Drift",
+      "count": 211,
+      "mean": 130.70770010096714,
+      "median": -0.45211267605633054,
+      "win_rate": 48.81516587677725,
+      "std": 1837.084044596805
+    },
+    "IS_Q1_60d": {
+      "label": "IS Bottom-Quintile (Q1) 60d Drift",
+      "count": 211,
+      "mean": 92.41234288941584,
+      "median": -3.940245775729647,
+      "win_rate": 45.023696682464454,
+      "std": 798.3035864090083
+    },
+    "OOS_Q1_20d": {
+      "label": "OOS Bottom-Quintile (Q1) 20d Drift",
+      "count": 98,
+      "mean": 2.8238145385223183,
+      "median": -2.609337068160597,
+      "win_rate": 43.87755102040816,
+      "std": 26.875656969670004
+    },
+    "OOS_Q1_60d": {
+      "label": "OOS Bottom-Quintile (Q1) 60d Drift",
+      "count": 69,
+      "mean": 168.20065722918983,
+      "median": -7.862962962962966,
+      "win_rate": 42.028985507246375,
+      "std": 1264.1590773812125
+    },
+    "IS_Rand_20d": {
+      "label": "IS Random Baseline (All) 20d",
+      "count": 949,
+      "mean": 11.970780832557136,
+      "median": -0.9319467554076508,
+      "win_rate": 46.25922023182297,
+      "std": 194.30062220119848
+    },
+    "IS_Rand_60d": {
+      "label": "IS Random Baseline (All) 60d",
+      "count": 949,
+      "mean": 39.21407351015443,
+      "median": -5.780933852140081,
+      "win_rate": 42.67650158061117,
+      "std": 313.0606585614175
+    },
+    "OOS_Rand_20d": {
+      "label": "OOS Random Baseline (All) 20d",
+      "count": 272,
+      "mean": 6.9316158271140935,
+      "median": -2.4362373953836256,
+      "win_rate": 43.01470588235294,
+      "std": 65.01348890550199
+    },
+    "OOS_Rand_60d": {
+      "label": "OOS Random Baseline (All) 60d",
+      "count": 220,
+      "mean": 7.036118424683536,
+      "median": -9.719131859984133,
+      "win_rate": 39.54545454545455,
+      "std": 69.76606398453356
+    }
+  }
+}

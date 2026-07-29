@@ -1,0 +1,152 @@
+{
+  "COBA": {
+    "name": "Chilean Cobalt Corp.",
+    "cik": "0001727255",
+    "market_cap": "$144.9M",
+    "mc_val": 144.931075
+  },
+  "BHLL": {
+    "name": "Bunker Hill Mining Corp.",
+    "cik": "0001407583",
+    "market_cap": "$145.2M",
+    "mc_val": 145.19125633251787
+  },
+  "PZG": {
+    "name": "Paramount Gold Nevada Corp.",
+    "cik": "0001629210",
+    "market_cap": "$99.5M",
+    "mc_val": 99.50987909663736
+  },
+  "THMG": {
+    "name": "THUNDER MOUNTAIN GOLD INC",
+    "cik": "0000711034",
+    "market_cap": "$75.7M",
+    "mc_val": 75.69276423867488
+  },
+  "GSTX": {
+    "name": "Graphene & Solar Technologies Ltd",
+    "cik": "0001497649",
+    "market_cap": "$70.7M",
+    "mc_val": 70.72679585391137
+  },
+  "NEXM": {
+    "name": "NexMetals Mining Corp.",
+    "cik": "0000795800",
+    "market_cap": "$79.1M",
+    "mc_val": 79.13892509990215
+  },
+  "LCGMF": {
+    "name": "LION COPPER & GOLD CORP.",
+    "cik": "0001339688",
+    "market_cap": "$77.6M",
+    "mc_val": 77.61260198404759
+  },
+  "REA": {
+    "name": "Rare Earths Americas, Inc.",
+    "cik": "0002095743",
+    "market_cap": "$226.5M",
+    "mc_val": 226.54487143820762
+  },
+  "USAU": {
+    "name": "U.S. GOLD CORP.",
+    "cik": "0000027093",
+    "market_cap": "$220.8M",
+    "mc_val": 220.78556282840825
+  },
+  "WWR": {
+    "name": "WESTWATER RESOURCES, INC.",
+    "cik": "0000839470",
+    "market_cap": "$53.1M",
+    "mc_val": 53.07623213855699
+  },
+  "SBMT": {
+    "name": "SILVER BOW MINING CORP.",
+    "cik": "0002067674",
+    "market_cap": "$207.6M",
+    "mc_val": 207.58536119532585
+  },
+  "WAMFF": {
+    "name": "Alaska Silver Corp.",
+    "cik": "0001893899",
+    "market_cap": "$52.6M",
+    "mc_val": 52.618694381
+  },
+  "GLND": {
+    "name": "Greenland Energy Co",
+    "cik": "0002093507",
+    "market_cap": "$96.2M",
+    "mc_val": 96.20642888521814
+  },
+  "GORO": {
+    "name": "GOLD RESOURCE CORP",
+    "cik": "0001160791",
+    "market_cap": "$172.6M",
+    "mc_val": 172.6258694543867
+  },
+  "GTE": {
+    "name": "GRAN TIERRA ENERGY INC.",
+    "cik": "0001273441",
+    "market_cap": "$272.3M",
+    "mc_val": 272.2711462556362
+  },
+  "VGZ": {
+    "name": "VISTA GOLD CORP",
+    "cik": "0000783324",
+    "market_cap": "$249.6M",
+    "mc_val": 249.61100722836494
+  },
+  "ABAT": {
+    "name": "AMERICAN BATTERY TECHNOLOGY Co",
+    "cik": "0001576873",
+    "market_cap": "$311.0M",
+    "mc_val": 311.02484861715243
+  },
+  "USGO": {
+    "name": "U.S. GoldMining Inc.",
+    "cik": "0001947244",
+    "market_cap": "$107.4M",
+    "mc_val": 107.41026786373901
+  },
+  "EU": {
+    "name": "enCore Energy Corp.",
+    "cik": "0001500881",
+    "market_cap": "$235.0M",
+    "mc_val": 235.0219422494011
+  },
+  "ACRG": {
+    "name": "American Clean Resources Group, Inc.",
+    "cik": "0000773717",
+    "market_cap": "$56.4M",
+    "mc_val": 56.405272
+  },
+  "SOWG": {
+    "name": "Sow Good Inc.",
+    "cik": "0001490161",
+    "market_cap": "$67.0M",
+    "mc_val": 66.99998807495689
+  },
+  "LODE": {
+    "name": "Comstock Inc.",
+    "cik": "0001120970",
+    "market_cap": "$294.5M",
+    "mc_val": 294.54277460756305
+  },
+  "FTCO": {
+    "name": "Fortitude Gold Corp",
+    "cik": "0001828377",
+    "market_cap": "$131.9M",
+    "mc_val": 131.86920820700453
+  },
+  "IDR": {
+    "name": "Idaho Strategic Resources, Inc.",
+    "cik": "0001030192",
+    "market_cap": "$455.3M",
+    "mc_val": 455.32392713803483
+  },
+  "EPSN": {
+    "name": "Epsilon Energy Ltd.",
+    "cik": "0001726126",
+    "market_cap": "$179.4M",
+    "mc_val": 179.37429361748076
+  }
+}

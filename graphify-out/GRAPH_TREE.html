@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>/ — graphify tree viewer</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      margin: 20px 0 0 24px;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #1e3a56;
+    }
+    .controls {
+      margin: 20px 0 15px 24px;
+    }
+    button {
+      margin-right: 10px;
+      padding: 8px 18px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    button:active {
+      background: #004085;
+    }
+    #tree-container {
+      width: calc(100vw - 48px); /* Adjust for body margin/padding */
+      height: 85vh;
+      overflow: auto;
+      border-radius: 8px;
+      background: #fff;
+      margin-left: 24px;
+      margin-right: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #ddd;
+    }
+    svg {
+      background: #fff;
+      border-radius: 8px;
+      display: block; /* Important for D3 */
+    }
+    .node circle {
+      stroke-width: 2.5px;
+    }
+    .node text { /* Base style for the <text> container */
+      font: 13px 'Segoe UI', sans-serif;
+      paint-order: stroke fill; /* Ensures text is readable over lines */
+      stroke: #fff; /* White halo */
+      stroke-width: 3px; /* Halo thickness */
+      stroke-linejoin: round;
+      stroke-opacity: 0.85; /* Halo opacity */
+    }
+    .link {
+      fill: none;
+      stroke-opacity: 0.7;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>/ — Knowledge Graph</h1>
+  <div class="controls">
+    <button onclick="expandAll()">Expand All</button>
+    <button onclick="collapseAll()">Collapse All</button>
+    <button onclick="resetView()">Reset View</button>
+  </div>
+  <div id="tree-container">
+    <svg id="tree-svg" width="6000" height="8000"></svg>
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    const initialJsonData = {"name":"/","total_count":273,"children":[{"name":"backtest","total_count":16,"children":[{"name":"engine.py","total_count":6,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".fast_run()","total_count":1,"children":[]},{"name":".precompute_signals()","total_count":1,"children":[]},{"name":".run()","total_count":1,"children":[]},{"name":".simulate_bracket_execution()","total_count":1,"children":[]},{"name":"BacktestEngine","total_count":1,"children":[]}]},{"name":"metrics.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".generate_tear_sheet()","total_count":1,"children":[]},{"name":"AnalyticsEngine","total_count":1,"children":[]},{"name":"Takes the history dataframe from BacktestEngine and generates a quantstats HTML","total_count":1,"children":[]}]},{"name":"optimize_optuna.py","total_count":2,"children":[{"name":"load_data()","total_count":1,"children":[]},{"name":"main()","total_count":1,"children":[]}]},{"name":"run_1_year_optimal.py","total_count":1,"children":[{"name":"run_backtest()","total_count":1,"children":[]}]},{"name":"run_2025_optimal.py","total_count":1,"children":[{"name":"run_backtest()","total_count":1,"children":[]}]},{"name":"run_2_year_optimal.py","total_count":1,"children":[{"name":"run_backtest()","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"bootstrap_model.py","total_count":1,"children":[{"name":"bootstrap()","total_count":1,"children":[]}]},{"name":"core","total_count":28,"children":[{"name":"conditional_autoencoder.py","total_count":8,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".__init__()","total_count":1,"children":[]},{"name":".forward()","total_count":1,"children":[]},{"name":".orthogonalize()","total_count":1,"children":[]},{"name":"ConditionalAutoencoder","total_count":1,"children":[]},{"name":"Deep neural network that learns complex, non-linear market beta conditioned on f","total_count":1,"children":[]},{"name":"DeepOrthogonalizer","total_count":1,"children":[]},{"name":"Orthogonalizes returns using a Conditional Autoencoder in a strictly CAUSAL roll","total_count":1,"children":[]}]},{"name":"ensemble_agent.py","total_count":6,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".sample_trust_weights()","total_count":1,"children":[]},{"name":".update_posteriors()","total_count":1,"children":[]},{"name":"EnsembleAgent","total_count":1,"children":[]},{"name":"Executes Mean-Variance Thompson Sampling (MVTS) with Combinatorial Adaptive Disc","total_count":1,"children":[]},{"name":"Updates the MVTS priors using CADTS geometric discounting based on continuous re","total_count":1,"children":[]}]},{"name":"regime_detector.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".detect()","total_count":1,"children":[]},{"name":"Classifies market structure into distinct regimes.         market_returns: df wh","total_count":1,"children":[]},{"name":"RegimeDetector","total_count":1,"children":[]}]},{"name":"thompson_sampling.py","total_count":9,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":"._get_key()","total_count":1,"children":[]},{"name":"._initialize_state()","total_count":1,"children":[]},{"name":".sample_weights()","total_count":1,"children":[]},{"name":".set_regime()","total_count":1,"children":[]},{"name":".update_prior()","total_count":1,"children":[]},{"name":"Samples from the Beta distribution for each agent to determine dynamic trust wei","total_count":1,"children":[]},{"name":"ThompsonSampler","total_count":1,"children":[]},{"name":"Update Beta priors based on binary trade outcomes.         profit_outcome: True","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"data","total_count":9,"children":[{"name":"alpaca_fetcher.py","total_count":8,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".fetch_historical_data()","total_count":1,"children":[]},{"name":".fetch_live_prices()","total_count":1,"children":[]},{"name":".fetch_macro_data()","total_count":1,"children":[]},{"name":"AlpacaDataFetcher","total_count":1,"children":[]},{"name":"Fetches daily bars for the given symbols from Alpaca.         Returns a wide-for","total_count":1,"children":[]},{"name":"Fetches macroeconomic covariates (^VIX, ^TNX) from Yahoo Finance.         Return","total_count":1,"children":[]},{"name":"Fetches the latest trade prices for the given symbols.         Returns a diction","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"eod_auditor.py","total_count":1,"children":[{"name":"run_audit()","total_count":1,"children":[]}]},{"name":"execution","total_count":23,"children":[{"name":"alpaca_client.py","total_count":14,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".async_cancel_all_and_wait()","total_count":1,"children":[]},{"name":".cancel_all_open_orders()","total_count":1,"children":[]},{"name":".close_all_positions()","total_count":1,"children":[]},{"name":".get_account_value()","total_count":1,"children":[]},{"name":".get_clock()","total_count":1,"children":[]},{"name":".get_open_positions()","total_count":1,"children":[]},{"name":"AlpacaTradingClient","total_count":1,"children":[]},{"name":"Cancels all pending or open orders to prevent conflicting executions.","total_count":1,"children":[]},{"name":"Cancels all pending/open orders and blocks until Alpaca confirms they are fully","total_count":1,"children":[]},{"name":"Closes all open positions on Alpaca.","total_count":1,"children":[]},{"name":"Retrieves all currently open positions.","total_count":1,"children":[]},{"name":"Retrieves current account equity for sizing limits.","total_count":1,"children":[]},{"name":"Retrieves the current market clock.","total_count":1,"children":[]}]},{"name":"order_manager.py","total_count":8,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".create_bracket_order()","total_count":1,"children":[]},{"name":".create_market_order()","total_count":1,"children":[]},{"name":".create_oco_order()","total_count":1,"children":[]},{"name":".route_order_async()","total_count":1,"children":[]},{"name":"Formulates a standard market order for delta-based execution.         action: 'B","total_count":1,"children":[]},{"name":"OrderManager","total_count":1,"children":[]},{"name":"Routes the bracket order to Alpaca.","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"governance","total_count":9,"children":[{"name":"audit.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".log()","total_count":1,"children":[]},{"name":"AuditLogger","total_count":1,"children":[]},{"name":"Commits blocked or modified trade rationales to an immutable log.","total_count":1,"children":[]}]},{"name":"firewall.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".evaluate_trades()","total_count":1,"children":[]},{"name":"Applies agent-specific rules before blending, followed by global portfolio const","total_count":1,"children":[]},{"name":"GovernanceEngine","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"health_monitor.py","total_count":3,"children":[{"name":"check_health()","total_count":1,"children":[]},{"name":"log_state()","total_count":1,"children":[]},{"name":"run_cmd()","total_count":1,"children":[]}]},{"name":"inference","total_count":11,"children":[{"name":"main.py","total_count":3,"children":[{"name":"forecast()","total_count":1,"children":[]},{"name":"ForecastRequest","total_count":1,"children":[]},{"name":"startup_event()","total_count":1,"children":[]}]},{"name":"model.py","total_count":7,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".load()","total_count":1,"children":[]},{"name":".predict()","total_count":1,"children":[]},{"name":".train()","total_count":1,"children":[]},{"name":"AutoGluon Integration: Initialize the training loop using autogluon.timeseries w","total_count":1,"children":[]},{"name":"ChronosInference","total_count":1,"children":[]},{"name":"Given the 100-day padded context, predicts the next step expecting quantiles 0.1","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"main.py","total_count":7,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":"._execute_position_change()","total_count":1,"children":[]},{"name":".execute_daily_loop()","total_count":1,"children":[]},{"name":".fetch_historical_data()","total_count":1,"children":[]},{"name":"resolve_peak_nav()","total_count":1,"children":[]},{"name":"Resolves the peak NAV using Redis with a disk-backed fallback.","total_count":1,"children":[]},{"name":"TradingSystem","total_count":1,"children":[]}]},{"name":"orchestrate_bootstrap.py","total_count":2,"children":[{"name":"main()","total_count":1,"children":[]},{"name":"run_command()","total_count":1,"children":[]}]},{"name":"orchestrate_daily.py","total_count":4,"children":[{"name":"get_run_state()","total_count":1,"children":[]},{"name":"main()","total_count":1,"children":[]},{"name":"run_command()","total_count":1,"children":[]},{"name":"save_run_state()","total_count":1,"children":[]}]},{"name":"scratch","total_count":69,"children":[{"name":"analyze_and_build_report.py","total_count":1,"children":[{"name":"analyze_single_filing()","total_count":1,"children":[]}]},{"name":"fetch_all_8ks.py","total_count":2,"children":[{"name":"fetch_json()","total_count":1,"children":[]},{"name":"fetch_text()","total_count":1,"children":[]}]},{"name":"fetch_and_build_report.py","total_count":2,"children":[{"name":"fetch_json()","total_count":1,"children":[]},{"name":"fetch_url()","total_count":1,"children":[]}]},{"name":"fetch_and_parse_filings.py","total_count":3,"children":[{"name":"clean_html()","total_count":1,"children":[]},{"name":"fetch_json()","total_count":1,"children":[]},{"name":"fetch_text()","total_count":1,"children":[]}]},{"name":"fetch_and_parse_fintech_filings.py","total_count":3,"children":[{"name":"clean_html()","total_count":1,"children":[]},{"name":"fetch_json()","total_count":1,"children":[]},{"name":"fetch_text()","total_count":1,"children":[]}]},{"name":"fetch_and_parse_mining_filings.py","total_count":3,"children":[{"name":"clean_html()","total_count":1,"children":[]},{"name":"fetch_json()","total_count":1,"children":[]},{"name":"fetch_text()","total_count":1,"children":[]}]},{"name":"generate_final_dataset.py","total_count":2,"children":[{"name":"fetch_json()","total_count":1,"children":[]},{"name":"fetch_text()","total_count":1,"children":[]}]},{"name":"run_comparison_analysis.py","total_count":3,"children":[{"name":"analyze_group()","total_count":1,"children":[]},{"name":"parse_review_file()","total_count":1,"children":[]},{"name":"print_metrics()","total_count":1,"children":[]}]},{"name":"run_full_comparison.py","total_count":2,"children":[{"name":"parse_review_file()","total_count":1,"children":[]},{"name":"process_filing_list()","total_count":1,"children":[]}]},{"name":"scan_biotech.py","total_count":3,"children":[{"name":"fetch_json()","total_count":1,"children":[]},{"name":"fetch_text()","total_count":1,"children":[]},{"name":"search_efts()","total_count":1,"children":[]}]},{"name":"scan_fintech.py","total_count":2,"children":[{"name":"fetch_json()","total_count":1,"children":[]},{"name":"search_efts()","total_count":1,"children":[]}]},{"name":"scan_mining.py","total_count":2,"children":[{"name":"fetch_json()","total_count":1,"children":[]},{"name":"search_efts()","total_count":1,"children":[]}]},{"name":"sec_scanner.py","total_count":2,"children":[{"name":"fetch_json()","total_count":1,"children":[]},{"name":"search_efts()","total_count":1,"children":[]}]},{"name":"solve_paradox.py","total_count":1,"children":[{"name":"test_all()","total_count":1,"children":[]}]},{"name":"test_classification.py","total_count":1,"children":[{"name":"classify_row()","total_count":1,"children":[]}]},{"name":"test_import.py","total_count":1,"children":[{"name":"run_test()","total_count":1,"children":[]}]},{"name":"test_oco.py","total_count":1,"children":[{"name":"test_oco()","total_count":1,"children":[]}]},{"name":"analyze_filings.py","total_count":1,"children":[]},{"name":"analyze_fintech_filings.py","total_count":1,"children":[]},{"name":"analyze_mining_filings.py","total_count":1,"children":[]},{"name":"analyze_pnl.py","total_count":1,"children":[]},{"name":"auto_shutdown_daemon.py","total_count":1,"children":[]},{"name":"build_biotech_filings_md.py","total_count":1,"children":[]},{"name":"cancel_all.py","total_count":1,"children":[]},{"name":"check_candidates.py","total_count":1,"children":[]},{"name":"check_positions.py","total_count":1,"children":[]},{"name":"check_processed.py","total_count":1,"children":[]},{"name":"check_tp_sl.py","total_count":1,"children":[]},{"name":"create_merged_filings.py","total_count":1,"children":[]},{"name":"format_final_markdown.py","total_count":1,"children":[]},{"name":"format_fintech_markdown.py","total_count":1,"children":[]},{"name":"format_mining_markdown.py","total_count":1,"children":[]},{"name":"generate_baseline.py","total_count":1,"children":[]},{"name":"generate_final_table.py","total_count":1,"children":[]},{"name":"inspect_details.py","total_count":1,"children":[]},{"name":"inspect_filings.py","total_count":1,"children":[]},{"name":"inspect_fintech_items.py","total_count":1,"children":[]},{"name":"inspect_metrics.py","total_count":1,"children":[]},{"name":"parse_pnl.py","total_count":1,"children":[]},{"name":"perfect_summarizer.py","total_count":1,"children":[]},{"name":"print_markdown_table.py","total_count":1,"children":[]},{"name":"process_bars.py","total_count":1,"children":[]},{"name":"reformat.py","total_count":1,"children":[]},{"name":"test_alpaca_err.py","total_count":1,"children":[]},{"name":"test_alpaca_err2.py","total_count":1,"children":[]},{"name":"test_alpaca_err3.py","total_count":1,"children":[]},{"name":"test_alpaca_err4.py","total_count":1,"children":[]},{"name":"test_cancel_oco.py","total_count":1,"children":[]},{"name":"test_cross.py","total_count":1,"children":[]},{"name":"test_logic.py","total_count":1,"children":[]},{"name":"test_oco_alpaca.py","total_count":1,"children":[]},{"name":"test_oco_real.py","total_count":1,"children":[]}]},{"name":"signals","total_count":47,"children":[{"name":"alpha_isolation.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".isolate()","total_count":1,"children":[]},{"name":"AlphaIsolator","total_count":1,"children":[]},{"name":"Strips out the autoregressive momentum component to calculate the adjusted predi","total_count":1,"children":[]}]},{"name":"deep_ofi_agent.py","total_count":5,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".generate_signal()","total_count":1,"children":[]},{"name":"DeepOFIAgent","total_count":1,"children":[]},{"name":"DEPRECATED / UNUSED MODULE  This agent uses a Volume-Weighted Return proxy to es","total_count":1,"children":[]},{"name":"Since real L2 Limit Order Book data isn't available, we use a         Volume-Wei","total_count":1,"children":[]}]},{"name":"kalman_agent.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".generate_signal()","total_count":1,"children":[]},{"name":"AdaptiveKalmanAgent","total_count":1,"children":[]},{"name":"Calculates zero-lag momentum using an Adaptive Kalman Filter state-space model.","total_count":1,"children":[]}]},{"name":"mean_reversion_agent.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".generate_signal()","total_count":1,"children":[]},{"name":"Generates portfolio weights based on statistical mean reversion.         Assets","total_count":1,"children":[]},{"name":"MeanReversionAgent","total_count":1,"children":[]}]},{"name":"momentum_agent.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".generate_signal()","total_count":1,"children":[]},{"name":"Generates portfolio weights based on cross-sectional momentum.         close_dat","total_count":1,"children":[]},{"name":"MomentumAgent","total_count":1,"children":[]}]},{"name":"pca_orthogonalization.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".orthogonalize()","total_count":1,"children":[]},{"name":"PCAOrthogonalizer","total_count":1,"children":[]},{"name":"Takes a DataFrame of returns (dates as index, assets as columns).         Extrac","total_count":1,"children":[]}]},{"name":"ranking.py","total_count":3,"children":[{"name":".rank_and_normalize()","total_count":1,"children":[]},{"name":"PortfolioRanker","total_count":1,"children":[]},{"name":"Translates alpha signals into a dollar-neutral Long/Short portfolio by ranking a","total_count":1,"children":[]}]},{"name":"regime_detector.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".detect()","total_count":1,"children":[]},{"name":"Classifies the market regime using the benchmark symbol (e.g. SPY).         mark","total_count":1,"children":[]},{"name":"RegimeDetector","total_count":1,"children":[]}]},{"name":"smoothing.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".smooth()","total_count":1,"children":[]},{"name":"Applies Exponential Moving Average to the residual returns.         r_hat_{d+1,","total_count":1,"children":[]},{"name":"EMASmoother","total_count":1,"children":[]}]},{"name":"temporal_alignment.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".align_and_pad()","total_count":1,"children":[]},{"name":"Aligns a long-format DataFrame to a continuous time index, padding missing dates","total_count":1,"children":[]},{"name":"TemporalAligner","total_count":1,"children":[]}]},{"name":"volatility_guard.py","total_count":6,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":".get_bracket_bounds()","total_count":1,"children":[]},{"name":".get_conditional_volatility()","total_count":1,"children":[]},{"name":"Fits a GJR-GARCH(1,1,1) model to the returns and predicts the next day's volatil","total_count":1,"children":[]},{"name":"Returns (take_profit, stop_loss) based on asymmetric GJR-GARCH volatility foreca","total_count":1,"children":[]},{"name":"VolatilityGuard","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"start.sh","total_count":1,"children":[{"name":"start.sh script","total_count":1,"children":[]}]},{"name":"test_alpaca_advanced.py","total_count":1,"children":[{"name":"AdvancedLimitOrderRequest","total_count":1,"children":[]}]},{"name":"tests","total_count":32,"children":[{"name":"test_bootstrap.py","total_count":1,"children":[{"name":"test_bootstrap_chronological_split()","total_count":1,"children":[]}]},{"name":"test_cost_model.py","total_count":2,"children":[{"name":"Run backtest/engine.py's fast_run() twice on identical data/params, once with tr","total_count":1,"children":[]},{"name":"test_cost_model_pnl_impact()","total_count":1,"children":[]}]},{"name":"test_drawdown_persistence.py","total_count":2,"children":[{"name":"Simulate Redis being unavailable (None or throwing exception) or returning no st","total_count":1,"children":[]},{"name":"test_drawdown_persistence_redis_unavailable_disk_fallback()","total_count":1,"children":[]}]},{"name":"test_entry_protection.py","total_count":5,"children":[{"name":"check_unprotected_positions()","total_count":1,"children":[]},{"name":"Replicates the unprotected position verification routine in main.py","total_count":1,"children":[]},{"name":"Simulate a position existing in get_open_positions() with no matching open OCO o","total_count":1,"children":[]},{"name":"test_protected_position_no_alert()","total_count":1,"children":[]},{"name":"test_unprotected_position_alerting_path()","total_count":1,"children":[]}]},{"name":"test_governance.py","total_count":5,"children":[{"name":"Assert that instantiating GovernanceEngine() with no arguments produces the new","total_count":1,"children":[]},{"name":"Test drawdown circuit breaker edge cases: account_nav exactly at the drawdown th","total_count":1,"children":[]},{"name":"test_drawdown_circuit_breaker_edge_cases()","total_count":1,"children":[]},{"name":"test_governance_engine_conservative_defaults()","total_count":1,"children":[]},{"name":"test_quantile_fan_var_scaling()","total_count":1,"children":[]}]},{"name":"test_leakage.py","total_count":6,"children":[{"name":"Assert that optimize_optuna.py's training window and test window are chronologic","total_count":1,"children":[]},{"name":"Assert that the date range bootstrap_model.py passes into ChronosInference.train","total_count":1,"children":[]},{"name":"Assert that the final out-of-sample evaluation window used to report Sharpe/CAGR","total_count":1,"children":[]},{"name":"test_bootstrap_model_train_window_leakage()","total_count":1,"children":[]},{"name":"test_final_eval_window_no_overlap_with_finetune_window()","total_count":1,"children":[]},{"name":"test_optuna_train_test_split_and_objective()","total_count":1,"children":[]}]},{"name":"test_ofi_removal.py","total_count":4,"children":[{"name":"Assert 'deep_ofi' is not present in the EnsembleAgent agent_names list construct","total_count":1,"children":[]},{"name":"Assert no references to ofi_active_orders.json or close_ofi_positions remain any","total_count":1,"children":[]},{"name":"test_deep_ofi_not_in_ensemble_agent_names()","total_count":1,"children":[]},{"name":"test_no_ofi_references_in_main_py()","total_count":1,"children":[]}]},{"name":"test_order_manager.py","total_count":4,"children":[{"name":".test_create_bracket_order()","total_count":1,"children":[]},{"name":".test_create_market_order()","total_count":1,"children":[]},{"name":".test_create_oco_order()","total_count":1,"children":[]},{"name":"TestOrderManager","total_count":1,"children":[]}]},{"name":"test_signals.py","total_count":1,"children":[{"name":"test_ranking_leverage_constraint()","total_count":1,"children":[]}]},{"name":"test_temporal.py","total_count":1,"children":[{"name":"test_temporal_alignment()","total_count":1,"children":[]}]},{"name":"__init__.py","total_count":1,"children":[]}]},{"name":"utils","total_count":5,"children":[{"name":"discord_alert.py","total_count":4,"children":[{"name":".__init__()","total_count":1,"children":[]},{"name":"._load_credentials()","total_count":1,"children":[]},{"name":".send_alert()","total_count":1,"children":[]},{"name":"DiscordAlerter","total_count":1,"children":[]}]},{"name":"logger.py","total_count":1,"children":[{"name":"setup_logger()","total_count":1,"children":[]}]}]},{"name":"verify_alpaca_routing.py","total_count":1,"children":[{"name":"main()","total_count":1,"children":[]}]},{"name":"parse_pnl.py","total_count":1,"children":[]},{"name":"refactor.py","total_count":1,"children":[]},{"name":"test_crypto.py","total_count":1,"children":[]}]};
+
+    function transformData(jsonData) {
+        // Helper function to recursively build the children structure
+        function processNode(node, parentL1StageName) {
+            let displayName = node.name;
+            // Append total_count if it exists and is not already in the name
+            if (node.total_count !== undefined) {
+                if (!/\(Total Count: \d+\)$/.test(displayName)) {
+                    displayName += ` (Total Count: ${node.total_count})`;
+                }
+            }
+
+            const newNode = { name: displayName };
+
+            if (parentL1StageName === "Root") {
+                 newNode.originalStageName = node.name;
+            } else {
+                newNode.originalStageName = parentL1StageName;
+            }
+
+            if (node.children && node.children.length > 0) {
+                const stageNameToPass = (parentL1StageName === "Root") ? node.name : parentL1StageName;
+                newNode.children = node.children.map(child => processNode(child, stageNameToPass));
+            }
+
+            return newNode;
+        }
+
+        let rootDisplayName = jsonData.name;
+        if (jsonData.total_count !== undefined && !/\(Total Count: \d+\)$/.test(rootDisplayName)) {
+            rootDisplayName += ` (Total Count: ${jsonData.total_count})`;
+        }
+
+        return {
+            name: rootDisplayName,
+            originalStageName: "Root",
+            children: (jsonData.children || []).map(child => processNode(child, "Root"))
+        };
+    }
+
+    const treeData = transformData(initialJsonData);
+
+    // Auto-populated phaseColors: every depth-1 child of the root gets
+    // a stable colour from a bigger palette so all top-level dirs are
+    // distinguishable.
+    const PALETTE = [
+      ["#3498DB","#2980B9","#AED6F1"], ["#2ECC71","#27AE60","#A9DFBF"],
+      ["#E74C3C","#C0392B","#F5B7B1"], ["#9B59B6","#8E44AD","#D7BDE2"],
+      ["#F39C12","#D68910","#FAD7A0"], ["#1ABC9C","#117864","#A2D9CE"],
+      ["#34495E","#1B2631","#ABB2B9"], ["#E67E22","#BA4A00","#F5CBA7"],
+      ["#16A085","#0E6655","#A2D9CE"], ["#D35400","#A04000","#EDBB99"],
+      ["#7F8C8D","#566573","#D5DBDB"], ["#C0392B","#7B241C","#F5B7B1"],
+      ["#2E86C1","#1B4F72","#A9CCE3"], ["#28B463","#196F3D","#A9DFBF"],
+      ["#AF7AC5","#6C3483","#D2B4DE"],
+    ];
+    const phaseColors = { "Root": { fill: "#4A4A4A", stroke: "#333333", collapsedFill: "#6C757D" },
+                          "Default": { fill: "#BDC3C7", stroke: "#95A5A6", collapsedFill: "#ECF0F1" } };
+    (initialJsonData.children || []).forEach((c, i) => {
+      const pal = PALETTE[i % PALETTE.length];
+      phaseColors[c.name] = { fill: pal[0], stroke: pal[1], collapsedFill: pal[2] };
+    });
+
+    const levelSpecificPalettes = {
+      0: { fill: "#4A4A4A", stroke: "#333333", collapsedFill: "#6C757D" },
+      2: { fill: "#6ab04c", stroke: "#508a38", collapsedFill: "#a3d391" },
+      3: { fill: "#f0932b", stroke: "#d0730f", collapsedFill: "#f6c07e" },
+      4: { fill: "#be2edd", stroke: "#a01cb3", collapsedFill: "#e08bf2" },
+      5: { fill: "#00a8ff", stroke: "#007ac1", collapsedFill: "#74d2ff" },
+      6: { fill: "#e55039", stroke: "#c23620", collapsedFill: "#f09a8d" },
+      default: { fill: "#747d8c", stroke: "#57606f", collapsedFill: "#a4b0be" }
+    };
+
+    const svgElement = d3.select("#tree-svg");
+    const initialSvgWidth = +svgElement.attr("width");
+    const initialSvgHeight = +svgElement.attr("height");
+    const margin = { top: 40, right: 120, bottom: 80, left: 450 };
+    let width = initialSvgWidth - margin.left - margin.right;
+    let height = initialSvgHeight - margin.top - margin.bottom;
+    const duration = 500;
+    let nodeCounter = 0;
+    const g = svgElement.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+    const treemap = d3.tree().nodeSize([40, 0]);
+    let rootNode = d3.hierarchy(treeData, d => d.children);
+    rootNode.x0 = 0;
+    rootNode.y0 = 0;
+
+    if (rootNode.children) {
+      rootNode.children.forEach(d_child => {
+        if (d_child.children) { collapseBranch(d_child); }
+      });
+    }
+    updateTree(rootNode);
+
+    function collapseBranch(d) { if (d.children) { d._children = d.children; d._children.forEach(collapseBranch); d.children = null; } }
+    function expandBranch(d) { if (d._children) { d.children = d._children; d._children = null; } if (d.children) { d.children.forEach(expandBranch); } }
+    window.expandAll = () => { expandBranch(rootNode); updateTree(rootNode); };
+    window.collapseAll = () => { if (rootNode.children) { rootNode.children.forEach(collapseBranch); } updateTree(rootNode); };
+    window.resetView = () => { if (rootNode.children) { rootNode.children.forEach(d_child => { if (d_child.children || d_child._children) { collapseBranch(d_child); } }); } if (rootNode._children && !rootNode.children) { rootNode.children = rootNode._children; rootNode._children = null; } updateTree(rootNode); };
+
+    function updateTree(source) {
+      const treeLayoutData = treemap(rootNode);
+      let nodes = treeLayoutData.descendants();
+      let links = treeLayoutData.descendants().slice(1);
+
+      let minX = 0;
+      let maxX = 0;
+      if (nodes.length > 0) {
+        minX = d3.min(nodes, d => d.x);
+        maxX = d3.max(nodes, d => d.x);
+      }
+
+      let neededHeight = Math.max(initialSvgHeight, maxX - minX + margin.top + margin.bottom + 100);
+      svgElement.transition().duration(duration / 2).attr("height", neededHeight);
+      g.transition().duration(duration / 2).attr("transform", `translate(${margin.left},${margin.top - minX + 40})`);
+
+      nodes.forEach(d => { d.y = d.depth * 400; }); // Adjust horizontal separation if needed
+
+      const node = g.selectAll('g.node').data(nodes, d => d.id || (d.id = ++nodeCounter));
+      const nodeEnter = node.enter().append('g')
+        .attr('class', d => "node" + (d.children || d._children ? " node--internal" : " node--leaf") + (d._children ? " _children" : ""))
+        .attr('transform', d => `translate(${source.y0},${source.x0})`)
+        .on('click', (event, d) => { if (d.children) { d._children = d.children; d.children = null; } else if (d._children) { d.children = d._children; d._children = null; } updateTree(d); })
+        .style('cursor', d => (d.children || d._children) ? 'pointer' : 'default');
+
+      nodeEnter.append('circle').attr('r', 1e-6);
+
+      nodeEnter.append('text')
+        .attr('dy', '.35em')
+        .attr('x', d => d.children || d._children ? -14 : 14)
+        .attr('text-anchor', d => d.children || d._children ? 'end' : 'start')
+        .style("fill-opacity", 1e-6)
+        .call(wrapText, 380);
+
+      const nodeUpdate = nodeEnter.merge(node);
+      nodeUpdate.transition().duration(duration)
+        .attr('transform', d => `translate(${d.y},${d.x})`)
+        .attr('class', d => "node" + (d.children ? " node--internal" : " node--leaf") + (d._children ? " node--internal _children" : ""));
+
+      nodeUpdate.select('circle').attr('r', 8.5)
+        .style('fill', d => {
+            let palette;
+            if (d.depth === 0) {
+                palette = levelSpecificPalettes[0];
+            } else if (d.depth === 1) {
+                palette = phaseColors[d.data.originalStageName] || phaseColors.Default;
+            } else {
+                palette = levelSpecificPalettes[d.depth] || levelSpecificPalettes.default;
+            }
+            if (d._children) return palette.collapsedFill;
+            if (d.children) return palette.fill;
+            return "#fff";
+        })
+        .style('stroke', d => {
+            let palette;
+            if (d.depth === 0) {
+                palette = levelSpecificPalettes[0];
+            } else if (d.depth === 1) {
+                palette = phaseColors[d.data.originalStageName] || phaseColors.Default;
+            } else {
+                palette = levelSpecificPalettes[d.depth] || levelSpecificPalettes.default;
+            }
+            return palette.stroke;
+        });
+      nodeUpdate.select('text').style("fill-opacity", 1).call(wrapText, 380);
+
+      const nodeExit = node.exit().transition().duration(duration).attr('transform', d => `translate(${source.y},${source.x})`).remove();
+      nodeExit.select('circle').attr('r', 1e-6);
+      nodeExit.select('text').style('fill-opacity', 1e-6);
+
+      const link = g.selectAll('path.link').data(links, d => d.id);
+      const linkEnter = link.enter().insert('path', "g").attr('class', 'link').attr('d', d => { const o = { x: source.x0, y: source.y0 }; return diagonal(o, o); });
+
+      linkEnter.merge(link).transition().duration(duration).attr('d', d => diagonal(d, d.parent))
+        .style('stroke', d => {
+            const sourceNode = d.parent;
+            if (!sourceNode) return phaseColors.Default.stroke;
+            const l1AncestorName = sourceNode.data.originalStageName;
+            const colorPalette = phaseColors[l1AncestorName] || phaseColors.Default;
+            return colorPalette.stroke;
+        });
+      link.exit().transition().duration(duration).attr('d', d => { const o = { x: source.x, y: source.y }; return diagonal(o, o); }).remove();
+      nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+    }
+
+    function diagonal(s, d) { return `M ${s.y} ${s.x} C ${(s.y + d.y) / 2} ${s.x}, ${(s.y + d.y) / 2} ${d.x}, ${d.y} ${d.x}`; }
+
+    function wrapText(textElements, maxWidth) {
+        const textPartColors = {
+            name: '#343a40',
+            count: '#0056b3'
+        };
+        const countRegex = /(\s\(Total Count: \d+\))$/;
+
+        textElements.each(function () {
+            const textD3 = d3.select(this);
+            const originalNodeText = textD3.datum().data.name;
+            const x = parseFloat(textD3.attr("x") || 0);
+            const initialDy = textD3.attr("dy");
+            const textAnchor = textD3.attr("text-anchor");
+            const lineHeight = 1.1;
+
+            textD3.text(null);
+
+            let namePart = originalNodeText;
+            let countPartText = "";
+
+            const countMatch = originalNodeText.match(countRegex);
+            if (countMatch && originalNodeText.endsWith(countMatch[0])) {
+                namePart = originalNodeText.substring(0, originalNodeText.length - countMatch[0].length).trim();
+                countPartText = countMatch[0].trim();
+            }
+
+            const tokens = [];
+            namePart.split(/\s+/).filter(Boolean).forEach(word => {
+                tokens.push({ text: word, type: 'name' });
+            });
+            if (countPartText) {
+                tokens.push({ text: countPartText, type: 'count' });
+            }
+
+            if (tokens.length === 0 && originalNodeText) {
+                tokens.push({ text: originalNodeText, type: 'name' });
+            }
+
+            let currentTspan = textD3.append("tspan").attr("x", x).attr("dy", initialDy);
+            if (textAnchor === "end") currentTspan.attr("text-anchor", "end");
+
+            let lineTokens = [];
+
+            for (let i = 0; i < tokens.length; i++) {
+                const tokenObj = tokens[i];
+
+                lineTokens.push(tokenObj);
+                currentTspan.text(lineTokens.map(t => t.text).join(" "));
+
+                if (currentTspan.node().getComputedTextLength() > maxWidth && lineTokens.length > 1) {
+                    lineTokens.pop();
+
+                    currentTspan.text(null);
+                    lineTokens.forEach((prevToken, idx) => {
+                        currentTspan.append("tspan")
+                            .text((idx > 0 ? " " : "") + prevToken.text)
+                            .style("fill", textPartColors[prevToken.type] || textPartColors.name)
+                            .style("font-weight", prevToken.type === 'count' ? "bold" : "normal");
+                    });
+
+                    lineTokens = [tokenObj];
+                    currentTspan = textD3.append("tspan").attr("x", x).attr("dy", lineHeight + "em");
+                    if (textAnchor === "end") currentTspan.attr("text-anchor", "end");
+                }
+            }
+
+            currentTspan.text(null);
+            lineTokens.forEach((token, idx) => {
+                currentTspan.append("tspan")
+                    .text((idx > 0 ? " " : "") + token.text)
+                    .style("fill", textPartColors[token.type] || textPartColors.name)
+                    .style("font-weight", token.type === 'count' ? "bold" : "normal");
+            });
+
+            if (textD3.selectAll("tspan > tspan").empty() && textD3.select("tspan").text().length === 0 && originalNodeText) {
+                let t = textD3.select("tspan");
+                let displayText = originalNodeText;
+                t.text(displayText).style("fill", textPartColors.name);
+                if (t.node() && t.node().getComputedTextLength() > maxWidth && displayText.length > 20) {
+                    let estimatedChars = Math.floor(maxWidth / (t.node().getComputedTextLength()/displayText.length) );
+                    displayText = displayText.substring(0, Math.max(0, estimatedChars - 3)) + "...";
+                    t.text(displayText);
+                }
+            }
+        });
+    }
+  </script>
+</body>
+</html>

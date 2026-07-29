@@ -1,0 +1,2 @@
+ofi_max_concentration,kalman_max_concentration,chronos_max_concentration,var_limit,global_max_leverage,sharpe_ratio,max_drawdown,cagr,final_capital
+0.1,0.25,0.15,0.05,2.0,7.8990634980398475,-0.022881734380989394,0.6669400413366473,2163.534817828751

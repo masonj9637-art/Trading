@@ -1,0 +1,26 @@
+ticker,filing_date,industry,judgment,reason
+VXRT,2026-07-17,Biotech,No,Filing date not in bar data
+VXRT,2026-07-07,Biotech,Yes,Filing date not in bar data
+VXRT,2026-07-02,Biotech,No,Fewer than 15 post-days (1)
+AVXL,2026-07-20,Biotech,No,Fewer than 15 post-days (5)
+IKT,2026-07-23,Biotech,No,Fewer than 15 post-days (2)
+IKT,2026-07-14,Biotech,No,Fewer than 15 post-days (9)
+NMRA,2026-07-27,Biotech,No,Fewer than 15 post-days (0)
+SGMT,2026-07-21,Biotech,No,Fewer than 15 post-days (4)
+ANVS,2026-07-10,Biotech,Yes,Fewer than 15 post-days (11)
+MCRB,2026-07-08,Biotech,No,Fewer than 15 post-days (13)
+MCRB,2026-07-08,Biotech,Yes,Fewer than 15 post-days (13)
+KPTI,2026-07-17,Biotech,No,Fewer than 15 post-days (6)
+PZG,2026-07-14,Mining,No,Fewer than 15 post-days (9)
+USGO,2026-07-14,Mining,No,Fewer than 15 post-days (9)
+AREC,2026-07-24,Mining,No,Fewer than 15 post-days (1)
+AREC,2026-07-24,Mining,No,Fewer than 15 post-days (1)
+AREC,2026-07-21,Mining,No,Fewer than 15 post-days (4)
+TMRC,2026-07-17,Mining,Yes,No bar data at all
+TMRC,2026-03-05,Mining,Yes,No bar data at all
+TMRC,2026-02-23,Mining,Yes,No bar data at all
+EU,2026-07-09,Mining,No,Fewer than 15 post-days (12)
+LODE,2026-07-24,Mining,No,Fewer than 15 post-days (1)
+EARN,2026-07-08,Fintech,No,Fewer than 15 post-days (13)
+RC,2026-07-23,Fintech,No,Fewer than 15 post-days (2)
+KPLT,2026-07-27,Fintech,No,Filing date not in bar data

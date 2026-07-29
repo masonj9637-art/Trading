@@ -1,0 +1,144 @@
+[
+  {
+    "cluster_id": "SLQT_20230516_5",
+    "symbol": "SLQT",
+    "cik": "0001794783",
+    "window_start_date": "2023-05-16",
+    "trigger_date": "2023-05-16",
+    "distinct_insiders": 5,
+    "insider_names": [
+      "GRANT W THOMAS II",
+      "Grant Robert Clay",
+      "Hawks Donald L III",
+      "Weldon Raymond F",
+      "Danker Timothy Robert"
+    ],
+    "total_cluster_value": 1158700.0,
+    "buys_count": 5
+  },
+  {
+    "cluster_id": "SLQT_20230918_4",
+    "symbol": "SLQT",
+    "cik": "0001794783",
+    "window_start_date": "2023-09-18",
+    "trigger_date": "2023-09-18",
+    "distinct_insiders": 4,
+    "insider_names": [
+      "Matthews Joshua Brandon",
+      "GRANT W THOMAS II",
+      "Grant Robert Clay",
+      "Grant William Thomas III"
+    ],
+    "total_cluster_value": 759169.6,
+    "buys_count": 6
+  },
+  {
+    "cluster_id": "TMCI_20240513_6",
+    "symbol": "TMCI",
+    "cik": "0001630627",
+    "window_start_date": "2024-05-13",
+    "trigger_date": "2024-05-13",
+    "distinct_insiders": 6,
+    "insider_names": [
+      "BAKEWELL JOHN K",
+      "Treace John T.",
+      "MOTT RICHARD W",
+      "Kiernan Jane E",
+      "TREACE JAMES T",
+      "Jain Deepti"
+    ],
+    "total_cluster_value": 6029867.0216,
+    "buys_count": 17
+  },
+  {
+    "cluster_id": "TMCI_20240520_3",
+    "symbol": "TMCI",
+    "cik": "0001630627",
+    "window_start_date": "2024-05-20",
+    "trigger_date": "2024-05-29",
+    "distinct_insiders": 3,
+    "insider_names": [
+      "MOTT RICHARD W",
+      "Treace John T.",
+      "TREACE JAMES T"
+    ],
+    "total_cluster_value": 1509560.98,
+    "buys_count": 7
+  },
+  {
+    "cluster_id": "POCI_20240816_3",
+    "symbol": "POCI",
+    "cik": "0000867840",
+    "window_start_date": "2024-08-16",
+    "trigger_date": "2024-08-16",
+    "distinct_insiders": 3,
+    "insider_names": [
+      "Lawande Mahesh",
+      "COLL WAYNE M",
+      "Forkey Joseph Norman"
+    ],
+    "total_cluster_value": 142382990.1,
+    "buys_count": 3
+  },
+  {
+    "cluster_id": "GCBC_20251024_3",
+    "symbol": "GCBC",
+    "cik": "0001070524",
+    "window_start_date": "2025-10-24",
+    "trigger_date": "2025-11-19",
+    "distinct_insiders": 3,
+    "insider_names": [
+      "Hada Tejraj S",
+      "Cahalan Jay P.",
+      "Antalek John"
+    ],
+    "total_cluster_value": 171454.0,
+    "buys_count": 4
+  },
+  {
+    "cluster_id": "EML_20251119_3",
+    "symbol": "EML",
+    "cik": "0000031107",
+    "window_start_date": "2025-11-19",
+    "trigger_date": "2025-12-17",
+    "distinct_insiders": 3,
+    "insider_names": [
+      "EVERETS JOHN",
+      "DiSanto Frederick D.",
+      "MITAROTONDA JAMES A"
+    ],
+    "total_cluster_value": 168051.9272,
+    "buys_count": 4
+  },
+  {
+    "cluster_id": "GCBC_20260303_4",
+    "symbol": "GCBC",
+    "cik": "0001070524",
+    "window_start_date": "2026-03-03",
+    "trigger_date": "2026-03-18",
+    "distinct_insiders": 4,
+    "insider_names": [
+      "Hada Tejraj S",
+      "Cannucciari Christopher",
+      "Barzee Nick",
+      "Hogan Peter W."
+    ],
+    "total_cluster_value": 255609.0,
+    "buys_count": 5
+  },
+  {
+    "cluster_id": "EML_20260608_3",
+    "symbol": "EML",
+    "cik": "0000031107",
+    "window_start_date": "2026-06-08",
+    "trigger_date": "2026-06-17",
+    "distinct_insiders": 3,
+    "insider_names": [
+      "EVERETS JOHN",
+      "MITAROTONDA JAMES A",
+      "Scott Peggy"
+    ],
+    "total_cluster_value": 211772.37939999998,
+    "buys_count": 5
+  }
+]
