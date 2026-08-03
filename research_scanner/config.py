@@ -8,6 +8,17 @@ overridden via environment variables.
 
 import os
 
+# Load credentials_backup.md or .env if environment variables are not already set
+_repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+for _env_file in [os.path.join(_repo_root, ".env"), os.path.join(_repo_root, "credentials_backup.md")]:
+    if os.path.isfile(_env_file):
+        with open(_env_file, "r") as _f:
+            for _line in _f:
+                _line = _line.strip()
+                if _line and not _line.startswith("#") and "=" in _line:
+                    _k, _v = _line.split("=", 1)
+                    os.environ.setdefault(_k.strip(), _v.strip())
+
 # Database & Storage Settings
 DB_PATH = os.getenv("DB_PATH", "research_scanner.db")
 OBSIDIAN_VAULT_PATH = os.getenv("OBSIDIAN_VAULT_PATH", "obsidian_vault")
