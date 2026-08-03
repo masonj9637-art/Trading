@@ -77,7 +77,7 @@ def parse_fact_check_note(file_path: str) -> Optional[Dict[str, Any]]:
 
     fm = parse_yaml_frontmatter(content)
 
-    # 1. Ticker extraction (frontmatter or body regex)
+    # 1. Ticker extraction (frontmatter exact key 'ticker' or body regex)
     ticker = fm.get("ticker", "")
     if not ticker:
         m = re.search(r"(?:\*\*Ticker\*\*|Ticker):\s*([A-Za-z0-9\.\-]+)", content, re.IGNORECASE)
@@ -92,8 +92,8 @@ def parse_fact_check_note(file_path: str) -> Optional[Dict[str, Any]]:
     if not ticker:
         ticker = "UNKNOWN"
 
-    # 2. Audit date extraction
-    audit_date = fm.get("audit_date") or fm.get("created_at") or ""
+    # 2. Audit date extraction (frontmatter exact key 'audit_date' or fallback)
+    audit_date = fm.get("audit_date", "")
     if audit_date:
         audit_date = str(audit_date)[:10]
     else:
@@ -105,33 +105,43 @@ def parse_fact_check_note(file_path: str) -> Optional[Dict[str, Any]]:
             mtime = os.path.getmtime(file_path)
             audit_date = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d")
 
-    # 3. Confidence level extraction
-    confidence_level = fm.get("confidence_level") or fm.get("confidence") or ""
+    # 3. Confidence level extraction (frontmatter exact key 'confidence_level' or fallback)
+    confidence_level = fm.get("confidence_level", "")
     if not confidence_level:
-        m = re.search(r"(?:\*\*Confidence\*\*|Confidence):\s*([A-Za-z0-9\s]+)", content, re.IGNORECASE)
+        m = re.search(
+            r"Confidence(?:\s+Level)?[*:\s]+([^\n\r]+)",
+            content,
+            re.IGNORECASE,
+        )
         if m:
-            confidence_level = m.group(1).strip()
+            confidence_level = m.group(1).replace('*', '').strip()
         else:
             confidence_level = "Medium"
 
-    # 4. Fact check verdict extraction
-    fact_check_verdict = fm.get("fact_check_verdict") or fm.get("verdict") or ""
+    # 4. Fact check verdict extraction (frontmatter exact key 'fact_check_verdict' or fallback)
+    fact_check_verdict = fm.get("fact_check_verdict", "")
     if not fact_check_verdict:
-        m = re.search(r"(?:\*\*Verdict\*\*|Verdict):\s*([A-Za-z0-9\s]+)", content, re.IGNORECASE)
+        m = re.search(
+            r"Verdict[*:\s]+(claims well-supported|some claims overstated|claims not well-supported by sources)",
+            content,
+            re.IGNORECASE,
+        )
         if m:
-            fact_check_verdict = m.group(1).strip()
+            fact_check_verdict = m.group(1).strip().lower()
         else:
             # Infer verdict keyword from section text
-            sec_lower = post_header_text.lower()[:300]
-            if "verified" in sec_lower or "confirmed" in sec_lower or "supported" in sec_lower:
-                fact_check_verdict = "Supported"
-            elif "refuted" in sec_lower or "debunked" in sec_lower or "false" in sec_lower:
-                fact_check_verdict = "Refuted"
+            sec_lower = post_header_text.lower()
+            if "overstated" in sec_lower or "inconclusive" in sec_lower:
+                fact_check_verdict = "some claims overstated"
+            elif "not well-supported" in sec_lower or "not well supported" in sec_lower or "refuted" in sec_lower:
+                fact_check_verdict = "claims not well-supported by sources"
+            elif "well-supported" in sec_lower or "well supported" in sec_lower or "supported" in sec_lower:
+                fact_check_verdict = "claims well-supported"
             else:
-                fact_check_verdict = "Inconclusive"
+                fact_check_verdict = "claims not well-supported by sources"
 
-    # 5. Theme note extraction
-    theme_note = fm.get("theme_note") or fm.get("category") or ""
+    # 5. Theme note extraction (frontmatter exact key 'theme_note' or fallback)
+    theme_note = fm.get("theme_note", "")
     if not theme_note:
         # Search for [[wikilink]] in note body
         m = re.search(r"\[\[([^\]]+)\]\]", content)

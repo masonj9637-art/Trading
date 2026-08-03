@@ -79,3 +79,57 @@ def send_discord_notification(
     except Exception as e:
         logger.error("Unexpected error in send_discord_notification: %s", e, exc_info=True)
         return False
+
+
+def send_discord_message(
+    content: str,
+    bot_token: Optional[str] = None,
+    channel_id: Optional[str] = None,
+    timeout: int = 10,
+) -> bool:
+    """
+    Sends a plain string message to Discord via REST POST.
+
+    :param content: The plain text message to send
+    :param bot_token: Discord Bot token (defaults to config.DISCORD_BOT_TOKEN)
+    :param channel_id: Discord Channel ID (defaults to config.DISCORD_CHANNEL_ID)
+    :param timeout: Request timeout in seconds
+    :return: True if message sent successfully, False otherwise
+    """
+    token = bot_token if bot_token is not None else config.DISCORD_BOT_TOKEN
+    cid = channel_id if channel_id is not None else config.DISCORD_CHANNEL_ID
+
+    if not token or not cid:
+        logger.warning(
+            "DISCORD_BOT_TOKEN or DISCORD_CHANNEL_ID missing. Skipping Discord message."
+        )
+        return False
+
+    url = f"https://discord.com/api/v10/channels/{cid}/messages"
+    headers = {
+        "Authorization": f"Bot {token}",
+        "Content-Type": "application/json",
+        "User-Agent": "ResearchScanner/1.0",
+    }
+
+    payload = {"content": content}
+
+    try:
+        logger.info("Sending Discord REST message")
+        response = requests.post(url, headers=headers, json=payload, timeout=timeout)
+
+        if response.status_code in (200, 201):
+            logger.info("Discord message sent successfully")
+            return True
+        else:
+            logger.warning(
+                "Discord API returned status %d: %s", response.status_code, response.text[:200]
+            )
+            return False
+
+    except requests.RequestException as e:
+        logger.error("Network or HTTP failure sending Discord message: %s", e)
+        return False
+    except Exception as e:
+        logger.error("Unexpected error in send_discord_message: %s", e, exc_info=True)
+        return False

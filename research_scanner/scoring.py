@@ -72,10 +72,11 @@ def get_alpaca_price(
     api_key: Optional[str] = None,
     secret_key: Optional[str] = None,
     base_url: Optional[str] = None,
+    mock: bool = False,
 ) -> Optional[float]:
     """
     Pulls historical close price for a ticker on or immediately following target_date from Alpaca API.
-    Falls back to deterministic mock price if Alpaca credentials are missing or API fails.
+    Logs an ERROR and returns None if Alpaca credentials are missing or API fails, unless mock=True.
     """
     key = api_key if api_key is not None else config.ALPACA_API_KEY
     sec = secret_key if secret_key is not None else config.ALPACA_SECRET_KEY
@@ -98,15 +99,20 @@ def get_alpaca_price(
                 bars = data.get("bars", [])
                 if bars and len(bars) > 0:
                     return float(bars[0].get("c", 0.0) or bars[0].get("o", 0.0))
+            logger.error("Alpaca API call failed for %s on %s: HTTP %s", ticker, target_date, res.status_code)
         except Exception as e:
-            logger.warning("Alpaca API call failed for %s on %s: %s", ticker, target_date, e)
+            logger.error("Alpaca API call failed for %s on %s: %s", ticker, target_date, e)
+    else:
+        logger.error("Missing Alpaca API credentials. Cannot fetch price for %s on %s.", ticker, target_date)
 
-    # Fallback deterministic mock price for testing / offline execution
-    seed_str = f"{ticker}:{target_date}"
-    rand_val = int(hashlib_seed(seed_str), 16) % 10000
-    mock_price = 50.0 + (rand_val / 100.0)
-    logger.debug("Using fallback mock price %.2f for %s on %s", mock_price, ticker, target_date)
-    return mock_price
+    if mock:
+        seed_str = f"{ticker}:{target_date}"
+        rand_val = int(hashlib_seed(seed_str), 16) % 10000
+        mock_price = 50.0 + (rand_val / 100.0)
+        logger.debug("Using fallback mock price %.2f for %s on %s", mock_price, ticker, target_date)
+        return mock_price
+
+    return None
 
 
 def hashlib_seed(val: str) -> str:
@@ -126,10 +132,50 @@ def calculate_cost_adjusted_return(entry_price: float, exit_price: float, bps: f
     return (gross_ratio * cost_factor) - 1.0
 
 
+def get_baseline_ticker(db_path: str, audit_date: str, thesis_ticker: str) -> str:
+    """
+    Pulls a random ticker from the fetched_items table that was fetched around the same time
+    but never promoted to a note (cleared Archivist but not Curator's relevance bar).
+    """
+    import re
+    from research_scanner.db import get_db_connection
+    conn = get_db_connection(db_path)
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT title, summary FROM fetched_items
+            WHERE consumed_by_curator = 0
+              AND date(fetched_at) >= date(?, '-14 days')
+              AND date(fetched_at) <= date(?, '+14 days')
+            """,
+            (audit_date[:10], audit_date[:10])
+        )
+        rows = cursor.fetchall()
+        
+        possible_tickers = []
+        ticker_regex = re.compile(r"\$([A-Z]{1,5})\b")
+        for row in rows:
+            text = f"{row['title'] or ''} {row['summary'] or ''}"
+            possible_tickers.extend(ticker_regex.findall(text))
+            
+        valid = list(set([t for t in possible_tickers if t != thesis_ticker]))
+        if valid:
+            return random.choice(valid)
+    except Exception as e:
+        logger.warning("Failed to pull baseline ticker from fetched_items: %s", e)
+    finally:
+        conn.close()
+
+    # Fallback if no valid tickers found in the database for that window
+    return random.choice([t for t in BASELINE_TICKER_POOL if t != thesis_ticker])
+
+
 def score_unscored_theses(
     db_path: str = config.DB_PATH,
     api_key: Optional[str] = None,
     secret_key: Optional[str] = None,
+    mock: bool = False,
 ) -> Dict[str, int]:
     """
     Checks for thesis_ledger entries eligible for 20, 60, and 120-day evaluation,
@@ -154,8 +200,8 @@ def score_unscored_theses(
             exit_date = add_trading_days(audit_date, horizon)
 
             # 1. Fetch thesis ticker prices
-            entry_price = get_alpaca_price(ticker, audit_date, api_key=api_key, secret_key=secret_key)
-            exit_price = get_alpaca_price(ticker, exit_date, api_key=api_key, secret_key=secret_key)
+            entry_price = get_alpaca_price(ticker, audit_date, api_key=api_key, secret_key=secret_key, mock=mock)
+            exit_price = get_alpaca_price(ticker, exit_date, api_key=api_key, secret_key=secret_key, mock=mock)
 
             if not entry_price or not exit_price:
                 logger.warning("Could not fetch valid prices for thesis ticker %s. Skipping.", ticker)
@@ -164,15 +210,17 @@ def score_unscored_theses(
             gross_ret = (exit_price - entry_price) / entry_price
             net_ret = calculate_cost_adjusted_return(entry_price, exit_price)
 
-            # 2. Pair with random null-hypothesis baseline ticker
-            baseline_ticker = random.choice([t for t in BASELINE_TICKER_POOL if t != ticker])
-            b_entry_price = get_alpaca_price(baseline_ticker, audit_date, api_key=api_key, secret_key=secret_key)
-            b_exit_price = get_alpaca_price(baseline_ticker, exit_date, api_key=api_key, secret_key=secret_key)
+            # 2. Pair with random null-hypothesis baseline ticker from fetched_items (rejected universe)
+            baseline_ticker = get_baseline_ticker(db_path, audit_date, ticker)
+            b_entry_price = get_alpaca_price(baseline_ticker, audit_date, api_key=api_key, secret_key=secret_key, mock=mock)
+            b_exit_price = get_alpaca_price(baseline_ticker, exit_date, api_key=api_key, secret_key=secret_key, mock=mock)
 
-            if b_entry_price and b_exit_price:
-                baseline_net_ret = calculate_cost_adjusted_return(b_entry_price, b_exit_price)
-            else:
-                baseline_net_ret = 0.0
+            if not b_entry_price or not b_exit_price:
+                failed_date = audit_date if not b_entry_price else exit_date
+                logger.warning("Could not fetch valid baseline price for ticker %s on %s. Skipping.", baseline_ticker, failed_date)
+                continue
+
+            baseline_net_ret = calculate_cost_adjusted_return(b_entry_price, b_exit_price)
 
             # 3. Save score record
             score_record = {
@@ -329,12 +377,18 @@ def main() -> None:
         help=f"Minimum sample size floor for directional conclusions (default: {config.MIN_SAMPLE_SIZE_FLOOR})",
     )
 
+    parser.add_argument(
+        "--mock",
+        action="store_true",
+        help="Use deterministic mock prices instead of real Alpaca API calls (for testing only)",
+    )
+
     args = parser.parse_args()
 
     if args.report:
         generate_scoring_report(db_path=args.db, min_n=args.min_n)
     else:
-        score_unscored_theses(db_path=args.db)
+        score_unscored_theses(db_path=args.db, mock=args.mock)
 
 
 if __name__ == "__main__":

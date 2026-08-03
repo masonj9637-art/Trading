@@ -1,0 +1,22 @@
+---
+source: arxiv
+category: Artificial Intelligence
+created_at: 2026-08-03 01:53:23
+status: triaged
+---
+
+# MOT-SR: Multi-Objective Tool-Augmented Scientific Equation Discovery with Large Language Models
+
+- **Category Theme**: [[Artificial Intelligence]]
+- **Source**: ARXIV
+- **Original URL**: [https://arxiv.org/abs/2607.29561v1](https://arxiv.org/abs/2607.29561v1)
+
+## Curator Reasoning
+
+High relevance to Artificial Intelligence research priorities identified during automated triage.
+
+## Summary / Abstract
+
+Symbolic Regression (SR) aims to discover analytical equations from observational data and plays a central role in scientific modeling. While recent Large Language Model (LLM) based approaches show promise, they face two limitations. First, they lack data analysis mechanisms for uncovering variable dependencies, which reduces the efficiency of equation discovery. Second, most methods rely on single-objective evaluation focused solely on fitting error. This neglect of structural complexity and generalization often causes models to converge prematurely to local optima, limiting their ability to explore the broader equation space. We propose Multi-Objective Tool-augmented Symbolic Regression (MOT-SR), a unified framework that integrates external analytical tools to extract structural priors and guide equation generation, while jointly optimizing for accuracy, complexity, and generalization via a multi-objective evaluation module that maintains a dynamic Pareto front. MOT-SR employs two collaborative LLM modules: a Meta Strategy Generator, which selects tools and synthesizes structural optimization strategies based on Pareto-optimal equations, and an Equation Generator, which produces new candidate equations accordingly. The system operates in a closed-loop manner, continuously refining both strategies and equation structures. Across 40 standard tasks, MOT-SR outperforms existing SR methods in accuracy, generalization, and efficiency. We further validate MOT-SR on extreme mass-ratio inspiral (EMRI) orbital modeling, an important problem in space-based gravitational-wave astronomy where small local errors can accumulate substantially over long-term evolution. The discovered interpretable correction achieves the lowest trajectory-level integration error on held-out configurations. These results demonstrate the potential of MOT-SR to enable reliable modeling of long-horizon scientific dynamics.
+
+## My Notes

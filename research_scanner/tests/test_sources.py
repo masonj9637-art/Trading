@@ -9,6 +9,7 @@ from research_scanner.sources import (
     fetch_arxiv_items,
     fetch_uspto_items,
     fetch_currents_items,
+    fetch_openalex_items,
 )
 
 
@@ -104,3 +105,31 @@ def test_fetch_currents_items_success():
     assert items[0]["source"] == "currents"
     assert items[0]["external_id"] == "news_123"
     assert items[0]["title"] == "New Semiconductor Fab Announced"
+
+
+def test_fetch_openalex_items_success():
+    mock_resp = MagicMock()
+    mock_resp.status_code = 200
+    mock_resp.json.return_value = {
+        "results": [
+            {
+                "id": "https://openalex.org/W999888777",
+                "title": "Autonomous Quantum Error Correction Method",
+                "doi": "https://doi.org/10.1000/xyz123",
+                "abstract_inverted_index": {
+                    "Autonomous": [0],
+                    "quantum": [1],
+                    "control": [2],
+                },
+            }
+        ]
+    }
+
+    with patch("requests.get", return_value=mock_resp):
+        items = fetch_openalex_items(keywords=["quantum"])
+
+    assert len(items) == 1
+    assert items[0]["source"] == "openalex"
+    assert items[0]["external_id"] == "W999888777"
+    assert items[0]["title"] == "Autonomous Quantum Error Correction Method"
+    assert items[0]["summary"] == "Autonomous quantum control"

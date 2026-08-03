@@ -8,6 +8,7 @@ import logging
 import os
 import re
 import sys
+import json
 from datetime import datetime
 from typing import Dict, Any, List, Optional
 
@@ -16,6 +17,8 @@ from research_scanner.db import (
     init_db,
     get_unreviewed_candidates,
     mark_candidate_reviewed,
+    get_fetched_item_by_id,
+    mark_item_consumed,
 )
 
 logger = logging.getLogger("research_scanner.export_to_obsidian")
@@ -44,6 +47,36 @@ def slugify_title(title: str, max_length: int = 60) -> str:
     return slug
 
 
+def clean_filename_title(title: str, max_length: int = 70) -> str:
+    """
+    Cleans and formats paper/patent title for clean, human-readable Obsidian Markdown note filenames.
+    Replaces colons with ' - ', removes illegal filename characters, and truncates neatly at word boundaries.
+    """
+    if not title or not title.strip():
+        return "Untitled Note"
+
+    # Replace colons with space-hyphen-space for sub-titles
+    text = title.strip().replace(":", " - ")
+    # Replace slashes and illegal characters
+    text = re.sub(r'[\\/*?"<>|]', "", text)
+    # Normalize multiple spaces or hyphens
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"\s*-\s*-+\s*", " - ", text).strip(" -")
+
+    if len(text) > max_length:
+        truncated = text[:max_length]
+        if " " in truncated:
+            words = truncated.rsplit(" ", 1)[0].split(" ")
+            stopwords = {"a", "an", "the", "for", "in", "to", "of", "and", "or", "on", "at", "by", "with", "via", "-", "&"}
+            while len(words) > 1 and words[-1].lower() in stopwords:
+                words.pop()
+            text = " ".join(words).strip(" -")
+        else:
+            text = truncated.strip(" -")
+
+    return text if text else "Untitled Note"
+
+
 def get_folder_for_source(source: str) -> str:
     """
     Maps source string to subfolder path relative to vault root.
@@ -55,6 +88,8 @@ def get_folder_for_source(source: str) -> str:
         return os.path.join("raw-signals", "patents")
     elif src_lower in ("currents", "news"):
         return os.path.join("raw-signals", "news")
+    elif src_lower in ("openalex",):
+        return os.path.join("raw-signals", "openalex")
     else:
         return os.path.join("raw-signals", "other")
 
@@ -91,6 +126,10 @@ def ensure_theme_note_exists(vault_path: str, category: str) -> str:
     if not os.path.exists(theme_file_path):
         try:
             content = (
+                "---\n"
+                f"theme: {theme_title}\n"
+                "type: theme\n"
+                "---\n\n"
                 f"# {theme_title}\n\n"
                 f"Automated theme note collecting research papers, patents, and news signals tagged with category `{category}`.\n\n"
                 f"## Related Signals\n"
@@ -104,38 +143,49 @@ def ensure_theme_note_exists(vault_path: str, category: str) -> str:
     return theme_title
 
 
-def generate_candidate_note_content(candidate: Dict[str, Any], theme_title: str) -> str:
+def generate_note_content(
+    item: Dict[str, Any],
+    theme_title: str,
+    category: str,
+    reason: str,
+    escalation_theme: Optional[str] = None
+) -> str:
     """
-    Generates Markdown content for a candidate item with YAML frontmatter, wikilinks, and sections.
+    Generates Markdown content for an item with YAML frontmatter, wikilinks, and sections.
     """
-    score = candidate.get("score", 0.0)
-    source = candidate.get("source", "unknown")
-    category = candidate.get("category", "uncategorized")
-    created_at = candidate.get("created_at") or datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    title = candidate.get("title", "Untitled").strip()
-    url = candidate.get("url", "").strip()
-    reason = candidate.get("reason", "No reason provided.").strip()
-    summary = candidate.get("summary", "No summary provided.").strip()
+    source = item.get("source", "unknown")
+    created_at = item.get("created_at") or item.get("fetched_at") or datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    title = item.get("title", "Untitled").strip()
+    url = item.get("url", "").strip()
+    summary = item.get("summary", "No summary provided.").strip()
+
+    status_str = "escalated" if escalation_theme else "triaged"
+    tags_list = [status_str]
+    if escalation_theme:
+        tags_list.extend(["escalation", slugify_title(escalation_theme)])
+
+    tags_formatted = "\n".join([f"  - {t}" for t in tags_list])
 
     frontmatter = (
         "---\n"
-        f"score: {score:.1f}\n"
         f"source: {source}\n"
         f"category: {category}\n"
         f"created_at: {created_at}\n"
-        "status: triaged\n"
+        f"status: {status_str}\n"
+        "tags:\n"
+        f"{tags_formatted}\n"
         "---\n\n"
     )
 
     url_line = f"[{url}]({url})" if url else "N/A"
+    escalation_line = f"\n- **Escalation Theme**: [[{escalation_theme}]]" if escalation_theme else ""
 
     body = (
         f"# {title}\n\n"
-        f"- **Triage Score**: {score:.1f}/10\n"
-        f"- **Category Theme**: [[{theme_title}]]\n"
+        f"- **Category Theme**: [[{theme_title}]]{escalation_line}\n"
         f"- **Source**: {source.upper()}\n"
         f"- **Original URL**: {url_line}\n\n"
-        f"## Gemma Triage Reason\n\n"
+        f"## Curator Reasoning\n\n"
         f"{reason}\n\n"
         f"## Summary / Abstract\n\n"
         f"{summary}\n\n"
@@ -145,21 +195,27 @@ def generate_candidate_note_content(candidate: Dict[str, Any], theme_title: str)
     return frontmatter + body
 
 
-def export_candidate_to_vault(candidate: Dict[str, Any], vault_path: str) -> str:
+def export_candidate_to_vault(
+    item: Dict[str, Any],
+    vault_path: str,
+    category: str,
+    reason: str,
+    escalation_theme: Optional[str] = None
+) -> str:
     """
-    Writes a single candidate note to the appropriate vault subfolder.
+    Writes a single note to the appropriate vault subfolder.
     Handles filename collisions by appending a numeric suffix.
 
     :return: Absolute file path of exported note
     :raises IOError: If file write fails
     """
     # 1. Ensure vault subfolder exists
-    rel_folder = get_folder_for_source(candidate.get("source", ""))
+    rel_folder = get_folder_for_source(item.get("source", ""))
     target_dir = os.path.join(vault_path, rel_folder)
     os.makedirs(target_dir, exist_ok=True)
 
     # 2. Compute date prefix YYYY-MM-DD
-    created_str = candidate.get("created_at", "")
+    created_str = item.get("created_at") or item.get("fetched_at") or ""
     date_prefix = ""
     if created_str:
         try:
@@ -170,16 +226,16 @@ def export_candidate_to_vault(candidate: Dict[str, Any], vault_path: str) -> str
     if not date_prefix:
         date_prefix = datetime.now().strftime("%Y-%m-%d")
 
-    # 3. Slugify title and build base filename
-    slug = slugify_title(candidate.get("title", ""))
-    base_filename = f"{date_prefix}-{slug}.md"
+    # 3. Clean title and build base filename
+    clean_title = clean_filename_title(item.get("title", ""))
+    base_filename = f"{clean_title}.md"
     file_path = os.path.join(target_dir, base_filename)
 
     # 4. Handle filename collision
     if os.path.exists(file_path):
         counter = 1
         while True:
-            candidate_filename = f"{date_prefix}-{slug}-{counter}.md"
+            candidate_filename = f"{clean_title} ({counter}).md"
             candidate_path = os.path.join(target_dir, candidate_filename)
             if not os.path.exists(candidate_path):
                 file_path = candidate_path
@@ -187,14 +243,14 @@ def export_candidate_to_vault(candidate: Dict[str, Any], vault_path: str) -> str
             counter += 1
 
     # 5. Ensure theme note and generate note content
-    theme_title = ensure_theme_note_exists(vault_path, candidate.get("category", ""))
-    note_content = generate_candidate_note_content(candidate, theme_title)
+    theme_title = ensure_theme_note_exists(vault_path, category)
+    note_content = generate_note_content(item, theme_title, category, reason, escalation_theme)
 
     # 6. Write file
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(note_content)
 
-    logger.info("Successfully wrote candidate note to %s", file_path)
+    logger.info("Successfully wrote note to %s", file_path)
     return file_path
 
 
@@ -218,7 +274,9 @@ def export_unreviewed_candidates(
     for c in candidates:
         cid = c.get("id")
         try:
-            file_path = export_candidate_to_vault(c, vault_path)
+            category = c.get("category", "uncategorized")
+            reason = c.get("reason", "No reason provided.")
+            file_path = export_candidate_to_vault(c, vault_path, category, reason)
             # Confirm file write success before updating database
             if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
                 if cid is not None:
@@ -233,6 +291,60 @@ def export_unreviewed_candidates(
 
     logger.info(
         "Obsidian export complete. Stats: Found=%d | Exported=%d | Failed=%d",
+        stats["found"],
+        stats["exported"],
+        stats["failed"],
+    )
+    return stats
+
+
+def export_from_curator_decisions(
+    decisions_json_path: str,
+    db_path: str = config.DB_PATH,
+    vault_path: str = config.OBSIDIAN_VAULT_PATH
+) -> Dict[str, int]:
+    """
+    Reads a JSON file containing curator decisions and exports the corresponding items.
+    """
+    with open(decisions_json_path, "r", encoding="utf-8") as f:
+        decisions = json.load(f)
+
+    init_db(db_path)
+    
+    stats = {"found": len(decisions), "exported": 0, "failed": 0}
+    logger.info("Found %d decision(s) in %s", len(decisions), decisions_json_path)
+
+    for decision in decisions:
+        item_id = decision.get("fetched_item_id")
+        if not item_id:
+            logger.error("Decision missing fetched_item_id: %s", decision)
+            stats["failed"] += 1
+            continue
+
+        item = get_fetched_item_by_id(db_path, item_id)
+        if not item:
+            logger.error("Item ID %s not found in database", item_id)
+            stats["failed"] += 1
+            continue
+
+        category = decision.get("category", "uncategorized")
+        reason = decision.get("reasoning", "No reason provided.")
+        escalation_theme = decision.get("escalation_theme")
+
+        try:
+            file_path = export_candidate_to_vault(item, vault_path, category, reason, escalation_theme)
+            if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
+                mark_item_consumed(db_path, item_id)
+                stats["exported"] += 1
+            else:
+                logger.error("File write verification failed for item ID %s", item_id)
+                stats["failed"] += 1
+        except Exception as e:
+            logger.error("Failed to export item ID %s: %s", item_id, e, exc_info=True)
+            stats["failed"] += 1
+
+    logger.info(
+        "Decisions export complete. Stats: Found=%d | Exported=%d | Failed=%d",
         stats["found"],
         stats["exported"],
         stats["failed"],
@@ -268,9 +380,18 @@ def main() -> None:
         default=config.DB_PATH,
         help=f"Path to SQLite database (default: {config.DB_PATH})",
     )
+    parser.add_argument(
+        "--decisions",
+        type=str,
+        help="Path to JSON file containing curator decisions to export",
+    )
 
     args = parser.parse_args()
-    export_unreviewed_candidates(db_path=args.db, vault_path=args.vault, min_score=args.min_score)
+    
+    if args.decisions:
+        export_from_curator_decisions(args.decisions, args.db, args.vault)
+    else:
+        export_unreviewed_candidates(db_path=args.db, vault_path=args.vault, min_score=args.min_score)
 
 
 if __name__ == "__main__":

@@ -11,6 +11,7 @@ import os
 # Database & Storage Settings
 DB_PATH = os.getenv("DB_PATH", "research_scanner.db")
 OBSIDIAN_VAULT_PATH = os.getenv("OBSIDIAN_VAULT_PATH", "obsidian_vault")
+CONTEXT_FOLDER_PATH = os.getenv("CONTEXT_FOLDER_PATH", "context")
 
 # Alpaca Market Data Credentials
 ALPACA_API_KEY = os.getenv("ALPACA_API_KEY", "")
@@ -23,7 +24,7 @@ TRANSACTION_COST_BPS = float(os.getenv("TRANSACTION_COST_BPS", "10"))  # 10 bps 
 
 # Triage Filter Settings (Ollama + Gemma)
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
-GEMMA_MODEL = os.getenv("GEMMA_MODEL", "gemma2:2b")
+GEMMA_MODEL = os.getenv("GEMMA_MODEL", "gemma4:e2b-it-qat")
 SCORE_THRESHOLD = float(os.getenv("SCORE_THRESHOLD", "7.0"))
 
 # Source Fetching Configuration
@@ -55,4 +56,4 @@ USPTO_API_KEY = os.getenv("USPTO_API_KEY", "")
 
 # Discord Notification Credentials
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN", "")
-DISCORD_CHANNEL_ID = os.getenv("DISCORD_CHANNEL_ID", "")
+DISCORD_CHANNEL_ID = os.getenv("DISCORD_CHANNEL_ID", "1471336629321994353")

@@ -1,0 +1,232 @@
+{
+  "__init__.py": {
+    "mtime": 1785283923.967416,
+    "ast_hash": "0a20dfd1a2bb0fc8a26fab0dbbc6fc96",
+    "semantic_hash": ""
+  },
+  "build_vault_index.py": {
+    "mtime": 1785717293.5289388,
+    "ast_hash": "ae9747ae2d30157ce84f396584008885",
+    "semantic_hash": ""
+  },
+  "config.py": {
+    "mtime": 1785720853.3981037,
+    "ast_hash": "1573f6b4a8848d442506f784d4ab465b",
+    "semantic_hash": ""
+  },
+  "dashboard.py": {
+    "mtime": 1785284448.8676798,
+    "ast_hash": "d14240ca39cce4163397c637cb7deaca",
+    "semantic_hash": ""
+  },
+  "db.py": {
+    "mtime": 1785534628.7483444,
+    "ast_hash": "e300234197c6a553f7f7dd45f93be9cc",
+    "semantic_hash": ""
+  },
+  "director_apply.py": {
+    "mtime": 1785534868.1591,
+    "ast_hash": "fc2ac5558122f89131e01bf2bd6a4154",
+    "semantic_hash": ""
+  },
+  "export_to_obsidian.py": {
+    "mtime": 1785721166.6292496,
+    "ast_hash": "530820fa41d1a65b39a81b575d4674ba",
+    "semantic_hash": ""
+  },
+  "notifier.py": {
+    "mtime": 1785534333.5085368,
+    "ast_hash": "c75d1140a510ac5bc3ab1c3f5ede612d",
+    "semantic_hash": ""
+  },
+  "process_requests.py": {
+    "mtime": 1785534405.6985087,
+    "ast_hash": "505c38c405c059cf22be3bdc512c48ce",
+    "semantic_hash": ""
+  },
+  "scan.py": {
+    "mtime": 1785720848.9361136,
+    "ast_hash": "5e9c37af3bb3bb20258c3b7b15e043fc",
+    "semantic_hash": ""
+  },
+  "scoring.py": {
+    "mtime": 1785691254.5722115,
+    "ast_hash": "f5871ef1ba6f404e7d276fa6146ba435",
+    "semantic_hash": ""
+  },
+  "sources/__init__.py": {
+    "mtime": 1785720844.5951228,
+    "ast_hash": "2f025ea659d7e7adbfd9e500962f9428",
+    "semantic_hash": ""
+  },
+  "sources/arxiv.py": {
+    "mtime": 1785283931.9143267,
+    "ast_hash": "572edc9e9c8c78c8b4c857c44d1c3983",
+    "semantic_hash": ""
+  },
+  "sources/currents.py": {
+    "mtime": 1785283936.9032712,
+    "ast_hash": "9c3e0ff6702885af5104edcc2f1a9027",
+    "semantic_hash": ""
+  },
+  "sources/uspto.py": {
+    "mtime": 1785283934.477298,
+    "ast_hash": "98cfa0adaa186c6eb244f10340ee766a",
+    "semantic_hash": ""
+  },
+  "test_director.json": {
+    "mtime": 1785534821.7381506,
+    "ast_hash": "0b6beb49822adde591bab180239c4684",
+    "semantic_hash": ""
+  },
+  "test_director_invalid.json": {
+    "mtime": 1785534852.3911173,
+    "ast_hash": "797dc4cd178ae90085c6b289cee01f6b",
+    "semantic_hash": ""
+  },
+  "tests/__init__.py": {
+    "mtime": 1785283948.277147,
+    "ast_hash": "b9f61f56ac8c27fbb023c60c65f8cf83",
+    "semantic_hash": ""
+  },
+  "tests/test_build_vault_index.py": {
+    "mtime": 1785717285.1809628,
+    "ast_hash": "0e716f3afcbc5d8cbf2984d17dd0bf72",
+    "semantic_hash": ""
+  },
+  "tests/test_dashboard.py": {
+    "mtime": 1785284455.3595185,
+    "ast_hash": "8c901bd5c731037bd7c3a5ef40a37f88",
+    "semantic_hash": ""
+  },
+  "tests/test_db.py": {
+    "mtime": 1785533142.9072824,
+    "ast_hash": "d22d364b6ca6a4be01cf1d1c6ffd90bf",
+    "semantic_hash": ""
+  },
+  "tests/test_export_to_obsidian.py": {
+    "mtime": 1785691238.5213208,
+    "ast_hash": "dcaebf62d6b8a1ed442a7d5ebd1c778b",
+    "semantic_hash": ""
+  },
+  "tests/test_notifier.py": {
+    "mtime": 1785283958.5040379,
+    "ast_hash": "ca2e26c3bb21e8ed4bf7f4f5e9ab18b9",
+    "semantic_hash": ""
+  },
+  "tests/test_scan.py": {
+    "mtime": 1785720870.7080655,
+    "ast_hash": "195bbd3062122aaf8f7f291480d86039",
+    "semantic_hash": ""
+  },
+  "tests/test_scoring.py": {
+    "mtime": 1785691238.251323,
+    "ast_hash": "b29821b7456de8f02e52f03d89beb13e",
+    "semantic_hash": ""
+  },
+  "tests/test_sources.py": {
+    "mtime": 1785720858.6460924,
+    "ast_hash": "5b7842198f2aa06b391950442beaa249",
+    "semantic_hash": ""
+  },
+  "tests/test_thesis_ledger.py": {
+    "mtime": 1785371748.541205,
+    "ast_hash": "6714a4e62325e0249817bf237146bf6f",
+    "semantic_hash": ""
+  },
+  "thesis_ledger.py": {
+    "mtime": 1785534531.3654273,
+    "ast_hash": "7ea16c47f8ff76e26f730327e45b04c7",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1785284641.5820038,
+    "ast_hash": "22df959110d767840c1a013939fbe33b",
+    "semantic_hash": ""
+  },
+  "context/README.md": {
+    "mtime": 1785717262.9750216,
+    "ast_hash": "093e6171f51a3812812623524a10c733",
+    "semantic_hash": ""
+  },
+  "director_prompt.md": {
+    "mtime": 1785535157.2967691,
+    "ast_hash": "9cd153b6b869f7305edc81132cd613d7",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/current-priorities.md": {
+    "mtime": 1785534839.3781316,
+    "ast_hash": "1556715069d3ef325367f1533dc13610",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/vault-index.md": {
+    "mtime": 1785721172.488231,
+    "ast_hash": "5297ee8938ec522e354be7c19bd9cfa5",
+    "semantic_hash": ""
+  },
+  "prompts.md": {
+    "mtime": 1785535157.2437692,
+    "ast_hash": "7882e467fe7aa35e029e1b99ed011314",
+    "semantic_hash": ""
+  },
+  "research_scanner_multiagent_architecture.md": {
+    "mtime": 1785717274.4789922,
+    "ast_hash": "de9baa14b5e33a0bc2a6bbfce2164696",
+    "semantic_hash": ""
+  },
+  "sources/openalex.py": {
+    "mtime": 1785720842.245128,
+    "ast_hash": "fa69d22d7f1931b9bf3641022377486b",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Artificial Intelligence.md": {
+    "mtime": 1785721170.298238,
+    "ast_hash": "f550d4df4604c240b177ab97350280af",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Machine Learning.md": {
+    "mtime": 1785721170.298238,
+    "ast_hash": "9953110551896ad9ebe7bf0b682b4670",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Quantum Computing.md": {
+    "mtime": 1785721170.298238,
+    "ast_hash": "eb17dccba8cb5aeeeaba7c02d09840e5",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Robotics.md": {
+    "mtime": 1785721170.298238,
+    "ast_hash": "4b08953d3456ddc57ee0710787d846d2",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Semiconductors.md": {
+    "mtime": 1785721170.298238,
+    "ast_hash": "d679783820b6856b2e34c272980be2bc",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/2026-08-03-learning-to-trace-seiberg-dualities.md": {
+    "mtime": 1785721156.759281,
+    "ast_hash": "a154580649a85dab3292556f9d7c10ed",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/2026-08-03-lifting-lifted-product-codes.md": {
+    "mtime": 1785721156.7622807,
+    "ast_hash": "29bdce1a8670e959b93108d92605ebb6",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/2026-08-03-on-optimal-measurement-state-preparation-via-geometric.md": {
+    "mtime": 1785721156.7672808,
+    "ast_hash": "d0111cf9486ecdc74853b1fd09506ce5",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/2026-08-03-pac-man-perception-aware-cbf-rl-for-whole-body-safety-in.md": {
+    "mtime": 1785721156.7642808,
+    "ast_hash": "01265653e322d76150a0d647073943f2",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/2026-08-03-retoken-one-token-to-improve-vision-language-models-for.md": {
+    "mtime": 1785721156.756281,
+    "ast_hash": "7865328b8dd64493a1ea22f90f1736bf",
+    "semantic_hash": ""
+  }
+}

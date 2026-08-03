@@ -44,6 +44,8 @@ def init_db(db_path: str) -> None:
                     title TEXT NOT NULL,
                     url TEXT,
                     summary TEXT,
+                    consumed_by_curator INTEGER DEFAULT 0,
+                    request_id INTEGER,
                     fetched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
             """)
@@ -69,6 +71,16 @@ def init_db(db_path: str) -> None:
             """)
             conn.execute("""
                 CREATE INDEX IF NOT EXISTS idx_candidates_hash ON candidates(fetched_item_hash);
+            """)
+
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS director_requests (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    query TEXT NOT NULL,
+                    source_hint TEXT NOT NULL,
+                    status TEXT NOT NULL,
+                    requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
             """)
 
             conn.execute("""
@@ -115,6 +127,14 @@ def init_db(db_path: str) -> None:
             if "reviewed" not in columns:
                 conn.execute("ALTER TABLE candidates ADD COLUMN reviewed INTEGER DEFAULT 0;")
 
+            # Auto-migration: ensure 'consumed_by_curator' and 'request_id' columns exist
+            cursor.execute("PRAGMA table_info(fetched_items);")
+            fetched_cols = [col[1] for col in cursor.fetchall()]
+            if "consumed_by_curator" not in fetched_cols:
+                conn.execute("ALTER TABLE fetched_items ADD COLUMN consumed_by_curator INTEGER DEFAULT 0;")
+            if "request_id" not in fetched_cols:
+                conn.execute("ALTER TABLE fetched_items ADD COLUMN request_id INTEGER;")
+
         logger.info("Database initialized at %s", db_path)
     finally:
         conn.close()
@@ -144,8 +164,8 @@ def save_fetched_item(db_path: str, item: Dict[str, Any]) -> bool:
         with conn:
             conn.execute(
                 """
-                INSERT INTO fetched_items (item_hash, source, external_id, title, url, summary)
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO fetched_items (item_hash, source, external_id, title, url, summary, request_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     item_hash,
@@ -154,6 +174,7 @@ def save_fetched_item(db_path: str, item: Dict[str, Any]) -> bool:
                     item.get("title", ""),
                     item.get("url", ""),
                     item.get("summary", ""),
+                    item.get("request_id"),
                 ),
             )
         return True
@@ -248,6 +269,58 @@ def mark_candidate_reviewed(db_path: str, candidate_id: int) -> bool:
             cursor.execute(
                 "UPDATE candidates SET reviewed = 1 WHERE id = ?",
                 (candidate_id,),
+            )
+            return cursor.rowcount > 0
+    finally:
+        conn.close()
+
+
+def get_unconsumed_items(db_path: str) -> List[Dict[str, Any]]:
+    """
+    Retrieves all fetched items that have not yet been consumed by the curator.
+    """
+    conn = get_db_connection(db_path)
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            SELECT * FROM fetched_items
+            WHERE (consumed_by_curator IS NULL OR consumed_by_curator = 0)
+            ORDER BY fetched_at DESC
+            """
+        )
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+    finally:
+        conn.close()
+
+
+def get_fetched_item_by_id(db_path: str, item_id: int) -> Optional[Dict[str, Any]]:
+    """
+    Retrieves a fetched item by its database ID.
+    """
+    conn = get_db_connection(db_path)
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM fetched_items WHERE id = ?", (item_id,))
+        row = cursor.fetchone()
+        return dict(row) if row else None
+    finally:
+        conn.close()
+
+
+def mark_item_consumed(db_path: str, item_id: int) -> bool:
+    """
+    Marks a fetched item as consumed (consumed_by_curator = 1) given its database ID.
+    Returns True if row was updated.
+    """
+    conn = get_db_connection(db_path)
+    try:
+        with conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "UPDATE fetched_items SET consumed_by_curator = 1 WHERE id = ?",
+                (item_id,),
             )
             return cursor.rowcount > 0
     finally:

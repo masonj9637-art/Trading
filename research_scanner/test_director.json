@@ -1,0 +1,11 @@
+{
+  "updated_priorities": "1. Focus on A\n2. Focus on B",
+  "fetch_requests": [
+    {"query": "quantum algorithms", "source_hint": "arxiv"}
+  ],
+  "escalation": {
+    "theme": "Quantum Leap",
+    "message": "Found a huge breakthrough.",
+    "vault_note_path": "themes/Quantum-Leap.md"
+  }
+}

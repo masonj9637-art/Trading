@@ -1,0 +1,22 @@
+---
+source: arxiv
+category: Artificial Intelligence
+created_at: 2026-08-03 01:53:23
+status: triaged
+---
+
+# InfoOps Bench: A live information operations safety benchmark
+
+- **Category Theme**: [[Artificial Intelligence]]
+- **Source**: ARXIV
+- **Original URL**: [https://arxiv.org/abs/2607.28503v1](https://arxiv.org/abs/2607.28503v1)
+
+## Curator Reasoning
+
+High relevance to Artificial Intelligence research priorities identified during automated triage.
+
+## Summary / Abstract
+
+In this paper we present an active, constantly updated AI benchmark which measures the integrity of frontier language models against being co-opted for state-backed information operations. We draw on over 2,100 information operations from a live monitoring pipeline which tracks Russian, Chinese and Iranian state-backed information assets. Alongside this paper, we release a companion website that tracks the most prominent claims spread by state-backed media outlets, updated weekly, available from: pattrn.ai/research/infoopsbench. The dynamic nature of the benchmark makes it resistant to saturation. In the benchmark, we test 17 models from 8 providers across four prompt framings. We find that most models can be co-opted for information operations. Integrity scores, defined as the percentage of refused requests, range from 8.8% to 94.5%, an 85.7-percentage-point spread not explained by model size. Model choice also changes the character of the resulting operation. Some models fabricate details and produce output more harmful than the source material, others defuse claims even while complying, and fact-checking rates vary from 2.9% to 72.9%. Integrity against information operations is at least partly related to refusal to produce content even for benign claims, illustrating the challenge of balancing model usability with safety. With one exception (Z.ai's GLM 5.2), the Chinese-developed models sharply cut compliance on factually grounded but China-critical claims, dropping 48-70 percentage points relative to matched benign claims.
+
+## My Notes

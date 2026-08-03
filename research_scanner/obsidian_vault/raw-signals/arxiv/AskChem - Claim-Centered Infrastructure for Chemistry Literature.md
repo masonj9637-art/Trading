@@ -1,0 +1,22 @@
+---
+source: arxiv
+category: Artificial Intelligence
+created_at: 2026-08-03 01:53:23
+status: triaged
+---
+
+# AskChem: Claim-Centered Infrastructure for Chemistry Literature Synthesis
+
+- **Category Theme**: [[Artificial Intelligence]]
+- **Source**: ARXIV
+- **Original URL**: [https://arxiv.org/abs/2607.28618v1](https://arxiv.org/abs/2607.28618v1)
+
+## Curator Reasoning
+
+High relevance to Artificial Intelligence research priorities identified during automated triage.
+
+## Summary / Abstract
+
+Chemistry literature synthesis often requires assembling specific findings scattered across many publications, yet existing literature-search systems primarily return ranked document lists. As a result, scientists and AI agents need to locate relevant information, verify their provenance, and assemble cross-paper answers manually. We present AskChem, a claim-centered infrastructure for cross-paper chemistry search. AskChem changes the unit of retrieval from the paper to the provenance-carrying claim: each paper is converted into atomic, typed claims, each grounded by a source DOI and a verbatim quote or an explicit evidence locator. Over this shared claim store, AskChem exposes complementary structures for search and synthesis: a stabilized faceted taxonomy for hierarchical retrieval and browsing, an evidence graph linking claims through relations, and an exploratory living taxonomy that situates indexed papers under scientific principles. AskChem currently indexes 2.4M claims from 147K papers and provides a web interface, as well as REST, SDK, and MCP access for AI agents. On AskChem-Bench, grounding a GPT-5.5 reader in AskChem yields 100% resolvable DOIs, compared with 88.3% without retrieval, and the highest citation density among five tested systems. AskChem is live at https://askchem.org.
+
+## My Notes

@@ -1,0 +1,22 @@
+---
+source: arxiv
+category: Artificial Intelligence
+created_at: 2026-08-03 01:53:23
+status: triaged
+---
+
+# What to Remove, What to Preserve: Dual-Ambiguity Rectification for All-in-One Image Restoration
+
+- **Category Theme**: [[Artificial Intelligence]]
+- **Source**: ARXIV
+- **Original URL**: [https://arxiv.org/abs/2607.28526v1](https://arxiv.org/abs/2607.28526v1)
+
+## Curator Reasoning
+
+High relevance to Artificial Intelligence research priorities identified during automated triage.
+
+## Summary / Abstract
+
+All-in-one image restoration aims to handle diverse degradations within a unified framework. Existing methods commonly encode heterogeneous degradation conditions in a shared latent space, where degradation-related cues and scene content can remain entangled. We characterize the resulting challenge as dual ambiguity: semantic ambiguity in channel-wise modulation and spatial ambiguity in restoration responses, which can lead to content corruption and residual artifacts. To mitigate this issue, we propose DAR-Net, a Dual-Ambiguity Rectification Network for all-in-one image restoration. DAR-Net first introduces a Degradation Archetype Representation (DAR) module to construct a structured degradation state through simplex-constrained archetype mixture modeling. Based on this state, a Semantic Ambiguity Rectification (SeAR) module generates degradation-aware prompts to improve channel-wise conditioning in the decoder. A Spatial Ambiguity Rectification (SpAR) module further regularizes degradation-aware and complementary features toward orthogonal response subspaces, reducing spatial interference between removal and preservation cues. Extensive experiments on standard all-in-one restoration benchmarks show that DAR-Net achieves the best overall performance under both three-degradation and five-degradation settings, improving the average PSNR over the strongest competitor by 0.14 dB and 0.34 dB, respectively; it additionally shows superior performance on CDD-11 and WeatherBench.
+
+## My Notes

@@ -3,6 +3,8 @@ arXiv API data fetcher using feedparser.
 """
 
 import logging
+import time
+import urllib.request
 import urllib.parse
 from typing import List, Dict, Any, Optional
 import feedparser
@@ -27,8 +29,18 @@ def fetch_arxiv_items(
         logger.warning("No arXiv categories configured. Skipping arXiv fetch.")
         return []
 
-    # Construct arXiv search query e.g. cat:quant-ph OR cat:cs.AI OR cat:cs.LG OR cat:cs.RO
-    cat_query = " OR ".join([f"cat:{c}" for c in cats])
+    query_parts = []
+    for c in cats:
+        c_str = c.strip()
+        if c_str.startswith("cat:") or c_str.startswith("all:"):
+            query_parts.append(c_str)
+        elif " " not in c_str and ("." in c_str or "-" in c_str or c_str in ("quant-ph", "cs.AI", "cs.LG", "cs.RO", "cs.CV", "cs.CL")):
+            query_parts.append(f"cat:{c_str}")
+        elif " " in c_str and not (c_str.startswith('"') and c_str.endswith('"')):
+            query_parts.append(f'all:"{c_str}"')
+        else:
+            query_parts.append(f"all:{c_str}")
+    cat_query = " OR ".join(query_parts)
     params = {
         "search_query": cat_query,
         "sortBy": "submittedDate",
@@ -36,11 +48,20 @@ def fetch_arxiv_items(
         "max_results": max_results,
     }
 
-    url = f"http://export.arxiv.org/api/query?{urllib.parse.urlencode(params)}"
+    url = f"https://export.arxiv.org/api/query?{urllib.parse.urlencode(params)}"
     logger.info("Fetching arXiv items from %s", url)
 
     try:
-        feed = feedparser.parse(url)
+        feed = None
+        max_retries = 3
+        for attempt in range(max_retries):
+            feed = feedparser.parse(url, agent="Mozilla/5.0 (research_scanner/1.0)")
+            if getattr(feed, "entries", []):
+                break
+            if attempt < max_retries - 1:
+                logger.warning("arXiv fetch returned no entries (attempt %d/%d). Retrying in 3s...", attempt + 1, max_retries)
+                time.sleep(3)
+
         if getattr(feed, "bozo", 0) and getattr(feed, "bozo_exception", None):
             logger.warning("arXiv feed parser encountered bozo exception: %s", feed.bozo_exception)
 

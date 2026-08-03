@@ -14,15 +14,13 @@ from research_scanner.db import (
     compute_item_hash,
     is_item_fetched,
     save_fetched_item,
-    save_candidate,
 )
 from research_scanner.sources import (
     fetch_arxiv_items,
     fetch_uspto_items,
     fetch_currents_items,
+    fetch_openalex_items,
 )
-from research_scanner.triage import triage_item
-from research_scanner.notifier import send_discord_notification
 
 # Configure logging
 logging.basicConfig(
@@ -41,7 +39,7 @@ def run_scan_cycle(db_path: str = config.DB_PATH) -> Dict[str, int]:
     :return: Summary metrics dict
     """
     logger.info("--- Starting Research Scanner Cycle ---")
-    logger.info("Config: DB=%s | Ollama Host=%s | Model=%s | Threshold=%.1f", db_path, config.OLLAMA_HOST, config.GEMMA_MODEL, config.SCORE_THRESHOLD)
+    logger.info("Config: DB=%s", db_path)
 
     # Step 1: Ensure SQLite database and tables exist
     init_db(db_path)
@@ -67,15 +65,18 @@ def run_scan_cycle(db_path: str = config.DB_PATH) -> Dict[str, int]:
     except Exception as e:
         logger.error("Error fetching Currents items: %s", e)
 
+    try:
+        openalex_items = fetch_openalex_items()
+        all_items.extend(openalex_items)
+    except Exception as e:
+        logger.error("Error fetching OpenAlex items: %s", e)
+
     logger.info("Total items retrieved from sources: %d", len(all_items))
 
-    # Step 3: Process items (deduplicate, triage, save candidates, notify)
+    # Step 3: Process items (deduplicate)
     stats = {
         "fetched": len(all_items),
         "new": 0,
-        "triaged": 0,
-        "candidates": 0,
-        "notifications_sent": 0,
     }
 
     for item in all_items:
@@ -99,41 +100,10 @@ def run_scan_cycle(db_path: str = config.DB_PATH) -> Dict[str, int]:
 
         stats["new"] += 1
 
-        # LLM Triage step via local Ollama
-        triage_res = triage_item(item, config.OLLAMA_HOST, config.GEMMA_MODEL)
-        if triage_res is None:
-            logger.warning("Skipping candidate evaluation for '%s' due to triage failure.", item.get("title"))
-            continue
-
-        stats["triaged"] += 1
-
-        score = triage_res["score"]
-        reason = triage_res["reason"]
-        category = triage_res["category"]
-
-        # Check threshold
-        if score >= config.SCORE_THRESHOLD:
-            stats["candidates"] += 1
-            candidate = dict(item)
-            candidate["score"] = score
-            candidate["reason"] = reason
-            candidate["category"] = category
-
-            # Save candidate record
-            save_candidate(db_path, candidate)
-
-            # Dispatch notification
-            notified = send_discord_notification(candidate)
-            if notified:
-                stats["notifications_sent"] += 1
-
     logger.info(
-        "--- Scan Cycle Complete --- Stats: Fetched=%d | New=%d | Triaged=%d | Candidates=%d | Notified=%d",
+        "--- Scan Cycle Complete --- Stats: Fetched=%d | New=%d",
         stats["fetched"],
         stats["new"],
-        stats["triaged"],
-        stats["candidates"],
-        stats["notifications_sent"],
     )
     return stats
 

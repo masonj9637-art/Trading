@@ -1,0 +1,22 @@
+---
+source: arxiv
+category: Artificial Intelligence
+created_at: 2026-08-03 01:53:23
+status: triaged
+---
+
+# The Role of Causality in Algorithmic Recourse
+
+- **Category Theme**: [[Artificial Intelligence]]
+- **Source**: ARXIV
+- **Original URL**: [https://arxiv.org/abs/2607.28497v1](https://arxiv.org/abs/2607.28497v1)
+
+## Curator Reasoning
+
+High relevance to Artificial Intelligence research priorities identified during automated triage.
+
+## Summary / Abstract
+
+Algorithmic recourse aims to provide individuals with actionable changes to improve their predicted outcomes in high-stakes classification settings, such as loan and mortgage applications. However, most existing approaches focus only on flipping a model's prediction, without accounting for whether the recommended changes lead to genuine improvement in an individual's true qualifications or merely enable strategic gaming of the classifier. Consequently, deployed recourse policies can induce behavioral responses that degrade predictive accuracy and become ineffective after model retraining. In this work, we formalize this failure mode through a causal performative framework for recourse. We model how recourse actions propagate through a structural causal model, capturing interactions among features as well as their effect on the true label. These causal responses induce a non-convex optimization problem, even under standard convex losses. We characterize conditions under which performatively stable solutions exist and can be efficiently computed via simple iterative dynamics. Our analysis reveals that recourse policies that ignore causal structure can induce large, misaligned behavioral responses, whereas causal recourse leads to stable equilibria that reduce incentives for gaming. Experiments on both semi-synthetic and real credit datasets demonstrate that our approach consistently outperforms standard empirical risk minimization while reducing the need for repeated model retraining to accommodate distribution shifts caused by strategic agent behavior.
+
+## My Notes

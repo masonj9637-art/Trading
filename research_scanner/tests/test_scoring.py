@@ -17,6 +17,8 @@ from research_scanner.scoring import (
     is_horizon_eligible,
     score_unscored_theses,
     generate_scoring_report,
+    get_baseline_ticker,
+    BASELINE_TICKER_POOL,
 )
 
 
@@ -61,7 +63,7 @@ def test_score_unscored_theses_success(temp_db):
     save_thesis_ledger_entry(temp_db, entry)
 
     with patch("research_scanner.scoring.send_discord_notification", return_value=True) as mock_notify:
-        stats = score_unscored_theses(db_path=temp_db)
+        stats = score_unscored_theses(db_path=temp_db, mock=True)
 
     assert stats["scored"] > 0
     assert stats["notifications_sent"] > 0
@@ -88,7 +90,7 @@ def test_generate_scoring_report_underpowered(temp_db, capsys):
 
     # Score entry
     with patch("research_scanner.scoring.send_discord_notification", return_value=True):
-        score_unscored_theses(db_path=temp_db)
+        score_unscored_theses(db_path=temp_db, mock=True)
 
     # Generate report with min_n = 30 floor
     generate_scoring_report(db_path=temp_db, min_n=30)
@@ -97,3 +99,68 @@ def test_generate_scoring_report_underpowered(temp_db, capsys):
     assert "FORWARD THESIS SCORING REPORT" in captured.out
     assert "UNDERPOWERED STATUS" in captured.out
     assert "Refusing to state a directional conclusion" in captured.out
+
+
+def test_score_unscored_theses_baseline_price_failure_skip(temp_db, caplog):
+    entry = {
+        "ledger_hash": "hash_baseline_fail",
+        "ticker": "AAPL",
+        "audit_date": "2026-01-01",
+        "confidence_level": "High",
+        "fact_check_verdict": "Supported",
+        "theme_note": "tech",
+        "vault_note_path": "/path/to/note.md",
+    }
+    save_thesis_ledger_entry(temp_db, entry)
+
+    # Mock get_alpaca_price so thesis prices succeed but baseline exit price fails (returns None)
+    def mock_get_price(ticker, target_date, **kwargs):
+        if ticker == "AAPL":
+            return 150.0
+        # For baseline ticker, return price on entry date, but None on exit date
+        if target_date == "2026-01-01":
+            return 100.0
+        return None
+
+    with patch("research_scanner.scoring.get_alpaca_price", side_effect=mock_get_price):
+        stats = score_unscored_theses(db_path=temp_db, mock=False)
+
+    # Verify thesis entry was skipped (not scored, no db row written)
+    assert stats["scored"] == 0
+    scores = get_all_thesis_scores(temp_db)
+    assert len(scores) == 0
+
+    # Verify warning log message
+    assert "Could not fetch valid baseline price" in caplog.text
+
+
+def test_get_baseline_ticker_consumed_filter(temp_db):
+    from research_scanner.db import get_db_connection
+    # Insert items into fetched_items:
+    # 1. Item with consumed_by_curator = 0 containing $TSLA
+    # 2. Item with consumed_by_curator = 1 containing $AMD
+    conn = get_db_connection(temp_db)
+    with conn:
+        conn.execute(
+            "INSERT INTO fetched_items (item_hash, source, external_id, title, summary, consumed_by_curator, fetched_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            ("hash_unpromoted", "test", "1", "Analysis of $TSLA EV growth", "TSLA looks interesting", 0, "2026-01-01 10:00:00")
+        )
+        conn.execute(
+            "INSERT INTO fetched_items (item_hash, source, external_id, title, summary, consumed_by_curator, fetched_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            ("hash_promoted", "test", "2", "Analysis of $AMD chips", "AMD looks strong", 1, "2026-01-01 10:00:00")
+        )
+    conn.close()
+
+    # get_baseline_ticker should pick TSLA (consumed_by_curator = 0) and not AMD (consumed_by_curator = 1)
+    ticker = get_baseline_ticker(temp_db, "2026-01-01", thesis_ticker="NVDA")
+    assert ticker == "TSLA"
+
+
+def test_get_baseline_ticker_fallback(temp_db):
+    # When no unconsumed fetched_items exist in +/- 14 day window
+    ticker = get_baseline_ticker(temp_db, "2026-01-01", thesis_ticker="SPY")
+    assert ticker in BASELINE_TICKER_POOL
+    assert ticker != "SPY"
+
