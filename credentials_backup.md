@@ -1,0 +1,10 @@
+# Backup of local environment configuration for Trading repository
+ALPACA_API_KEY=PKE5IPMDF3PZQEIOUOIWNOOJN6
+ALPACA_SECRET_KEY=4t9Qz5tVoffWHjkwHpEEZNwDxuZJqJQKqxTxNMJvMdrp
+ALPACA_BASE_URL=https://paper-api.alpaca.markets
+CURRENTS_API_KEY=
+USPTO_API_KEY=
+DISCORD_BOT_TOKEN=
+DISCORD_CHANNEL_ID=1471336629321994353
+OLLAMA_HOST=http://localhost:11434
+GEMMA_MODEL=gemma4:e2b-it-qat
