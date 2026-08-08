@@ -57,8 +57,8 @@ def test_get_curator_prompt():
 
 @patch("research_scanner.run_daemon.subprocess.run")
 @patch("research_scanner.run_daemon.export_from_curator_decisions")
-def test_run_curator_export_step_success(mock_export, mock_subproc_run, tmp_path):
-    """Verify successful Curator CLI run and export step execution."""
+def test_run_curator_export_step_success_envelope(mock_export, mock_subproc_run, tmp_path):
+    """Verify successful Curator CLI run with agy JSON envelope format."""
     decisions = [
         {
             "fetched_item_id": 1,
@@ -66,9 +66,14 @@ def test_run_curator_export_step_success(mock_export, mock_subproc_run, tmp_path
             "reasoning": "Directly aligns with quantum priorities.",
         }
     ]
+    envelope = {
+        "conversation_id": "conv-12345",
+        "status": "success",
+        "response": json.dumps(decisions),
+    }
     mock_proc = MagicMock()
     mock_proc.returncode = 0
-    mock_proc.stdout = json.dumps(decisions)
+    mock_proc.stdout = json.dumps(envelope)
     mock_proc.stderr = ""
     mock_subproc_run.return_value = mock_proc
 
@@ -90,6 +95,38 @@ def test_run_curator_export_step_success(mock_export, mock_subproc_run, tmp_path
     assert mock_export.called
     decisions_path = mock_export.call_args[0][0]
     assert decisions_path == "curator_decisions.json"
+    if os.path.exists("curator_decisions.json"):
+        os.remove("curator_decisions.json")
+
+
+@patch("research_scanner.run_daemon.subprocess.run")
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_success_envelope_markdown_fenced(mock_export, mock_subproc_run, tmp_path):
+    """Verify successful Curator CLI run with markdown codeblock fences inside inner response."""
+    decisions = [
+        {
+            "fetched_item_id": 2,
+            "category": "ai safety",
+            "reasoning": "Fits priorities.",
+        }
+    ]
+    fenced_response = f"```json\n{json.dumps(decisions)}\n```"
+    envelope = {
+        "conversation_id": "conv-67890",
+        "status": "success",
+        "response": fenced_response,
+    }
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+
+    mock_export.return_value = {"found": 1, "exported": 1, "failed": 0}
+
+    stats = run_curator_export_step(vault_path=str(tmp_path))
+
+    assert stats == {"found": 1, "exported": 1, "failed": 0}
     if os.path.exists("curator_decisions.json"):
         os.remove("curator_decisions.json")
 
@@ -133,12 +170,12 @@ def test_run_curator_export_step_generic_cli_failure(mock_export, mock_subproc_r
 
 @patch("research_scanner.run_daemon.subprocess.run")
 @patch("research_scanner.run_daemon.export_from_curator_decisions")
-def test_run_curator_export_step_unparseable_json(mock_export, mock_subproc_run, caplog):
-    """Verify unparseable JSON output logs an ERROR and skips export."""
+def test_run_curator_export_step_empty_output_logs_stderr(mock_export, mock_subproc_run, caplog):
+    """Verify empty stdout logs error and Curator CLI stderr in full."""
     mock_proc = MagicMock()
     mock_proc.returncode = 0
-    mock_proc.stdout = "This is not valid JSON content."
-    mock_proc.stderr = ""
+    mock_proc.stdout = ""
+    mock_proc.stderr = "PermissionDenied: command access denied"
     mock_subproc_run.return_value = mock_proc
 
     with caplog.at_level(logging.ERROR):
@@ -146,19 +183,18 @@ def test_run_curator_export_step_unparseable_json(mock_export, mock_subproc_run,
 
     assert stats is None
     assert mock_export.called is False
-    assert "Curator CLI output returned unparseable JSON" in caplog.text
-    assert "Raw Curator output that failed to parse: This is not valid JSON content." in caplog.text
+    assert "Curator CLI returned empty output." in caplog.text
+    assert "Curator CLI stderr: PermissionDenied: command access denied" in caplog.text
 
 
 @patch("research_scanner.run_daemon.subprocess.run")
 @patch("research_scanner.run_daemon.export_from_curator_decisions")
-def test_run_curator_export_step_unparseable_json_truncated_and_quota(mock_export, mock_subproc_run, caplog):
-    """Verify raw output truncation to 2000 chars and raw output logging even when quota error is detected."""
-    long_invalid_json = "x" * 3000
+def test_run_curator_export_step_unparseable_envelope_json(mock_export, mock_subproc_run, caplog):
+    """Verify unparseable envelope JSON output logs an ERROR, raw output, and stderr."""
     mock_proc = MagicMock()
     mock_proc.returncode = 0
-    mock_proc.stdout = long_invalid_json
-    mock_proc.stderr = "429 Too Many Requests"
+    mock_proc.stdout = "This is not valid JSON content."
+    mock_proc.stderr = "PermissionDenied: command access denied"
     mock_subproc_run.return_value = mock_proc
 
     with caplog.at_level(logging.ERROR):
@@ -166,9 +202,34 @@ def test_run_curator_export_step_unparseable_json_truncated_and_quota(mock_expor
 
     assert stats is None
     assert mock_export.called is False
-    assert "QUOTA EXHAUSTED - Curator call skipped this cycle" in caplog.text
-    assert f"Raw Curator output that failed to parse: {'x' * 2000}" in caplog.text
-    assert "x" * 2001 not in caplog.text
+    assert "Curator CLI output returned unparseable envelope JSON" in caplog.text
+    assert "Raw Curator output that failed to parse: This is not valid JSON content." in caplog.text
+    assert "Curator CLI stderr: PermissionDenied: command access denied" in caplog.text
+
+
+@patch("research_scanner.run_daemon.subprocess.run")
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_unparseable_inner_json(mock_export, mock_subproc_run, caplog):
+    """Verify unparseable inner response JSON logs inner response error, raw response, and stderr."""
+    envelope = {
+        "conversation_id": "conv-999",
+        "status": "success",
+        "response": "This is not valid inner JSON text.",
+    }
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = "Warning: low disk space"
+    mock_subproc_run.return_value = mock_proc
+
+    with caplog.at_level(logging.ERROR):
+        stats = run_curator_export_step()
+
+    assert stats is None
+    assert mock_export.called is False
+    assert "Curator CLI inner response returned unparseable JSON" in caplog.text
+    assert "Raw Curator output that failed to parse: This is not valid inner JSON text." in caplog.text
+    assert "Curator CLI stderr: Warning: low disk space" in caplog.text
 
 
 @patch("research_scanner.run_daemon.run_scan_cycle")

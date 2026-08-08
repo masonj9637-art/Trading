@@ -61,6 +61,34 @@ def main():
         logger.error("JSON root must be an object/dict")
         sys.exit(1)
         
+    # Handle agy CLI JSON envelope format: {"conversation_id": ..., "status": ..., "response": "<inner JSON string>"}
+    director_keys = ("updated_priorities", "fetch_requests", "escalation", "proactive_message")
+    if "response" in data and not any(k in data for k in director_keys):
+        inner_response = data.get("response")
+        if not inner_response or not isinstance(inner_response, str):
+            logger.error("Director envelope response field is empty or not a string.")
+            sys.exit(1)
+            
+        inner_response_clean = inner_response.strip()
+        if inner_response_clean.startswith("```"):
+            lines = inner_response_clean.splitlines()
+            if lines[0].startswith("```"):
+                lines = lines[1:]
+            if lines and lines[-1].startswith("```"):
+                lines = lines[:-1]
+            inner_response_clean = "\n".join(lines).strip()
+            
+        try:
+            data = json.loads(inner_response_clean)
+        except json.JSONDecodeError as e:
+            logger.error("Failed to parse inner JSON response in Director envelope from %s. Error: %s", input_path, e)
+            logger.error("Inner response content:\n%s", inner_response)
+            sys.exit(1)
+            
+        if not isinstance(data, dict):
+            logger.error("Unwrapped inner Director JSON root must be an object/dict")
+            sys.exit(1)
+        
     logger.info("Successfully parsed Director JSON output from %s", input_path)
     
     updated_priorities = data.get("updated_priorities")

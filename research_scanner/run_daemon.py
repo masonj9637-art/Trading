@@ -142,19 +142,51 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
                 logger.error("QUOTA EXHAUSTED - Curator call skipped this cycle")
             else:
                 logger.error("Curator CLI returned empty output.")
+            logger.error("Curator CLI stderr: %s", proc.stderr[:2000] if proc.stderr else "(empty)")
             return None
 
-        # Clean optional markdown codeblock delimiters
-        if raw_output.startswith("```"):
-            lines = raw_output.splitlines()
+        # 1. Parse outer agy JSON envelope
+        try:
+            envelope = json.loads(raw_output)
+        except Exception as envelope_err:
+            if is_quota_error(proc.stderr, raw_output, proc.returncode):
+                logger.error("QUOTA EXHAUSTED - Curator call skipped this cycle")
+            else:
+                logger.error("Curator CLI output returned unparseable envelope JSON: %s", envelope_err)
+            logger.error("Raw Curator output that failed to parse: %s", raw_output[:2000])
+            logger.error("Curator CLI stderr: %s", proc.stderr[:2000] if proc.stderr else "(empty)")
+            return None
+
+        # Extract inner response string from envelope
+        if isinstance(envelope, dict) and "response" in envelope:
+            inner_response = envelope["response"]
+        elif isinstance(envelope, (list, dict)):
+            # Direct fallback if raw output was raw JSON list/dict without response wrapper
+            inner_response = raw_output
+        else:
+            inner_response = ""
+
+        if not inner_response or not isinstance(inner_response, str):
+            if is_quota_error(proc.stderr, raw_output, proc.returncode):
+                logger.error("QUOTA EXHAUSTED - Curator call skipped this cycle")
+            else:
+                logger.error("Curator CLI response field is empty.")
+            logger.error("Curator CLI stderr: %s", proc.stderr[:2000] if proc.stderr else "(empty)")
+            return None
+
+        # Clean optional markdown codeblock delimiters from inner response
+        inner_response_clean = inner_response.strip()
+        if inner_response_clean.startswith("```"):
+            lines = inner_response_clean.splitlines()
             if lines[0].startswith("```"):
                 lines = lines[1:]
             if lines and lines[-1].startswith("```"):
                 lines = lines[:-1]
-            raw_output = "\n".join(lines).strip()
+            inner_response_clean = "\n".join(lines).strip()
 
+        # 2. Parse inner response JSON into decision list
         try:
-            decisions = json.loads(raw_output)
+            decisions = json.loads(inner_response_clean)
             if isinstance(decisions, dict) and "decisions" in decisions:
                 decisions = decisions["decisions"]
             if not isinstance(decisions, list):
@@ -163,8 +195,9 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
             if is_quota_error(proc.stderr, raw_output, proc.returncode):
                 logger.error("QUOTA EXHAUSTED - Curator call skipped this cycle")
             else:
-                logger.error("Curator CLI output returned unparseable JSON: %s", parse_err)
-            logger.error("Raw Curator output that failed to parse: %s", raw_output[:2000])
+                logger.error("Curator CLI inner response returned unparseable JSON: %s", parse_err)
+            logger.error("Raw Curator output that failed to parse: %s", inner_response[:2000])
+            logger.error("Curator CLI stderr: %s", proc.stderr[:2000] if proc.stderr else "(empty)")
             return None
 
         decisions_file_path = "curator_decisions.json"
