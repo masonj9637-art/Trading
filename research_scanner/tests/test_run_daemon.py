@@ -14,6 +14,7 @@ try:
     from research_scanner.run_daemon import (
         is_quota_error,
         get_curator_prompt,
+        get_agy_executable_path,
         run_curator_export_step,
         run_single_cycle,
         run_continuous_daemon,
@@ -24,6 +25,7 @@ except ImportError:
     from run_daemon import (
         is_quota_error,
         get_curator_prompt,
+        get_agy_executable_path,
         run_curator_export_step,
         run_single_cycle,
         run_continuous_daemon,
@@ -34,6 +36,18 @@ except ImportError:
 
 class StopLoopException(Exception):
     pass
+
+
+def test_get_agy_executable_path_default():
+    """Verify get_agy_executable_path returns default path when AGY_EXECUTABLE_PATH is not set."""
+    with patch.dict(os.environ, {}, clear=True):
+        assert get_agy_executable_path() == r"C:\Users\mason\AppData\Local\agy\bin\agy.exe"
+
+
+def test_get_agy_executable_path_env_override():
+    """Verify get_agy_executable_path honors AGY_EXECUTABLE_PATH environment variable."""
+    with patch.dict(os.environ, {"AGY_EXECUTABLE_PATH": r"C:\custom\path\agy.exe"}):
+        assert get_agy_executable_path() == r"C:\custom\path\agy.exe"
 
 
 def test_is_quota_error_detection():
@@ -114,7 +128,7 @@ def test_run_curator_export_step_success_envelope(mock_export, mock_subproc_run,
     assert stats == {"found": 1, "exported": 1, "failed": 0}
     assert mock_subproc_run.called
     call_args = mock_subproc_run.call_args[0][0]
-    assert call_args[0] == "agy"
+    assert call_args[0] == get_agy_executable_path()
     assert call_args[1] == "-p"
     prompt_arg = call_args[2]
     assert "You are Curator" in prompt_arg
@@ -130,6 +144,19 @@ def test_run_curator_export_step_success_envelope(mock_export, mock_subproc_run,
     assert decisions_path == "curator_decisions.json"
     if os.path.exists("curator_decisions.json"):
         os.remove("curator_decisions.json")
+
+
+@patch("research_scanner.run_daemon.subprocess.run", side_effect=FileNotFoundError)
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_file_not_found(mock_export, mock_subproc_run, caplog):
+    """Verify FileNotFoundError handler logs the exact attempted path."""
+    expected_path = get_agy_executable_path()
+    with caplog.at_level(logging.ERROR):
+        stats = run_curator_export_step()
+
+    assert stats is None
+    assert mock_export.called is False
+    assert f"Curator CLI call failed: 'agy' executable not found at path '{expected_path}'." in caplog.text
 
 
 @patch("research_scanner.run_daemon.subprocess.run")

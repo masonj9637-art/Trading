@@ -152,6 +152,16 @@ def get_curator_prompt(
         )
 
 
+def get_agy_executable_path() -> str:
+    """
+    Returns the full absolute path to the agy executable.
+    Priority:
+    1. AGY_EXECUTABLE_PATH environment variable if set
+    2. Fallback to confirmed path on this machine: C:\\Users\\mason\\AppData\\Local\\agy\\bin\\agy.exe
+    """
+    return os.getenv("AGY_EXECUTABLE_PATH", r"C:\Users\mason\AppData\Local\agy\bin\agy.exe")
+
+
 def run_curator_export_step(
     vault_path: str = config.OBSIDIAN_VAULT_PATH,
     db_path: str = config.DB_PATH
@@ -165,9 +175,10 @@ def run_curator_export_step(
     """
     prompt_text = get_curator_prompt(db_path=db_path, vault_path=vault_path)
     repo_root = get_repo_root()
+    agy_path = get_agy_executable_path()
 
     try:
-        cmd = ["agy", "-p", prompt_text, "--add-dir", repo_root, "--output-format", "json"]
+        cmd = [agy_path, "-p", prompt_text, "--add-dir", repo_root, "--output-format", "json"]
         try:
             proc = subprocess.run(
                 cmd,
@@ -176,7 +187,7 @@ def run_curator_export_step(
                 text=True,
             )
         except FileNotFoundError:
-            logger.error("Curator CLI call failed: 'agy' executable not found in PATH.")
+            logger.error("Curator CLI call failed: 'agy' executable not found at path '%s'.", agy_path)
             return None
         except Exception as exec_err:
             logger.error("Failed to execute agy CLI: %s", exec_err)
