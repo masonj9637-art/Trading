@@ -39,9 +39,15 @@ class StopLoopException(Exception):
 
 
 def test_get_agy_executable_path_default():
-    """Verify get_agy_executable_path returns default path when AGY_EXECUTABLE_PATH is not set."""
-    with patch.dict(os.environ, {}, clear=True):
+    """Verify get_agy_executable_path returns default path when AGY_EXECUTABLE_PATH is not set and which returns None."""
+    with patch.dict(os.environ, {}, clear=True), patch("shutil.which", return_value=None):
         assert get_agy_executable_path() == r"C:\Users\mason\AppData\Local\agy\bin\agy.exe"
+
+
+def test_get_agy_executable_path_which_discovery():
+    """Verify get_agy_executable_path returns path discovered by shutil.which when AGY_EXECUTABLE_PATH is not set."""
+    with patch.dict(os.environ, {}, clear=True), patch("shutil.which", return_value=r"C:\discovered\agy.exe"):
+        assert get_agy_executable_path() == r"C:\discovered\agy.exe"
 
 
 def test_get_agy_executable_path_env_override():
@@ -129,15 +135,15 @@ def test_run_curator_export_step_success_envelope(mock_export, mock_subproc_run,
     assert mock_subproc_run.called
     call_args = mock_subproc_run.call_args[0][0]
     assert call_args[0] == get_agy_executable_path()
-    assert call_args[1] == "-p"
-    prompt_arg = call_args[2]
+    assert call_args[1] == "--add-dir"
+    assert len(call_args[2]) > 0
+    assert call_args[3] == "--output-format"
+    assert call_args[4] == "json"
+
+    prompt_arg = mock_subproc_run.call_args[1]["input"]
     assert "You are Curator" in prompt_arg
     assert "Quantum Computing Advances" in prompt_arg
     assert "Latest paper summary." in prompt_arg
-    assert call_args[3] == "--add-dir"
-    assert len(call_args[4]) > 0
-    assert call_args[5] == "--output-format"
-    assert call_args[6] == "json"
 
     assert mock_export.called
     decisions_path = mock_export.call_args[0][0]

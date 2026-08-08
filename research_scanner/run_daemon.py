@@ -7,6 +7,7 @@ import argparse
 import json
 import logging
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -157,9 +158,16 @@ def get_agy_executable_path() -> str:
     Returns the full absolute path to the agy executable.
     Priority:
     1. AGY_EXECUTABLE_PATH environment variable if set
-    2. Fallback to confirmed path on this machine: C:\\Users\\mason\\AppData\\Local\\agy\\bin\\agy.exe
+    2. shutil.which("agy") or shutil.which("agy.exe")
+    3. Fallback to confirmed path on this machine: C:\\Users\\mason\\AppData\\Local\\agy\\bin\\agy.exe
     """
-    return os.getenv("AGY_EXECUTABLE_PATH", r"C:\Users\mason\AppData\Local\agy\bin\agy.exe")
+    env_path = os.getenv("AGY_EXECUTABLE_PATH")
+    if env_path:
+        return env_path
+    which_path = shutil.which("agy") or shutil.which("agy.exe")
+    if which_path:
+        return which_path
+    return r"C:\Users\mason\AppData\Local\agy\bin\agy.exe"
 
 
 def run_curator_export_step(
@@ -178,11 +186,11 @@ def run_curator_export_step(
     agy_path = get_agy_executable_path()
 
     try:
-        cmd = [agy_path, "-p", prompt_text, "--add-dir", repo_root, "--output-format", "json"]
+        cmd = [agy_path, "--add-dir", repo_root, "--output-format", "json"]
         try:
             proc = subprocess.run(
                 cmd,
-                stdin=subprocess.DEVNULL,
+                input=prompt_text,
                 capture_output=True,
                 text=True,
             )
