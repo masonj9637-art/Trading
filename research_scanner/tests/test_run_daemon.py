@@ -48,17 +48,47 @@ def test_is_quota_error_detection():
     assert is_quota_error(stderr="SyntaxError: invalid syntax") is False
 
 
-def test_get_curator_prompt():
-    """Verify curator prompt retrieval."""
-    prompt = get_curator_prompt()
+@patch("research_scanner.run_daemon.get_unconsumed_items")
+def test_get_curator_prompt(mock_get_unconsumed, tmp_path):
+    """Verify curator prompt retrieval with embedded unconsumed items and priorities."""
+    mock_get_unconsumed.return_value = [
+        {
+            "id": 42,
+            "source": "arxiv",
+            "title": "Quantum Supremacy in 2026",
+            "summary": "Demonstration of quantum speedup.",
+            "url": "https://arxiv.org/abs/2608.12345",
+            "fetched_at": "2026-08-08 10:00:00",
+            "request_id": 7,
+        }
+    ]
+    priorities_file = tmp_path / "current-priorities.md"
+    priorities_file.write_text("Director Priority: Quantum Benchmarks.", encoding="utf-8")
+
+    prompt = get_curator_prompt(db_path="/tmp/test.db", vault_path=str(tmp_path))
     assert "You are Curator" in prompt
-    assert "fetched_items" in prompt
+    assert "Director Priority: Quantum Benchmarks." in prompt
+    assert "Quantum Supremacy in 2026" in prompt
+    assert "Demonstration of quantum speedup." in prompt
+    assert "https://arxiv.org/abs/2608.12345" in prompt
 
 
+@patch("research_scanner.run_daemon.get_unconsumed_items")
 @patch("research_scanner.run_daemon.subprocess.run")
 @patch("research_scanner.run_daemon.export_from_curator_decisions")
-def test_run_curator_export_step_success_envelope(mock_export, mock_subproc_run, tmp_path):
+def test_run_curator_export_step_success_envelope(mock_export, mock_subproc_run, mock_get_unconsumed, tmp_path):
     """Verify successful Curator CLI run with agy JSON envelope format."""
+    mock_get_unconsumed.return_value = [
+        {
+            "id": 1,
+            "source": "arxiv",
+            "title": "Quantum Computing Advances",
+            "summary": "Latest paper summary.",
+            "url": "http://arxiv.org/abs/123",
+            "fetched_at": "2026-08-08 10:00:00",
+            "request_id": None,
+        }
+    ]
     decisions = [
         {
             "fetched_item_id": 1,
@@ -86,7 +116,10 @@ def test_run_curator_export_step_success_envelope(mock_export, mock_subproc_run,
     call_args = mock_subproc_run.call_args[0][0]
     assert call_args[0] == "agy"
     assert call_args[1] == "-p"
-    assert "You are Curator" in call_args[2]
+    prompt_arg = call_args[2]
+    assert "You are Curator" in prompt_arg
+    assert "Quantum Computing Advances" in prompt_arg
+    assert "Latest paper summary." in prompt_arg
     assert call_args[3] == "--add-dir"
     assert len(call_args[4]) > 0
     assert call_args[5] == "--output-format"
@@ -249,7 +282,7 @@ def test_run_continuous_daemon_cycle_execution(
     assert mock_scan_cycle.called
     assert mock_process_requests.called
     assert mock_curator_export.called
-    assert mock_curator_export.call_args[1] == {"vault_path": "/tmp/test_vault"}
+    assert mock_curator_export.call_args[1] == {"vault_path": "/tmp/test_vault", "db_path": "research_scanner.db"}
     assert mock_build_index.called
     assert mock_build_index.call_args[0][0] == "/tmp/test_vault"
 
@@ -277,7 +310,7 @@ def test_run_single_cycle(
     assert mock_scan_cycle.called
     assert mock_process_requests.called
     assert mock_curator_export.called
-    assert mock_curator_export.call_args[1] == {"vault_path": "/tmp/test_single_vault"}
+    assert mock_curator_export.call_args[1] == {"vault_path": "/tmp/test_single_vault", "db_path": "research_scanner.db"}
     assert mock_build_index.called
     assert mock_build_index.call_args[0][0] == "/tmp/test_single_vault"
 
@@ -292,7 +325,7 @@ def test_main_once_flag(mock_continuous_daemon, mock_single_cycle):
 
     assert mock_single_cycle.called
     assert mock_single_cycle.call_count == 1
-    assert mock_single_cycle.call_args[1] == {"vault_path": "/tmp/once_vault"}
+    assert mock_single_cycle.call_args[1] == {"vault_path": "/tmp/once_vault", "db_path": "research_scanner.db"}
     assert not mock_continuous_daemon.called
 
 
@@ -305,6 +338,11 @@ def test_main_default_continuous(mock_continuous_daemon, mock_single_cycle):
         main()
 
     assert mock_continuous_daemon.called
-    assert mock_continuous_daemon.call_args[1] == {"interval_seconds": 600, "vault_path": "/tmp/cont_vault"}
+    assert mock_continuous_daemon.call_args[1] == {
+        "interval_seconds": 600,
+        "vault_path": "/tmp/cont_vault",
+        "db_path": "research_scanner.db",
+    }
     assert not mock_single_cycle.called
+
 

@@ -15,6 +15,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 from research_scanner import config
+from research_scanner.db import get_unconsumed_items
 from research_scanner.scan import run_scan_cycle
 from research_scanner.process_requests import run_process_requests
 from research_scanner.export_to_obsidian import export_from_curator_decisions
@@ -27,11 +28,13 @@ logging.basicConfig(
 )
 logger = logging.getLogger("research_scanner.daemon")
 
-CURATOR_TASK_PROMPT = """You are Curator, part of an existing project called research_scanner. Read
-rows from the fetched_items SQLite table where consumed_by_curator = 0, and
-read current-priorities.md in the vault root for what Director currently
-cares about. Decide which raw fetched items are worth promoting into real
-Obsidian notes.
+CURATOR_TASK_PROMPT = """You are Curator, part of an existing project called research_scanner. Below are Director's current priorities and the current unconsumed fetched items. Decide which raw fetched items are worth promoting into real Obsidian notes.
+
+Director's Current Priorities (current-priorities.md):
+{priorities_text}
+
+Here are the current unconsumed items:
+{items_text}
 
 Do NOT write files yourself. Output a JSON decision list - for each item
 you're promoting: its fetched_items id, a normalized lowercase category
@@ -84,21 +87,75 @@ def get_repo_root() -> str:
     return os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 
-def get_curator_prompt() -> str:
-    """Loads Curator task prompt from curator_prompt.md if present, else fallback."""
+def get_curator_prompt(
+    db_path: str = config.DB_PATH,
+    vault_path: str = config.OBSIDIAN_VAULT_PATH
+) -> str:
+    """
+    Constructs the Curator prompt by loading the base prompt template,
+    fetching unconsumed items directly from SQLite, and reading current-priorities.md
+    from the vault root.
+    """
+    # 1. Fetch unconsumed items from DB
+    try:
+        unconsumed_items = get_unconsumed_items(db_path)
+    except Exception as e:
+        logger.warning("Failed to fetch unconsumed items from database %s: %s", db_path, e)
+        unconsumed_items = []
+
+    compact_items = []
+    for item in unconsumed_items:
+        compact_items.append({
+            "id": item.get("id"),
+            "source": item.get("source"),
+            "title": item.get("title"),
+            "summary": item.get("summary"),
+            "url": item.get("url"),
+            "fetched_at": str(item.get("fetched_at")) if item.get("fetched_at") is not None else None,
+            "request_id": item.get("request_id"),
+        })
+    items_text = json.dumps(compact_items, indent=2)
+
+    # 2. Read current-priorities.md from vault_path
+    priorities_path = os.path.join(vault_path, "current-priorities.md")
+    if os.path.exists(priorities_path):
+        try:
+            with open(priorities_path, "r", encoding="utf-8") as f:
+                priorities_text = f.read().strip()
+                if not priorities_text:
+                    priorities_text = "(empty current-priorities.md)"
+        except Exception as e:
+            logger.warning("Failed to read current-priorities.md at %s: %s", priorities_path, e)
+            priorities_text = "(Error reading current-priorities.md)"
+    else:
+        priorities_text = "(No current-priorities.md found in vault root)"
+
+    # 3. Load base prompt template
+    template = CURATOR_TASK_PROMPT
     prompt_path = os.path.join(os.path.dirname(__file__), "curator_prompt.md")
     if os.path.exists(prompt_path):
         try:
             with open(prompt_path, "r", encoding="utf-8") as f:
                 content = f.read().strip()
                 if content:
-                    return content
+                    template = content
         except Exception as e:
             logger.warning("Failed to read curator_prompt.md: %s", e)
-    return CURATOR_TASK_PROMPT
+
+    if "{priorities_text}" in template and "{items_text}" in template:
+        return template.format(priorities_text=priorities_text, items_text=items_text)
+    else:
+        return (
+            f"{template}\n\n"
+            f"Director's Current Priorities (current-priorities.md):\n{priorities_text}\n\n"
+            f"Here are the current unconsumed items:\n{items_text}"
+        )
 
 
-def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Optional[Dict[str, int]]:
+def run_curator_export_step(
+    vault_path: str = config.OBSIDIAN_VAULT_PATH,
+    db_path: str = config.DB_PATH
+) -> Optional[Dict[str, int]]:
     """
     Step 3: Invokes Curator via agy CLI in headless mode,
     parses the JSON decision list, and passes it to export_from_curator_decisions().
@@ -106,7 +163,7 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
     Logs quota/rate-limit errors distinctly ("QUOTA EXHAUSTED - Curator call skipped this cycle").
     If the CLI call fails or returns unparseable output, logs an ERROR and skips export.
     """
-    prompt_text = get_curator_prompt()
+    prompt_text = get_curator_prompt(db_path=db_path, vault_path=vault_path)
     repo_root = get_repo_root()
 
     try:
@@ -204,7 +261,7 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
         with open(decisions_file_path, "w", encoding="utf-8") as df:
             json.dump(decisions, df, indent=2)
 
-        export_stats = export_from_curator_decisions(decisions_file_path, vault_path=vault_path)
+        export_stats = export_from_curator_decisions(decisions_file_path, db_path=db_path, vault_path=vault_path)
         logger.info("Obsidian export stats: %s", export_stats)
         return export_stats
 
@@ -213,7 +270,11 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
         return None
 
 
-def run_single_cycle(vault_path: str = config.OBSIDIAN_VAULT_PATH, iteration: Optional[int] = None) -> None:
+def run_single_cycle(
+    vault_path: str = config.OBSIDIAN_VAULT_PATH,
+    db_path: str = config.DB_PATH,
+    iteration: Optional[int] = None,
+) -> None:
     """
     Executes a single cycle of the research_scanner pipeline:
     1. Scan cycle (run_scan_cycle)
@@ -225,29 +286,34 @@ def run_single_cycle(vault_path: str = config.OBSIDIAN_VAULT_PATH, iteration: Op
     logger.info("--- Starting Cycle%s at %s ---", iter_label, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     # Step 1: Run raw fetch & deduplication cycle
-    scan_stats = run_scan_cycle()
+    scan_stats = run_scan_cycle(db_path=db_path)
     if iteration is not None:
         logger.info("Scan cycle #%d stats: %s", iteration, scan_stats)
     else:
         logger.info("Scan cycle stats: %s", scan_stats)
 
     # Step 2: Process queued director requests
-    run_process_requests()
+    run_process_requests(db_path=db_path)
 
     # Step 3: Curator agent CLI evaluation & Obsidian export
-    run_curator_export_step(vault_path=vault_path)
+    run_curator_export_step(vault_path=vault_path, db_path=db_path)
 
     # Step 4: Rebuild Obsidian vault index
     build_vault_index(vault_path)
     logger.info("Obsidian vault index rebuilt.")
 
 
-def run_continuous_daemon(interval_seconds: int = 1800, vault_path: str = config.OBSIDIAN_VAULT_PATH) -> None:
+def run_continuous_daemon(
+    interval_seconds: int = 1800,
+    vault_path: str = config.OBSIDIAN_VAULT_PATH,
+    db_path: str = config.DB_PATH,
+) -> None:
     """
     Executes the research_scanner pipeline continuously every interval_seconds.
 
     :param interval_seconds: Time to sleep between scan iterations (default: 1800s / 30 min)
     :param vault_path: Path to target Obsidian vault
+    :param db_path: Path to target SQLite database
     """
     logger.info("==================================================")
     logger.info("   RESEARCH SCANNER CONTINUOUS DAEMON STARTED     ")
@@ -258,7 +324,7 @@ def run_continuous_daemon(interval_seconds: int = 1800, vault_path: str = config
     iteration = 1
     while True:
         try:
-            run_single_cycle(vault_path=vault_path, iteration=iteration)
+            run_single_cycle(vault_path=vault_path, db_path=db_path, iteration=iteration)
         except KeyboardInterrupt:
             logger.info("Daemon execution stopped by user (KeyboardInterrupt). Exiting.")
             sys.exit(0)
@@ -285,6 +351,12 @@ def main() -> None:
         help=f"Target Obsidian vault path (default: {config.OBSIDIAN_VAULT_PATH})",
     )
     parser.add_argument(
+        "--db",
+        type=str,
+        default=config.DB_PATH,
+        help=f"Target SQLite database path (default: {config.DB_PATH})",
+    )
+    parser.add_argument(
         "--once",
         action="store_true",
         help="Run exactly one cycle of the pipeline and exit immediately.",
@@ -292,11 +364,12 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.once:
-        run_single_cycle(vault_path=args.vault)
+        run_single_cycle(vault_path=args.vault, db_path=args.db)
     else:
-        run_continuous_daemon(interval_seconds=args.interval, vault_path=args.vault)
+        run_continuous_daemon(interval_seconds=args.interval, vault_path=args.vault, db_path=args.db)
 
 
 if __name__ == "__main__":
     main()
+
 
