@@ -83,7 +83,9 @@ def test_run_curator_export_step_success(mock_export, mock_subproc_run, tmp_path
 
     assert mock_export.called
     decisions_path = mock_export.call_args[0][0]
-    assert os.path.exists(decisions_path) is False  # Cleaned up in finally block
+    assert decisions_path == "curator_decisions.json"
+    if os.path.exists("curator_decisions.json"):
+        os.remove("curator_decisions.json")
 
 
 @patch("research_scanner.run_daemon.subprocess.run")

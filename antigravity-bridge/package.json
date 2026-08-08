@@ -1,0 +1,21 @@
+{
+  "name": "antigravity-bridge",
+  "version": "1.0.0",
+  "description": "MCP server wrapping local antigravity CLI binary for stateless agent execution and status checks",
+  "type": "module",
+  "bin": {
+    "antigravity-bridge": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3"
+  }
+}

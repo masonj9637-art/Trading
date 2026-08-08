@@ -237,13 +237,13 @@ Behavior:
    logging the raw output and exiting non-zero rather than partially
    applying a broken decision.
 
-CLI entrypoint: python director_apply.py --input logs/director_run_<timestamp>.json
+CLI entrypoint: python director_apply.py --input director_output.json
 Designed to be called immediately after each scheduled headless Director run
 in the same cron job, e.g.:
   python build_vault_index.py \
     && antigravity -p --prompt-file director_prompt.md --output-format json \
-    < /dev/null > logs/director_run_$(date +%F_%H%M).json \
-    && python director_apply.py --input logs/director_run_$(date +%F_%H%M).json
+    < /dev/null > director_output.json \
+    && python director_apply.py --input director_output.json
 ```
 
 ---
@@ -345,8 +345,8 @@ refresh window):
 
   python build_vault_index.py \
     && antigravity -p --prompt-file director_prompt.md --output-format json \
-    --no-color < /dev/null > logs/director_run_$(date +%F_%H%M).json \
-    && python director_apply.py --input logs/director_run_$(date +%F_%H%M).json
+    --no-color < /dev/null > director_output.json \
+    && python director_apply.py --input director_output.json
 
 Headless runs are stateless by default (no --continue) - correct here, since
 Director's real memory is the vault and current-priorities.md, not

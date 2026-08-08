@@ -159,9 +159,9 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
                 logger.error("Curator CLI output returned unparseable JSON: %s", parse_err)
             return None
 
-        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8") as df:
-            json.dump(decisions, df)
-            decisions_file_path = df.name
+        decisions_file_path = "curator_decisions.json"
+        with open(decisions_file_path, "w", encoding="utf-8") as df:
+            json.dump(decisions, df, indent=2)
 
         export_stats = export_from_curator_decisions(decisions_file_path, vault_path=vault_path)
         logger.info("Obsidian export stats: %s", export_stats)
@@ -174,11 +174,6 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
         if prompt_file_path and os.path.exists(prompt_file_path):
             try:
                 os.remove(prompt_file_path)
-            except OSError:
-                pass
-        if decisions_file_path and os.path.exists(decisions_file_path):
-            try:
-                os.remove(decisions_file_path)
             except OSError:
                 pass
 
