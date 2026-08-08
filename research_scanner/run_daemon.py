@@ -16,7 +16,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 from research_scanner import config
-from research_scanner.db import get_unconsumed_items
+from research_scanner.db import get_unconsumed_items, mark_items_reviewed
 from research_scanner.scan import run_scan_cycle
 from research_scanner.process_requests import run_process_requests
 from research_scanner.export_to_obsidian import export_from_curator_decisions
@@ -91,11 +91,12 @@ def get_repo_root() -> str:
 def get_curator_prompt(
     db_path: str = config.DB_PATH,
     vault_path: str = config.OBSIDIAN_VAULT_PATH
-) -> str:
+) -> tuple[str, list[int]]:
     """
     Constructs the Curator prompt by loading the base prompt template,
     fetching unconsumed items directly from SQLite, and reading current-priorities.md
     from the vault root.
+    Returns a tuple of (prompt_text, list_of_unconsumed_item_ids).
     """
     # 1. Fetch unconsumed items from DB
     try:
@@ -105,9 +106,13 @@ def get_curator_prompt(
         unconsumed_items = []
 
     compact_items = []
+    item_ids = []
     for item in unconsumed_items:
+        i_id = item.get("id")
+        if i_id is not None:
+            item_ids.append(i_id)
         compact_items.append({
-            "id": item.get("id"),
+            "id": i_id,
             "source": item.get("source"),
             "title": item.get("title"),
             "summary": item.get("summary"),
@@ -144,13 +149,15 @@ def get_curator_prompt(
             logger.warning("Failed to read curator_prompt.md: %s", e)
 
     if "{priorities_text}" in template and "{items_text}" in template:
-        return template.format(priorities_text=priorities_text, items_text=items_text)
+        prompt_text = template.format(priorities_text=priorities_text, items_text=items_text)
     else:
-        return (
+        prompt_text = (
             f"{template}\n\n"
             f"Director's Current Priorities (current-priorities.md):\n{priorities_text}\n\n"
             f"Here are the current unconsumed items:\n{items_text}"
         )
+
+    return prompt_text, item_ids
 
 
 def get_agy_executable_path() -> str:
@@ -181,7 +188,7 @@ def run_curator_export_step(
     Logs quota/rate-limit errors distinctly ("QUOTA EXHAUSTED - Curator call skipped this cycle").
     If the CLI call fails or returns unparseable output, logs an ERROR and skips export.
     """
-    prompt_text = get_curator_prompt(db_path=db_path, vault_path=vault_path)
+    prompt_text, sent_item_ids = get_curator_prompt(db_path=db_path, vault_path=vault_path)
     repo_root = get_repo_root()
     agy_path = get_agy_executable_path()
 
@@ -282,6 +289,17 @@ def run_curator_export_step(
 
         export_stats = export_from_curator_decisions(decisions_file_path, db_path=db_path, vault_path=vault_path)
         logger.info("Obsidian export stats: %s", export_stats)
+
+        promoted_item_ids = {
+            d["fetched_item_id"]
+            for d in decisions
+            if isinstance(d, dict) and d.get("fetched_item_id") is not None
+        }
+        unpromoted_ids = [item_id for item_id in sent_item_ids if item_id not in promoted_item_ids]
+        if unpromoted_ids:
+            marked_count = mark_items_reviewed(db_path, unpromoted_ids)
+            logger.info("Marked %d unpromoted item(s) as reviewed_not_promoted.", marked_count)
+
         return export_stats
 
     except Exception as e:

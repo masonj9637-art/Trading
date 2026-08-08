@@ -85,12 +85,13 @@ def test_get_curator_prompt(mock_get_unconsumed, tmp_path):
     priorities_file = tmp_path / "current-priorities.md"
     priorities_file.write_text("Director Priority: Quantum Benchmarks.", encoding="utf-8")
 
-    prompt = get_curator_prompt(db_path="/tmp/test.db", vault_path=str(tmp_path))
+    prompt, item_ids = get_curator_prompt(db_path="/tmp/test.db", vault_path=str(tmp_path))
     assert "You are Curator" in prompt
     assert "Director Priority: Quantum Benchmarks." in prompt
     assert "Quantum Supremacy in 2026" in prompt
     assert "Demonstration of quantum speedup." in prompt
     assert "https://arxiv.org/abs/2608.12345" in prompt
+    assert item_ids == [42]
 
 
 @patch("research_scanner.run_daemon.get_unconsumed_items")
@@ -377,5 +378,65 @@ def test_main_default_continuous(mock_continuous_daemon, mock_single_cycle):
         "db_path": "research_scanner.db",
     }
     assert not mock_single_cycle.called
+
+
+@patch("research_scanner.run_daemon.subprocess.run")
+def test_curator_export_decisions_outcomes(mock_subproc_run, tmp_path):
+    """Verify that promoted items become 'promoted', unpromoted items sent become 'reviewed_not_promoted', and unsent items remain unconsumed."""
+    from research_scanner.db import init_db, save_fetched_item, get_fetched_item_by_id
+
+    db_path = str(tmp_path / "test_outcomes.db")
+    vault_path = str(tmp_path / "vault")
+    os.makedirs(vault_path, exist_ok=True)
+    init_db(db_path)
+
+    item1 = {"source": "arxiv", "external_id": "item-1", "title": "Promoted Paper", "summary": "Sum 1", "url": "http://1"}
+    item2 = {"source": "arxiv", "external_id": "item-2", "title": "Rejected Paper", "summary": "Sum 2", "url": "http://2"}
+    save_fetched_item(db_path, item1)
+    save_fetched_item(db_path, item2)
+
+    # Item IDs in DB will be 1 and 2
+    decisions = [
+        {
+            "fetched_item_id": 1,
+            "category": "quantum",
+            "reasoning": "Fits priorities well.",
+        }
+    ]
+    envelope = {
+        "status": "success",
+        "response": json.dumps(decisions),
+    }
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+
+    stats = run_curator_export_step(vault_path=vault_path, db_path=db_path)
+
+    # Item 3 is saved after Curator cycle (never sent to Curator)
+    item3 = {"source": "arxiv", "external_id": "item-3", "title": "Unsent Paper", "summary": "Sum 3", "url": "http://3"}
+    save_fetched_item(db_path, item3)
+
+    assert stats == {"found": 1, "exported": 1, "failed": 0}
+
+    # Verify Item 1 (promoted)
+    f1 = get_fetched_item_by_id(db_path, 1)
+    assert f1["consumed_by_curator"] == 1
+    assert f1["curator_decision"] == "promoted"
+
+    # Verify Item 2 (sent but not promoted)
+    f2 = get_fetched_item_by_id(db_path, 2)
+    assert f2["consumed_by_curator"] == 1
+    assert f2["curator_decision"] == "reviewed_not_promoted"
+
+    # Verify Item 3 (never sent)
+    f3 = get_fetched_item_by_id(db_path, 3)
+    assert f3["consumed_by_curator"] == 0 or f3["consumed_by_curator"] is None
+    assert f3["curator_decision"] is None
+
+    if os.path.exists("curator_decisions.json"):
+        os.remove("curator_decisions.json")
 
 

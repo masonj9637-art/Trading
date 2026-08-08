@@ -45,6 +45,7 @@ def init_db(db_path: str) -> None:
                     url TEXT,
                     summary TEXT,
                     consumed_by_curator INTEGER DEFAULT 0,
+                    curator_decision TEXT,
                     request_id INTEGER,
                     fetched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
@@ -127,11 +128,13 @@ def init_db(db_path: str) -> None:
             if "reviewed" not in columns:
                 conn.execute("ALTER TABLE candidates ADD COLUMN reviewed INTEGER DEFAULT 0;")
 
-            # Auto-migration: ensure 'consumed_by_curator' and 'request_id' columns exist
+            # Auto-migration: ensure 'consumed_by_curator', 'curator_decision', and 'request_id' columns exist
             cursor.execute("PRAGMA table_info(fetched_items);")
             fetched_cols = [col[1] for col in cursor.fetchall()]
             if "consumed_by_curator" not in fetched_cols:
                 conn.execute("ALTER TABLE fetched_items ADD COLUMN consumed_by_curator INTEGER DEFAULT 0;")
+            if "curator_decision" not in fetched_cols:
+                conn.execute("ALTER TABLE fetched_items ADD COLUMN curator_decision TEXT;")
             if "request_id" not in fetched_cols:
                 conn.execute("ALTER TABLE fetched_items ADD COLUMN request_id INTEGER;")
 
@@ -279,6 +282,7 @@ def get_unconsumed_items(db_path: str) -> List[Dict[str, Any]]:
     """
     Retrieves all fetched items that have not yet been consumed by the curator.
     """
+    init_db(db_path)
     conn = get_db_connection(db_path)
     try:
         cursor = conn.cursor()
@@ -309,20 +313,45 @@ def get_fetched_item_by_id(db_path: str, item_id: int) -> Optional[Dict[str, Any
         conn.close()
 
 
-def mark_item_consumed(db_path: str, item_id: int) -> bool:
+def mark_item_consumed(db_path: str, item_id: int, decision: str = "promoted") -> bool:
     """
     Marks a fetched item as consumed (consumed_by_curator = 1) given its database ID.
+    Sets curator_decision to decision (default: "promoted").
     Returns True if row was updated.
     """
+    init_db(db_path)
     conn = get_db_connection(db_path)
     try:
         with conn:
             cursor = conn.cursor()
             cursor.execute(
-                "UPDATE fetched_items SET consumed_by_curator = 1 WHERE id = ?",
-                (item_id,),
+                "UPDATE fetched_items SET consumed_by_curator = 1, curator_decision = ? WHERE id = ?",
+                (decision, item_id),
             )
             return cursor.rowcount > 0
+    finally:
+        conn.close()
+
+
+def mark_items_reviewed(db_path: str, item_ids: List[int], decision: str = "reviewed_not_promoted") -> int:
+    """
+    Marks fetched items as reviewed (consumed_by_curator = 1, curator_decision = decision)
+    for a list of item IDs without requiring a note to be written.
+    Returns the number of rows updated.
+    """
+    if not item_ids:
+        return 0
+    init_db(db_path)
+    conn = get_db_connection(db_path)
+    try:
+        with conn:
+            cursor = conn.cursor()
+            placeholders = ",".join("?" for _ in item_ids)
+            cursor.execute(
+                f"UPDATE fetched_items SET consumed_by_curator = 1, curator_decision = ? WHERE id IN ({placeholders})",
+                (decision, *item_ids),
+            )
+            return cursor.rowcount
     finally:
         conn.close()
 

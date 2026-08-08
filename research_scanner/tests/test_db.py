@@ -13,6 +13,10 @@ from research_scanner.db import (
     save_fetched_item,
     save_candidate,
     get_all_candidates,
+    get_fetched_item_by_id,
+    get_unconsumed_items,
+    mark_item_consumed,
+    mark_items_reviewed,
 )
 
 
@@ -79,3 +83,74 @@ def test_save_and_retrieve_candidate(temp_db):
     assert candidates[0]["title"] == "Novel Superconducting Qubit"
     assert candidates[0]["score"] == 8.5
     assert candidates[0]["category"] == "quantum computing"
+
+
+def test_mark_item_consumed_promoted(temp_db):
+    item = {
+        "source": "arxiv",
+        "external_id": "2401.99999",
+        "title": "Promoted Quantum Paper",
+        "url": "http://arxiv.org/abs/2401.99999",
+        "summary": "Quantum paper.",
+    }
+    save_fetched_item(temp_db, item)
+    unconsumed = get_unconsumed_items(temp_db)
+    item_id = unconsumed[0]["id"]
+
+    success = mark_item_consumed(temp_db, item_id)
+    assert success is True
+
+    fetched = get_fetched_item_by_id(temp_db, item_id)
+    assert fetched["consumed_by_curator"] == 1
+    assert fetched["curator_decision"] == "promoted"
+
+
+def test_mark_items_reviewed_not_promoted(temp_db):
+    item1 = {
+        "source": "arxiv",
+        "external_id": "2401.11111",
+        "title": "Rejected Paper 1",
+        "url": "http://arxiv.org/abs/2401.11111",
+        "summary": "Summary 1",
+    }
+    item2 = {
+        "source": "arxiv",
+        "external_id": "2401.22222",
+        "title": "Rejected Paper 2",
+        "url": "http://arxiv.org/abs/2401.22222",
+        "summary": "Summary 2",
+    }
+    save_fetched_item(temp_db, item1)
+    save_fetched_item(temp_db, item2)
+
+    unconsumed = get_unconsumed_items(temp_db)
+    ids = [i["id"] for i in unconsumed]
+    assert len(ids) == 2
+
+    count = mark_items_reviewed(temp_db, ids)
+    assert count == 2
+
+    for i_id in ids:
+        fetched = get_fetched_item_by_id(temp_db, i_id)
+        assert fetched["consumed_by_curator"] == 1
+        assert fetched["curator_decision"] == "reviewed_not_promoted"
+
+    assert len(get_unconsumed_items(temp_db)) == 0
+
+
+def test_unconsumed_item_remains_unconsumed(temp_db):
+    item = {
+        "source": "arxiv",
+        "external_id": "2401.33333",
+        "title": "Unsent Paper",
+        "url": "http://arxiv.org/abs/2401.33333",
+        "summary": "Summary 3",
+    }
+    save_fetched_item(temp_db, item)
+
+    unconsumed = get_unconsumed_items(temp_db)
+    assert len(unconsumed) == 1
+    item_id = unconsumed[0]["id"]
+    fetched = get_fetched_item_by_id(temp_db, item_id)
+    assert fetched["consumed_by_curator"] == 0 or fetched["consumed_by_curator"] is None
+    assert fetched["curator_decision"] is None
