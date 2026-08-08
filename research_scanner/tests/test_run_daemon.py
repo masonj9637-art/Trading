@@ -15,7 +15,9 @@ try:
         is_quota_error,
         get_curator_prompt,
         run_curator_export_step,
+        run_single_cycle,
         run_continuous_daemon,
+        main,
         CURATOR_TASK_PROMPT,
     )
 except ImportError:
@@ -23,7 +25,9 @@ except ImportError:
         is_quota_error,
         get_curator_prompt,
         run_curator_export_step,
+        run_single_cycle,
         run_continuous_daemon,
+        main,
         CURATOR_TASK_PROMPT,
     )
 
@@ -173,3 +177,51 @@ def test_run_continuous_daemon_keyboard_interrupt(mock_scan_cycle):
     with pytest.raises(SystemExit) as exc_info:
         run_continuous_daemon()
     assert exc_info.value.code == 0
+
+
+@patch("research_scanner.run_daemon.run_scan_cycle")
+@patch("research_scanner.run_daemon.run_process_requests")
+@patch("research_scanner.run_daemon.run_curator_export_step")
+@patch("research_scanner.run_daemon.build_vault_index")
+def test_run_single_cycle(
+    mock_build_index, mock_curator_export, mock_process_requests, mock_scan_cycle
+):
+    """Verify run_single_cycle executes steps 1-4 once in sequence."""
+    mock_scan_cycle.return_value = {"arxiv": 3}
+
+    run_single_cycle(vault_path="/tmp/test_single_vault", iteration=1)
+
+    assert mock_scan_cycle.called
+    assert mock_process_requests.called
+    assert mock_curator_export.called
+    assert mock_curator_export.call_args[1] == {"vault_path": "/tmp/test_single_vault"}
+    assert mock_build_index.called
+    assert mock_build_index.call_args[0][0] == "/tmp/test_single_vault"
+
+
+@patch("research_scanner.run_daemon.run_single_cycle")
+@patch("research_scanner.run_daemon.run_continuous_daemon")
+def test_main_once_flag(mock_continuous_daemon, mock_single_cycle):
+    """Verify main() with --once runs exactly one cycle and exits without entering continuous loop."""
+    test_args = ["run_daemon.py", "--once", "--vault", "/tmp/once_vault"]
+    with patch.object(sys, "argv", test_args):
+        main()
+
+    assert mock_single_cycle.called
+    assert mock_single_cycle.call_count == 1
+    assert mock_single_cycle.call_args[1] == {"vault_path": "/tmp/once_vault"}
+    assert not mock_continuous_daemon.called
+
+
+@patch("research_scanner.run_daemon.run_single_cycle")
+@patch("research_scanner.run_daemon.run_continuous_daemon")
+def test_main_default_continuous(mock_continuous_daemon, mock_single_cycle):
+    """Verify main() without --once invokes continuous daemon."""
+    test_args = ["run_daemon.py", "--interval", "600", "--vault", "/tmp/cont_vault"]
+    with patch.object(sys, "argv", test_args):
+        main()
+
+    assert mock_continuous_daemon.called
+    assert mock_continuous_daemon.call_args[1] == {"interval_seconds": 600, "vault_path": "/tmp/cont_vault"}
+    assert not mock_single_cycle.called
+

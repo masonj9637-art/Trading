@@ -179,6 +179,35 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
         return None
 
 
+def run_single_cycle(vault_path: str = config.OBSIDIAN_VAULT_PATH, iteration: Optional[int] = None) -> None:
+    """
+    Executes a single cycle of the research_scanner pipeline:
+    1. Scan cycle (run_scan_cycle)
+    2. Process requests (run_process_requests)
+    3. Curator export (run_curator_export_step)
+    4. Build vault index (build_vault_index)
+    """
+    iter_label = f" #{iteration}" if iteration is not None else ""
+    logger.info("--- Starting Cycle%s at %s ---", iter_label, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
+    # Step 1: Run raw fetch & deduplication cycle
+    scan_stats = run_scan_cycle()
+    if iteration is not None:
+        logger.info("Scan cycle #%d stats: %s", iteration, scan_stats)
+    else:
+        logger.info("Scan cycle stats: %s", scan_stats)
+
+    # Step 2: Process queued director requests
+    run_process_requests()
+
+    # Step 3: Curator agent CLI evaluation & Obsidian export
+    run_curator_export_step(vault_path=vault_path)
+
+    # Step 4: Rebuild Obsidian vault index
+    build_vault_index(vault_path)
+    logger.info("Obsidian vault index rebuilt.")
+
+
 def run_continuous_daemon(interval_seconds: int = 1800, vault_path: str = config.OBSIDIAN_VAULT_PATH) -> None:
     """
     Executes the research_scanner pipeline continuously every interval_seconds.
@@ -194,23 +223,8 @@ def run_continuous_daemon(interval_seconds: int = 1800, vault_path: str = config
 
     iteration = 1
     while True:
-        logger.info("--- Starting Cycle #%d at %s ---", iteration, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-
         try:
-            # Step 1: Run raw fetch & deduplication cycle
-            scan_stats = run_scan_cycle()
-            logger.info("Scan cycle #%d stats: %s", iteration, scan_stats)
-
-            # Step 2: Process queued director requests
-            run_process_requests()
-
-            # Step 3: Curator agent CLI evaluation & Obsidian export
-            run_curator_export_step(vault_path=vault_path)
-
-            # Step 4: Rebuild Obsidian vault index
-            build_vault_index(vault_path)
-            logger.info("Obsidian vault index rebuilt.")
-
+            run_single_cycle(vault_path=vault_path, iteration=iteration)
         except KeyboardInterrupt:
             logger.info("Daemon execution stopped by user (KeyboardInterrupt). Exiting.")
             sys.exit(0)
@@ -236,10 +250,19 @@ def main() -> None:
         default=config.OBSIDIAN_VAULT_PATH,
         help=f"Target Obsidian vault path (default: {config.OBSIDIAN_VAULT_PATH})",
     )
+    parser.add_argument(
+        "--once",
+        action="store_true",
+        help="Run exactly one cycle of the pipeline and exit immediately.",
+    )
     args = parser.parse_args()
 
-    run_continuous_daemon(interval_seconds=args.interval, vault_path=args.vault)
+    if args.once:
+        run_single_cycle(vault_path=args.vault)
+    else:
+        run_continuous_daemon(interval_seconds=args.interval, vault_path=args.vault)
 
 
 if __name__ == "__main__":
     main()
+
