@@ -1,19 +1,21 @@
 ---
 source: arxiv
-category: Quantum Computing
-created_at: 2026-08-03 01:53:24
+category: fault-tolerant quantum computing & error correction
+created_at: 2026-08-03 01:34:42
 status: triaged
+tags:
+  - triaged
 ---
 
 # DreamQAS: Learning a Decision-Useful World Model for VQE-Efficient Quantum Architecture Search
 
-- **Category Theme**: [[Quantum Computing]]
+- **Category Theme**: [[Fault-tolerant Quantum Computing & Error Correction]]
 - **Source**: ARXIV
 - **Original URL**: [https://arxiv.org/abs/2607.29491v1](https://arxiv.org/abs/2607.29491v1)
 
 ## Curator Reasoning
 
-High relevance to Quantum Computing research priorities identified during automated triage.
+Promoting DreamQAS paper directly addressing Priority 1: VQE quantum architecture search and decision-useful world models for quantum algorithm compilation.
 
 ## Summary / Abstract
 

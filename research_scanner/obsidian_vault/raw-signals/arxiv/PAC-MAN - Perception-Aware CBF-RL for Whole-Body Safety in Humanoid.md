@@ -1,19 +1,21 @@
 ---
 source: arxiv
-category: Robotics
-created_at: 2026-08-03 01:39:13
+category: physical robotics & humanoid safety control
+created_at: 2026-07-31 21:46:59
 status: triaged
+tags:
+  - triaged
 ---
 
 # PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball
 
-- **Category Theme**: [[Robotics]]
+- **Category Theme**: [[Physical Robotics & Humanoid Safety Control]]
 - **Source**: ARXIV
 - **Original URL**: [https://arxiv.org/abs/2607.28623v1](https://arxiv.org/abs/2607.28623v1)
 
 ## Curator Reasoning
 
-Novel physical implementation reducing hardware complexity significantly.
+Promoting PAC-MAN research paper (arXiv:2607.28623v1) directly addressing Priority 3: Control barrier function reinforcement learning (CBF-RL) for whole-body safety and balance in humanoid control.
 
 ## Summary / Abstract
 
