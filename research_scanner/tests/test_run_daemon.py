@@ -75,11 +75,13 @@ def test_run_curator_export_step_success(mock_export, mock_subproc_run, tmp_path
     assert stats == {"found": 1, "exported": 1, "failed": 0}
     assert mock_subproc_run.called
     call_args = mock_subproc_run.call_args[0][0]
-    assert call_args[0] == "antigravity"
+    assert call_args[0] == "agy"
     assert call_args[1] == "-p"
-    assert call_args[2] == "--prompt-file"
-    assert call_args[4] == "--output-format"
-    assert call_args[5] == "json"
+    assert "You are Curator" in call_args[2]
+    assert call_args[3] == "--add-dir"
+    assert len(call_args[4]) > 0
+    assert call_args[5] == "--output-format"
+    assert call_args[6] == "json"
 
     assert mock_export.called
     decisions_path = mock_export.call_args[0][0]

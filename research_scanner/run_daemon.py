@@ -69,11 +69,23 @@ def is_quota_error(stderr: str = "", stdout: str = "", returncode: Optional[int]
     return any(kw in combined for kw in quota_keywords)
 
 
+def get_repo_root() -> str:
+    """
+    Determines the absolute path to the Trading repo root dynamically.
+    Priority:
+    1. TRADING_REPO_ROOT environment variable (if set)
+    2. os.getcwd() if research_scanner exists in current working directory
+    3. Parent directory of research_scanner package
+    """
+    if os.getenv("TRADING_REPO_ROOT"):
+        return os.path.abspath(os.getenv("TRADING_REPO_ROOT"))
+    if os.path.exists(os.path.join(os.getcwd(), "research_scanner")):
+        return os.getcwd()
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+
 def get_curator_prompt() -> str:
-    """
-    Returns Curator's task prompt text from curator_prompt.md if available,
-    otherwise falls back to CURATOR_TASK_PROMPT.
-    """
+    """Loads Curator task prompt from curator_prompt.md if present, else fallback."""
     prompt_path = os.path.join(os.path.dirname(__file__), "curator_prompt.md")
     if os.path.exists(prompt_path):
         try:
@@ -88,22 +100,17 @@ def get_curator_prompt() -> str:
 
 def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Optional[Dict[str, int]]:
     """
-    Step 3: Writes Curator's task prompt to a temp file, invokes Curator via Antigravity CLI in headless mode,
+    Step 3: Invokes Curator via agy CLI in headless mode,
     parses the JSON decision list, and passes it to export_from_curator_decisions().
 
     Logs quota/rate-limit errors distinctly ("QUOTA EXHAUSTED - Curator call skipped this cycle").
     If the CLI call fails or returns unparseable output, logs an ERROR and skips export.
     """
     prompt_text = get_curator_prompt()
-    prompt_file_path = None
-    decisions_file_path = None
+    repo_root = get_repo_root()
 
     try:
-        with tempfile.NamedTemporaryFile("w", suffix=".md", delete=False, encoding="utf-8") as pf:
-            pf.write(prompt_text)
-            prompt_file_path = pf.name
-
-        cmd = ["antigravity", "-p", "--prompt-file", prompt_file_path, "--output-format", "json"]
+        cmd = ["agy", "-p", prompt_text, "--add-dir", repo_root, "--output-format", "json"]
         try:
             proc = subprocess.run(
                 cmd,
@@ -112,10 +119,10 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
                 text=True,
             )
         except FileNotFoundError:
-            logger.error("Curator CLI call failed: 'antigravity' executable not found in PATH.")
+            logger.error("Curator CLI call failed: 'agy' executable not found in PATH.")
             return None
         except Exception as exec_err:
-            logger.error("Failed to execute Antigravity CLI: %s", exec_err)
+            logger.error("Failed to execute agy CLI: %s", exec_err)
             return None
 
         if proc.returncode != 0:
@@ -170,12 +177,6 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
     except Exception as e:
         logger.error("Unexpected error during Curator export step: %s", e, exc_info=True)
         return None
-    finally:
-        if prompt_file_path and os.path.exists(prompt_file_path):
-            try:
-                os.remove(prompt_file_path)
-            except OSError:
-                pass
 
 
 def run_continuous_daemon(interval_seconds: int = 1800, vault_path: str = config.OBSIDIAN_VAULT_PATH) -> None:

@@ -241,7 +241,7 @@ CLI entrypoint: python director_apply.py --input director_output.json
 Designed to be called immediately after each scheduled headless Director run
 in the same cron job, e.g.:
   python build_vault_index.py \
-    && antigravity -p --prompt-file director_prompt.md --output-format json \
+    && agy -p "$(cat director_prompt.md)" --add-dir . --output-format json \
     < /dev/null > director_output.json \
     && python director_apply.py --input director_output.json
 ```
@@ -250,7 +250,20 @@ in the same cron job, e.g.:
 
 # PART 2 - AGENT TASK PROMPTS (not code; use after Part 1 is built)
 
+```
+================================================================================
+CRITICAL CONTEXT DISCOVERY PATTERN FOR ALL ANTIGRAVITY AGENTS:
+When instructed to read or update a file (such as vault-index.md or current-priorities.md),
+always inspect the directory structure first (e.g. list directory contents or search for the file)
+to discover its exact absolute or relative location. Never fail or halt simply because a file is
+located inside a subdirectory (such as research_scanner/obsidian_vault/ or context/) rather than
+the root directory.
+================================================================================
+```
+
 ## Task A: Curator (Antigravity CLI, invoked whenever Archivist has unconsumed items)
+
+Task prompt to run Curator:
 
 ```
 You are Curator, part of an existing project called research_scanner. Read
@@ -275,9 +288,10 @@ anyone until now. Only include what you'd stand behind as worth Director's
 or a human's time. Items you don't include in your decision list simply
 remain unconsumed and unpromoted - still available in SQLite for audit, not
 cluttering the vault.
-```
 
----
+Run in headless mode:
+  agy -p "$(cat curator_prompt.md)" --add-dir . --output-format json
+```
 
 ## Task B: Director (Antigravity CLI, scheduled headless - see runtime logistics below)
 
@@ -336,7 +350,7 @@ your own permissions minimal and everything you decide auditable before it
 takes effect.
 ```
 
-**Director runtime logistics**: authenticate once interactively (antigravity
+**Director runtime logistics**: authenticate once interactively (agy
 login) before any headless use. Set scoped permissions in
 ~/.gemini/antigravity-cli/settings.json (read-only on vault/context, write
 only to a scratch output path) - never --dangerously-skip-permissions for an
@@ -344,7 +358,7 @@ unattended process. Cron roughly every 5-6 hours (matching the Pro quota
 refresh window):
 
   python build_vault_index.py \
-    && antigravity -p --prompt-file director_prompt.md --output-format json \
+    && agy -p "$(cat director_prompt.md)" --add-dir . --output-format json \
     --no-color < /dev/null > director_output.json \
     && python director_apply.py --input director_output.json
 
