@@ -147,6 +147,28 @@ def test_run_curator_export_step_unparseable_json(mock_export, mock_subproc_run,
     assert stats is None
     assert mock_export.called is False
     assert "Curator CLI output returned unparseable JSON" in caplog.text
+    assert "Raw Curator output that failed to parse: This is not valid JSON content." in caplog.text
+
+
+@patch("research_scanner.run_daemon.subprocess.run")
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_unparseable_json_truncated_and_quota(mock_export, mock_subproc_run, caplog):
+    """Verify raw output truncation to 2000 chars and raw output logging even when quota error is detected."""
+    long_invalid_json = "x" * 3000
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = long_invalid_json
+    mock_proc.stderr = "429 Too Many Requests"
+    mock_subproc_run.return_value = mock_proc
+
+    with caplog.at_level(logging.ERROR):
+        stats = run_curator_export_step()
+
+    assert stats is None
+    assert mock_export.called is False
+    assert "QUOTA EXHAUSTED - Curator call skipped this cycle" in caplog.text
+    assert f"Raw Curator output that failed to parse: {'x' * 2000}" in caplog.text
+    assert "x" * 2001 not in caplog.text
 
 
 @patch("research_scanner.run_daemon.run_scan_cycle")

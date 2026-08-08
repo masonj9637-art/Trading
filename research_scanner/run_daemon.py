@@ -164,6 +164,7 @@ def run_curator_export_step(vault_path: str = config.OBSIDIAN_VAULT_PATH) -> Opt
                 logger.error("QUOTA EXHAUSTED - Curator call skipped this cycle")
             else:
                 logger.error("Curator CLI output returned unparseable JSON: %s", parse_err)
+            logger.error("Raw Curator output that failed to parse: %s", raw_output[:2000])
             return None
 
         decisions_file_path = "curator_decisions.json"
