@@ -224,6 +224,7 @@ def run_director_step(
                 input=prompt_text,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
             )
         except FileNotFoundError:
             logger.error("Director CLI call failed: 'agy' executable not found at path '%s'.", agy_path)

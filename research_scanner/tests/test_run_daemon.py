@@ -440,3 +440,62 @@ def test_curator_export_decisions_outcomes(mock_subproc_run, tmp_path):
         os.remove("curator_decisions.json")
 
 
+@patch("research_scanner.run_daemon.get_unconsumed_items")
+@patch("research_scanner.run_daemon.subprocess.run")
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_unicode_prompt_handling(mock_export, mock_subproc_run, mock_get_unconsumed, tmp_path):
+    """Verify run_curator_export_step passes encoding='utf-8' to subprocess.run when prompt contains non-ASCII characters (e.g. ω, café)."""
+    unicode_title = "Quantum Algorithm ω for café & π-pulse"
+    mock_get_unconsumed.return_value = [
+        {
+            "id": 99,
+            "source": "arxiv",
+            "title": unicode_title,
+            "summary": "Study on ω-qubit decoherence.",
+            "url": "http://arxiv.org/abs/omega",
+            "fetched_at": "2026-08-08 10:00:00",
+            "request_id": None,
+        }
+    ]
+    decisions = [
+        {
+            "fetched_item_id": 99,
+            "category": "quantum",
+            "reasoning": "Fits priorities for ω-qubits.",
+        }
+    ]
+    envelope = {
+        "status": "success",
+        "response": json.dumps(decisions),
+    }
+
+    def side_effect(cmd, input=None, capture_output=True, text=True, encoding=None, **kwargs):
+        enc = encoding if encoding is not None else ("cp1252" if os.name == "nt" else "utf-8")
+        if text and input is not None:
+            input.encode(enc)
+        proc = MagicMock()
+        proc.returncode = 0
+        proc.stdout = json.dumps(envelope)
+        proc.stderr = ""
+        return proc
+
+    mock_subproc_run.side_effect = side_effect
+    mock_export.return_value = {"found": 1, "exported": 1, "failed": 0}
+
+    priorities_file = tmp_path / "current-priorities.md"
+    priorities_file.write_text("Priority for café research with Greek letter ω.", encoding="utf-8")
+
+    stats = run_curator_export_step(vault_path=str(tmp_path))
+
+    assert stats == {"found": 1, "exported": 1, "failed": 0}
+    assert mock_subproc_run.called
+    kwargs = mock_subproc_run.call_args[1]
+    assert kwargs.get("encoding") == "utf-8"
+    assert "ω" in kwargs.get("input")
+    assert "café" in kwargs.get("input")
+
+    if os.path.exists("curator_decisions.json"):
+        os.remove("curator_decisions.json")
+
+
+

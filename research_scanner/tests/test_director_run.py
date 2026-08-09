@@ -263,3 +263,57 @@ def test_run_director_step_cli_failure_logs_stderr(mock_subproc_run, tmp_path, c
     assert success is False
     assert "Director CLI call failed with exit code 1" in caplog.text
     assert "Director CLI stderr: Fatal error: unexpected CLI failure" in caplog.text
+
+
+@patch("research_scanner.director_run.subprocess.run")
+def test_run_director_step_unicode_prompt_handling(mock_subproc_run, tmp_path):
+    """Verify run_director_step passes encoding='utf-8' to subprocess.run when prompt contains non-ASCII characters (e.g. ω, café)."""
+    vault_dir = tmp_path / "vault"
+    vault_dir.mkdir()
+    (vault_dir / "vault-index.md").write_text("# Vault Index for ω-research in café", encoding="utf-8")
+    (vault_dir / "current-priorities.md").write_text("1. Quantum Benchmarks for ω-qubits", encoding="utf-8")
+
+    context_dir = tmp_path / "context"
+    context_dir.mkdir()
+    (context_dir / "notes.txt").write_text("Context note: π-pulse & café tests", encoding="utf-8")
+
+    output_path = tmp_path / "director_output.json"
+    timestamp_path = tmp_path / "last_success.json"
+    db_path = str(tmp_path / "test.db")
+
+    director_response = {
+        "updated_priorities": "New Priorities for ω-qubits in café",
+        "fetch_requests": [{"query": "quantum neural networks with ω", "source_hint": "arxiv"}],
+    }
+    envelope = {
+        "status": "success",
+        "response": json.dumps(director_response),
+    }
+
+    def side_effect(cmd, input=None, capture_output=True, text=True, encoding=None, **kwargs):
+        enc = encoding if encoding is not None else ("cp1252" if os.name == "nt" else "utf-8")
+        if text and input is not None:
+            input.encode(enc)
+        proc = MagicMock()
+        proc.returncode = 0
+        proc.stdout = json.dumps(envelope)
+        proc.stderr = ""
+        return proc
+
+    mock_subproc_run.side_effect = side_effect
+
+    success = run_director_step(
+        vault_path=str(vault_dir),
+        db_path=db_path,
+        context_path=str(context_dir),
+        output_path=str(output_path),
+        timestamp_path=str(timestamp_path),
+    )
+
+    assert success is True
+    assert mock_subproc_run.called
+    kwargs = mock_subproc_run.call_args[1]
+    assert kwargs.get("encoding") == "utf-8"
+    assert "ω" in kwargs.get("input")
+    assert "café" in kwargs.get("input")
+
