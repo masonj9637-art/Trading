@@ -17,6 +17,8 @@ from research_scanner.db import (
     get_unconsumed_items,
     mark_item_consumed,
     mark_items_reviewed,
+    save_trade,
+    get_all_trades,
 )
 
 
@@ -154,3 +156,43 @@ def test_unconsumed_item_remains_unconsumed(temp_db):
     fetched = get_fetched_item_by_id(temp_db, item_id)
     assert fetched["consumed_by_curator"] == 0 or fetched["consumed_by_curator"] is None
     assert fetched["curator_decision"] is None
+
+
+def test_save_trade_and_get_all_trades(temp_db):
+    trade1 = {
+        "ticker": "rgti",
+        "audit_note_path": "audits/2026-08-01-rigetti-audit.md",
+        "entry_price": 4.52,
+        "entry_date": "2026-08-08",
+        "notes": "initial position",
+    }
+    trade2 = {
+        "ticker": "ionq",
+        "audit_note_path": "audits/2026-08-02-ionq-audit.md",
+        "entry_price": 12.10,
+        "entry_date": "2026-08-09",
+        "notes": None,
+    }
+
+    id1 = save_trade(temp_db, trade1)
+    id2 = save_trade(temp_db, trade2)
+
+    assert id1 > 0
+    assert id2 > id1
+
+    trades = get_all_trades(temp_db)
+    assert len(trades) == 2
+    # Order should be id DESC (latest first)
+    assert trades[0]["id"] == id2
+    assert trades[0]["ticker"] == "IONQ"
+    assert trades[0]["entry_price"] == 12.10
+    assert trades[0]["notes"] is None
+    assert trades[0]["logged_at"] is not None
+
+    assert trades[1]["id"] == id1
+    assert trades[1]["ticker"] == "RGTI"
+    assert trades[1]["audit_note_path"] == "audits/2026-08-01-rigetti-audit.md"
+    assert trades[1]["entry_price"] == 4.52
+    assert trades[1]["entry_date"] == "2026-08-08"
+    assert trades[1]["notes"] == "initial position"
+

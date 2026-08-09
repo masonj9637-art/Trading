@@ -123,6 +123,21 @@ def init_db(db_path: str) -> None:
                 );
             """)
 
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS trade_log (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    ticker TEXT NOT NULL,
+                    audit_note_path TEXT NOT NULL,
+                    entry_price REAL NOT NULL,
+                    entry_date TEXT NOT NULL,
+                    notes TEXT,
+                    logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
+            """)
+            conn.execute("""
+                CREATE INDEX IF NOT EXISTS idx_trade_log_ticker ON trade_log(ticker);
+            """)
+
             # Auto-migration: ensure 'reviewed' column exists if table was created in earlier schema
             cursor = conn.cursor()
             cursor.execute("PRAGMA table_info(candidates);")
@@ -513,5 +528,65 @@ def get_all_thesis_scores(db_path: str) -> List[Dict[str, Any]]:
         return [dict(row) for row in rows]
     finally:
         conn.close()
+
+
+def save_trade(db_path: str, trade: Dict[str, Any]) -> int:
+    """
+    Saves a real trade log entry into the trade_log table.
+    Returns the integer ID of the newly inserted trade record.
+    """
+    init_db(db_path)
+    notes_val = trade.get("notes")
+    if notes_val is not None:
+        notes_val = str(notes_val).strip()
+        if not notes_val:
+            notes_val = None
+
+    conn = get_db_connection(db_path)
+    try:
+        with conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                INSERT INTO trade_log (
+                    ticker, audit_note_path, entry_price, entry_date, notes
+                )
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (
+                    trade["ticker"].strip().upper(),
+                    trade["audit_note_path"].strip(),
+                    float(trade["entry_price"]),
+                    str(trade["entry_date"]).strip(),
+                    notes_val,
+                ),
+            )
+            trade_id = cursor.lastrowid
+        logger.info(
+            "Saved trade log entry id=%d ticker=%s price=%.2f date=%s",
+            trade_id,
+            trade["ticker"].upper(),
+            float(trade["entry_price"]),
+            trade["entry_date"],
+        )
+        return trade_id
+    finally:
+        conn.close()
+
+
+def get_all_trades(db_path: str) -> List[Dict[str, Any]]:
+    """
+    Retrieves all records from trade_log sorted by id DESC.
+    """
+    init_db(db_path)
+    conn = get_db_connection(db_path)
+    try:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM trade_log ORDER BY id DESC")
+        rows = cursor.fetchall()
+        return [dict(row) for row in rows]
+    finally:
+        conn.close()
+
 
 
