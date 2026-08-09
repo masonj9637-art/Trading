@@ -11,6 +11,7 @@ import logging
 import argparse
 from datetime import datetime
 import shutil
+from typing import Optional
 
 # Ensure the parent directory is in sys.path so 'from research_scanner import ...' works
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -30,17 +31,19 @@ def setup_logging():
     )
 
 
-def main():
-    setup_logging()
-    
-    parser = argparse.ArgumentParser(description="Apply Director's JSON output")
-    parser.add_argument("--input", required=True, help="Path to the Director JSON output file")
-    args = parser.parse_args()
-    
-    input_path = args.input
+def apply_director_output(
+    input_path: str,
+    vault_path: Optional[str] = None,
+    db_path: Optional[str] = None
+) -> bool:
+    if vault_path is None:
+        vault_path = config.OBSIDIAN_VAULT_PATH
+    if db_path is None:
+        db_path = config.DB_PATH
+
     if not os.path.exists(input_path):
         logger.error("Input file not found: %s", input_path)
-        sys.exit(1)
+        return False
         
     try:
         with open(input_path, 'r', encoding='utf-8') as f:
@@ -51,15 +54,15 @@ def main():
         except json.JSONDecodeError as e:
             logger.error("Failed to parse JSON input from %s. Error: %s", input_path, e)
             logger.error("Raw content:\n%s", content)
-            sys.exit(1)
+            return False
             
     except Exception as e:
         logger.error("Failed to read input file: %s", e)
-        sys.exit(1)
+        return False
         
     if not isinstance(data, dict):
         logger.error("JSON root must be an object/dict")
-        sys.exit(1)
+        return False
         
     # Handle agy CLI JSON envelope format: {"conversation_id": ..., "status": ..., "response": "<inner JSON string>"}
     director_keys = ("updated_priorities", "fetch_requests", "escalation", "proactive_message")
@@ -67,7 +70,7 @@ def main():
         inner_response = data.get("response")
         if not inner_response or not isinstance(inner_response, str):
             logger.error("Director envelope response field is empty or not a string.")
-            sys.exit(1)
+            return False
             
         inner_response_clean = inner_response.strip()
         if inner_response_clean.startswith("```"):
@@ -83,11 +86,11 @@ def main():
         except json.JSONDecodeError as e:
             logger.error("Failed to parse inner JSON response in Director envelope from %s. Error: %s", input_path, e)
             logger.error("Inner response content:\n%s", inner_response)
-            sys.exit(1)
+            return False
             
         if not isinstance(data, dict):
             logger.error("Unwrapped inner Director JSON root must be an object/dict")
-            sys.exit(1)
+            return False
         
     logger.info("Successfully parsed Director JSON output from %s", input_path)
     
@@ -100,9 +103,8 @@ def main():
     if updated_priorities is not None:
         if not isinstance(updated_priorities, str):
             logger.error("updated_priorities must be a string")
-            sys.exit(1)
+            return False
             
-        vault_path = config.OBSIDIAN_VAULT_PATH
         priorities_file = os.path.join(vault_path, "current-priorities.md")
         
         # Ensure vault dir exists
@@ -117,7 +119,7 @@ def main():
                 logger.info("Backed up existing current-priorities.md to %s", backup_file)
             except Exception as e:
                 logger.error("Failed to backup %s: %s", priorities_file, e)
-                sys.exit(1)
+                return False
                 
         # Write new priorities
         try:
@@ -126,18 +128,18 @@ def main():
             logger.info("Updated current-priorities.md in vault root")
         except Exception as e:
             logger.error("Failed to write updated_priorities to %s: %s", priorities_file, e)
-            sys.exit(1)
+            return False
 
     # 2. Process fetch requests
     if fetch_requests is not None:
         if not isinstance(fetch_requests, list):
             logger.error("fetch_requests must be a list")
-            sys.exit(1)
+            return False
             
         inserted_count = 0
         try:
-            init_db(config.DB_PATH)
-            conn = get_db_connection(config.DB_PATH)
+            init_db(db_path)
+            conn = get_db_connection(db_path)
             with conn:
                 for req in fetch_requests:
                     if not isinstance(req, dict):
@@ -152,7 +154,7 @@ def main():
             logger.info("Queued %d fetch_requests", inserted_count)
         except Exception as e:
             logger.error("Database error while inserting fetch_requests: %s", e)
-            sys.exit(1)
+            return False
         finally:
             if 'conn' in locals():
                 conn.close()
@@ -161,7 +163,7 @@ def main():
     if escalation is not None:
         if not isinstance(escalation, dict):
             logger.error("escalation must be an object/dict")
-            sys.exit(1)
+            return False
             
         theme = escalation.get("theme", "No Theme")
         message = escalation.get("message", "")
@@ -170,7 +172,7 @@ def main():
         discord_msg = f"**Escalation**: {theme}\n{message}"
         if vault_note_path:
             discord_msg += f"\n*See note:* `{vault_note_path}`"
-            full_note_path = os.path.join(config.OBSIDIAN_VAULT_PATH, vault_note_path)
+            full_note_path = os.path.join(vault_path, vault_note_path)
             if os.path.exists(full_note_path):
                 try:
                     with open(full_note_path, 'r', encoding='utf-8') as nf:
@@ -203,7 +205,7 @@ def main():
     elif proactive_message is not None:
         if not isinstance(proactive_message, str):
             logger.error("proactive_message must be a string")
-            sys.exit(1)
+            return False
             
         if send_discord_message(proactive_message):
             logger.info("Sent proactive_message to Discord")
@@ -211,6 +213,19 @@ def main():
             logger.error("Failed to send proactive_message to Discord")
 
     logger.info("Director output applied successfully.")
+    return True
+
+
+def main():
+    setup_logging()
+    
+    parser = argparse.ArgumentParser(description="Apply Director's JSON output")
+    parser.add_argument("--input", required=True, help="Path to the Director JSON output file")
+    args = parser.parse_args()
+    
+    success = apply_director_output(args.input)
+    if not success:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

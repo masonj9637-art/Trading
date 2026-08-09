@@ -23,6 +23,11 @@ for _env_file in [os.path.join(_repo_root, ".env"), os.path.join(_repo_root, "cr
 DB_PATH = os.getenv("DB_PATH", "research_scanner.db")
 OBSIDIAN_VAULT_PATH = os.getenv("OBSIDIAN_VAULT_PATH", "obsidian_vault")
 CONTEXT_FOLDER_PATH = os.getenv("CONTEXT_FOLDER_PATH", "context")
+LAST_SUCCESS_PATH = os.getenv(
+    "LAST_SUCCESS_PATH",
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "last_success.json"),
+)
+
 
 # Alpaca Market Data Credentials
 ALPACA_API_KEY = os.getenv("ALPACA_API_KEY", "")

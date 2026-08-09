@@ -307,10 +307,51 @@ def run_curator_export_step(
         return None
 
 
+def update_last_success(
+    key: str = "scan_and_curator",
+    filepath: Optional[str] = None,
+    timestamp: Optional[str] = None,
+) -> str:
+    """
+    Updates the shared last_success.json timestamp file for the specified key,
+    preserving all existing keys.
+    Returns the ISO 8601 timestamp string that was written.
+    """
+    target_path = filepath if filepath is not None else getattr(config, "LAST_SUCCESS_PATH", None)
+    if not target_path:
+        target_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "last_success.json")
+
+    data = {}
+    if os.path.exists(target_path):
+        try:
+            with open(target_path, "r", encoding="utf-8") as f:
+                content = f.read().strip()
+                if content:
+                    parsed = json.loads(content)
+                    if isinstance(parsed, dict):
+                        data = parsed
+        except Exception as e:
+            logger.warning("Failed to read existing last_success file at %s: %s", target_path, e)
+            data = {}
+
+    ts_str = timestamp if timestamp is not None else datetime.now().isoformat()
+    data[key] = ts_str
+
+    parent_dir = os.path.dirname(os.path.abspath(target_path))
+    if parent_dir and not os.path.exists(parent_dir):
+        os.makedirs(parent_dir, exist_ok=True)
+
+    with open(target_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+    return ts_str
+
+
 def run_single_cycle(
     vault_path: str = config.OBSIDIAN_VAULT_PATH,
     db_path: str = config.DB_PATH,
     iteration: Optional[int] = None,
+    last_success_path: Optional[str] = None,
 ) -> None:
     """
     Executes a single cycle of the research_scanner pipeline:
@@ -318,6 +359,7 @@ def run_single_cycle(
     2. Process requests (run_process_requests)
     3. Curator export (run_curator_export_step)
     4. Build vault index (build_vault_index)
+    5. Update shared last_success.json timestamp for 'scan_and_curator'
     """
     iter_label = f" #{iteration}" if iteration is not None else ""
     logger.info("--- Starting Cycle%s at %s ---", iter_label, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
@@ -338,6 +380,14 @@ def run_single_cycle(
     # Step 4: Rebuild Obsidian vault index
     build_vault_index(vault_path)
     logger.info("Obsidian vault index rebuilt.")
+
+    # Step 5: Update last_success timestamp
+    try:
+        ts = update_last_success("scan_and_curator", filepath=last_success_path)
+        logger.info("Updated last_success.json with scan_and_curator timestamp: %s", ts)
+    except Exception as e:
+        logger.warning("Failed to update last_success.json: %s", e)
+
 
 
 def run_continuous_daemon(

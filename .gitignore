@@ -31,6 +31,9 @@ logs/
 trading_system/logs/
 daily_cron.log
 .run_state.json
+last_success.json
+*.bak_*
+
 
 # Databases & Cache
 *.db
