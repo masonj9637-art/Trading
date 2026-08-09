@@ -11,6 +11,8 @@ Director's Current Priorities (current-priorities.md):
 Context Files (context/):
 {context_text}
 
+The vault index, priorities, and context provided above are complete and current — do NOT attempt to query the database, read additional files, or run any commands to verify or supplement this information. Everything needed for this decision has already been given to you.
+
 Each run, do the following:
 
 1. Review the vault index, current priorities, and context files embedded above.

@@ -121,7 +121,8 @@ def get_director_prompt(
             f"{template}\n\n"
             f"Vault INDEX (vault-index.md):\n{vault_index_text}\n\n"
             f"Director's Current Priorities (current-priorities.md):\n{priorities_text}\n\n"
-            f"Context Files (context/):\n{context_text}"
+            f"Context Files (context/):\n{context_text}\n\n"
+            f"The vault index, priorities, and context provided above are complete and current — do NOT attempt to query the database, read additional files, or run any commands to verify or supplement this information. Everything needed for this decision has already been given to you."
         )
 
     return prompt_text

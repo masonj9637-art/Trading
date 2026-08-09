@@ -12,6 +12,8 @@ read current-priorities.md in the vault root for what Director currently
 cares about. Decide which raw fetched items are worth promoting into real
 Obsidian notes.
 
+The item data and priorities provided above are complete and current — do NOT attempt to query the database, read additional files, or run any commands to verify or supplement this information. Everything needed for this decision has already been given to you.
+
 Do NOT write files yourself. Output a JSON decision list - for each item
 you're promoting: its fetched_items id, a normalized lowercase category
 (reuse an existing theme category when the topic genuinely matches one,
@@ -45,6 +47,8 @@ Each run, do the following:
    has deliberately placed there for you to be aware of - this is your only
    source of outside context about the user; you do not have general
    filesystem access).
+
+The vault index, priorities, and context provided above are complete and current — do NOT attempt to query the database, read additional files, or run any commands to verify or supplement this information. Everything needed for this decision has already been given to you.
 
 2. Decide what's actually interesting, missing, or worth digging into
    further. Every 5th run, set aside your own prior threads first and

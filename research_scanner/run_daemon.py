@@ -37,6 +37,8 @@ Director's Current Priorities (current-priorities.md):
 Here are the current unconsumed items:
 {items_text}
 
+The item data and priorities provided above are complete and current — do NOT attempt to query the database, read additional files, or run any commands to verify or supplement this information. Everything needed for this decision has already been given to you.
+
 Do NOT write files yourself. Output a JSON decision list - for each item
 you're promoting: its fetched_items id, a normalized lowercase category
 (reuse an existing theme category when the topic genuinely matches one,
