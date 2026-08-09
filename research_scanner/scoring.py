@@ -13,6 +13,7 @@ import sys
 from datetime import datetime, timedelta
 from typing import Dict, Any, List, Optional, Tuple
 import requests
+import yfinance as yf
 
 from research_scanner import config
 from research_scanner.db import (
@@ -115,6 +116,58 @@ def get_alpaca_price(
     return None
 
 
+def get_yfinance_price(
+    ticker: str,
+    target_date: str,
+) -> Optional[float]:
+    """
+    Fetches historical daily close price for ticker on or immediately following target_date using yfinance's Ticker.history().
+    Returns None if ticker/date isn't found or call fails for any reason (fails gracefully, never raises uncaught exception).
+    """
+    try:
+        start_dt = datetime.strptime(target_date[:10], "%Y-%m-%d")
+        end_dt = start_dt + timedelta(days=7)
+        start_str = start_dt.strftime("%Y-%m-%d")
+        end_str = end_dt.strftime("%Y-%m-%d")
+
+        t = yf.Ticker(ticker)
+        df = t.history(start=start_str, end=end_str)
+        if df is not None and not df.empty and "Close" in df.columns:
+            close_val = df["Close"].iloc[0]
+            if close_val is not None and not (isinstance(close_val, float) and (close_val != close_val)):
+                return float(close_val)
+    except Exception as e:
+        logger.debug("yfinance price fetch failed for %s on %s: %s", ticker, target_date, e)
+
+    return None
+
+
+def get_price_with_fallback(
+    ticker: str,
+    target_date: str,
+    api_key: Optional[str] = None,
+    secret_key: Optional[str] = None,
+    base_url: Optional[str] = None,
+    mock: bool = False,
+) -> Tuple[Optional[float], Optional[str]]:
+    """
+    Three-tier price fallback mechanism:
+    1. Try get_alpaca_price() first.
+    2. If Alpaca returns None, log notice and try get_yfinance_price() as fallback.
+    3. If BOTH return None, returns (None, None).
+    """
+    alpaca_price = get_alpaca_price(ticker, target_date, api_key=api_key, secret_key=secret_key, base_url=base_url, mock=mock)
+    if alpaca_price is not None:
+        return alpaca_price, "alpaca"
+
+    logger.info("Alpaca price unavailable for %s on %s, falling back to yfinance", ticker, target_date)
+    yf_price = get_yfinance_price(ticker, target_date)
+    if yf_price is not None:
+        return yf_price, "yfinance"
+
+    return None, None
+
+
 def hashlib_seed(val: str) -> str:
     import hashlib
     return hashlib.md5(val.encode("utf-8")).hexdigest()
@@ -200,8 +253,8 @@ def score_unscored_theses(
             exit_date = add_trading_days(audit_date, horizon)
 
             # 1. Fetch thesis ticker prices
-            entry_price = get_alpaca_price(ticker, audit_date, api_key=api_key, secret_key=secret_key, mock=mock)
-            exit_price = get_alpaca_price(ticker, exit_date, api_key=api_key, secret_key=secret_key, mock=mock)
+            entry_price, entry_src = get_price_with_fallback(ticker, audit_date, api_key=api_key, secret_key=secret_key, mock=mock)
+            exit_price, exit_src = get_price_with_fallback(ticker, exit_date, api_key=api_key, secret_key=secret_key, mock=mock)
 
             if not entry_price or not exit_price:
                 logger.warning("Could not fetch valid prices for thesis ticker %s. Skipping.", ticker)
@@ -209,11 +262,12 @@ def score_unscored_theses(
 
             gross_ret = (exit_price - entry_price) / entry_price
             net_ret = calculate_cost_adjusted_return(entry_price, exit_price)
+            price_source = "yfinance" if (entry_src == "yfinance" or exit_src == "yfinance") else "alpaca"
 
             # 2. Pair with random null-hypothesis baseline ticker from fetched_items (rejected universe)
             baseline_ticker = get_baseline_ticker(db_path, audit_date, ticker)
-            b_entry_price = get_alpaca_price(baseline_ticker, audit_date, api_key=api_key, secret_key=secret_key, mock=mock)
-            b_exit_price = get_alpaca_price(baseline_ticker, exit_date, api_key=api_key, secret_key=secret_key, mock=mock)
+            b_entry_price, b_entry_src = get_price_with_fallback(baseline_ticker, audit_date, api_key=api_key, secret_key=secret_key, mock=mock)
+            b_exit_price, b_exit_src = get_price_with_fallback(baseline_ticker, exit_date, api_key=api_key, secret_key=secret_key, mock=mock)
 
             if not b_entry_price or not b_exit_price:
                 failed_date = audit_date if not b_entry_price else exit_date
@@ -221,6 +275,7 @@ def score_unscored_theses(
                 continue
 
             baseline_net_ret = calculate_cost_adjusted_return(b_entry_price, b_exit_price)
+            baseline_price_source = "yfinance" if (b_entry_src == "yfinance" or b_exit_src == "yfinance") else "alpaca"
 
             # 3. Save score record
             score_record = {
@@ -235,6 +290,8 @@ def score_unscored_theses(
                 "net_return": net_ret,
                 "baseline_ticker": baseline_ticker,
                 "baseline_net_return": baseline_net_ret,
+                "price_source": price_source,
+                "baseline_price_source": baseline_price_source,
             }
 
             saved = save_thesis_score(db_path, score_record)

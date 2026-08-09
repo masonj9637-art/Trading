@@ -122,7 +122,8 @@ def test_score_unscored_theses_baseline_price_failure_skip(temp_db, caplog):
             return 100.0
         return None
 
-    with patch("research_scanner.scoring.get_alpaca_price", side_effect=mock_get_price):
+    with patch("research_scanner.scoring.get_alpaca_price", side_effect=mock_get_price), \
+         patch("research_scanner.scoring.get_yfinance_price", return_value=None):
         stats = score_unscored_theses(db_path=temp_db, mock=False)
 
     # Verify thesis entry was skipped (not scored, no db row written)
@@ -163,4 +164,94 @@ def test_get_baseline_ticker_fallback(temp_db):
     ticker = get_baseline_ticker(temp_db, "2026-01-01", thesis_ticker="SPY")
     assert ticker in BASELINE_TICKER_POOL
     assert ticker != "SPY"
+
+
+def test_price_fetching_alpaca_succeeds(temp_db):
+    entry = {
+        "ledger_hash": "hash_alpaca_success",
+        "ticker": "AAPL",
+        "audit_date": "2026-01-01",
+        "confidence_level": "High",
+        "fact_check_verdict": "Supported",
+        "theme_note": "tech",
+        "vault_note_path": "/path/to/note.md",
+    }
+    save_thesis_ledger_entry(temp_db, entry)
+
+    with patch("research_scanner.scoring.get_alpaca_price", return_value=150.0) as mock_alpaca, \
+         patch("research_scanner.scoring.get_yfinance_price") as mock_yf, \
+         patch("research_scanner.scoring.send_discord_notification", return_value=True):
+        stats = score_unscored_theses(db_path=temp_db, mock=False)
+
+    assert stats["scored"] > 0
+    mock_alpaca.assert_called()
+    mock_yf.assert_not_called()
+
+    scores = get_all_thesis_scores(temp_db)
+    assert len(scores) > 0
+    assert scores[0]["price_source"] == "alpaca"
+    assert scores[0]["baseline_price_source"] == "alpaca"
+
+
+def test_price_fetching_alpaca_fails_yfinance_succeeds(temp_db, caplog):
+    import logging
+    entry = {
+        "ledger_hash": "hash_yf_fallback",
+        "ticker": "GOOGL",
+        "audit_date": "2026-01-01",
+        "confidence_level": "High",
+        "fact_check_verdict": "Supported",
+        "theme_note": "search",
+        "vault_note_path": "/path/to/note.md",
+    }
+    save_thesis_ledger_entry(temp_db, entry)
+
+    with patch("research_scanner.scoring.get_alpaca_price", return_value=None), \
+         patch("research_scanner.scoring.get_yfinance_price", return_value=120.0) as mock_yf, \
+         patch("research_scanner.scoring.send_discord_notification", return_value=True), \
+         caplog.at_level(logging.INFO):
+        stats = score_unscored_theses(db_path=temp_db, mock=False)
+
+    assert stats["scored"] > 0
+    assert mock_yf.called
+    assert "falling back to yfinance" in caplog.text
+
+    scores = get_all_thesis_scores(temp_db)
+    assert len(scores) > 0
+    assert scores[0]["price_source"] == "yfinance"
+    assert scores[0]["baseline_price_source"] == "yfinance"
+
+
+def test_price_fetching_both_fail_skips_ledger_entry(temp_db, caplog):
+    import logging
+    entry = {
+        "ledger_hash": "hash_both_fail",
+        "ticker": "UNKNOWN_TICKER",
+        "audit_date": "2026-01-01",
+        "confidence_level": "High",
+        "fact_check_verdict": "Supported",
+        "theme_note": "tech",
+        "vault_note_path": "/path/to/note.md",
+    }
+    save_thesis_ledger_entry(temp_db, entry)
+
+    with patch("research_scanner.scoring.get_alpaca_price", return_value=None), \
+         patch("research_scanner.scoring.get_yfinance_price", return_value=None), \
+         patch("research_scanner.scoring.send_discord_notification", return_value=True), \
+         caplog.at_level(logging.WARNING):
+        stats = score_unscored_theses(db_path=temp_db, mock=False)
+
+    assert stats["scored"] == 0
+    scores = get_all_thesis_scores(temp_db)
+    assert len(scores) == 0
+    assert "Could not fetch valid prices for thesis ticker UNKNOWN_TICKER. Skipping." in caplog.text
+
+
+def test_get_yfinance_price_graceful_failure():
+    from research_scanner.scoring import get_yfinance_price
+    with patch("yfinance.Ticker") as mock_ticker:
+        mock_ticker.side_effect = Exception("Network connection error")
+        price = get_yfinance_price("FAIL_TICKER", "2026-01-01")
+        assert price is None
+
 

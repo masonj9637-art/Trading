@@ -115,6 +115,8 @@ def init_db(db_path: str) -> None:
                     net_return REAL NOT NULL,
                     baseline_ticker TEXT NOT NULL,
                     baseline_net_return REAL NOT NULL,
+                    price_source TEXT,
+                    baseline_price_source TEXT,
                     scored_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (ledger_id) REFERENCES thesis_ledger(id),
                     UNIQUE(ledger_id, horizon_days)
@@ -137,6 +139,14 @@ def init_db(db_path: str) -> None:
                 conn.execute("ALTER TABLE fetched_items ADD COLUMN curator_decision TEXT;")
             if "request_id" not in fetched_cols:
                 conn.execute("ALTER TABLE fetched_items ADD COLUMN request_id INTEGER;")
+
+            # Auto-migration: ensure 'price_source' and 'baseline_price_source' columns exist in thesis_scores
+            cursor.execute("PRAGMA table_info(thesis_scores);")
+            score_cols = [col[1] for col in cursor.fetchall()]
+            if "price_source" not in score_cols:
+                conn.execute("ALTER TABLE thesis_scores ADD COLUMN price_source TEXT;")
+            if "baseline_price_source" not in score_cols:
+                conn.execute("ALTER TABLE thesis_scores ADD COLUMN baseline_price_source TEXT;")
 
         logger.info("Database initialized at %s", db_path)
     finally:
@@ -445,9 +455,9 @@ def save_thesis_score(db_path: str, score_record: Dict[str, Any]) -> bool:
                 INSERT INTO thesis_scores (
                     ledger_id, horizon_days, ticker, entry_date, exit_date,
                     entry_price, exit_price, gross_return, net_return,
-                    baseline_ticker, baseline_net_return
+                    baseline_ticker, baseline_net_return, price_source, baseline_price_source
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     score_record["ledger_id"],
@@ -461,6 +471,8 @@ def save_thesis_score(db_path: str, score_record: Dict[str, Any]) -> bool:
                     float(score_record["net_return"]),
                     score_record["baseline_ticker"],
                     float(score_record["baseline_net_return"]),
+                    score_record.get("price_source"),
+                    score_record.get("baseline_price_source"),
                 ),
             )
         logger.info(
