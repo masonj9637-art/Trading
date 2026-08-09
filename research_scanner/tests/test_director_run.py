@@ -317,3 +317,103 @@ def test_run_director_step_unicode_prompt_handling(mock_subproc_run, tmp_path):
     assert "ω" in kwargs.get("input")
     assert "café" in kwargs.get("input")
 
+
+@patch("research_scanner.director_run.subprocess.run")
+def test_run_director_step_explanatory_text_after_fence(mock_subproc_run, tmp_path):
+    """Verify Director step handles valid JSON with explanatory commentary AFTER the closing fence."""
+    vault_dir = tmp_path / "vault"
+    vault_dir.mkdir()
+    output_path = tmp_path / "director_output.json"
+    timestamp_path = tmp_path / "last_success.json"
+    db_path = str(tmp_path / "test.db")
+
+    director_response = {"proactive_message": "Check-in from Director"}
+    response_with_trailing = f"```json\n{json.dumps(director_response)}\n```\nNo action items required for this cycle."
+    envelope = {"status": "success", "response": response_with_trailing}
+
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+
+    with patch("research_scanner.director_apply.send_discord_message", return_value=True):
+        success = run_director_step(
+            vault_path=str(vault_dir),
+            db_path=db_path,
+            output_path=str(output_path),
+            timestamp_path=str(timestamp_path),
+        )
+
+    assert success is True
+    assert output_path.exists()
+    saved = json.loads(output_path.read_text(encoding="utf-8"))
+    assert saved["proactive_message"] == "Check-in from Director"
+
+
+@patch("research_scanner.director_run.subprocess.run")
+def test_run_director_step_explanatory_text_before_fence(mock_subproc_run, tmp_path):
+    """Verify Director step handles valid JSON with text BEFORE the opening fence."""
+    vault_dir = tmp_path / "vault"
+    vault_dir.mkdir()
+    output_path = tmp_path / "director_output.json"
+    timestamp_path = tmp_path / "last_success.json"
+    db_path = str(tmp_path / "test.db")
+
+    director_response = {"proactive_message": "Check-in from Director"}
+    response_with_leading = f"Here is the Director decision output:\n```json\n{json.dumps(director_response)}\n```"
+    envelope = {"status": "success", "response": response_with_leading}
+
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+
+    with patch("research_scanner.director_apply.send_discord_message", return_value=True):
+        success = run_director_step(
+            vault_path=str(vault_dir),
+            db_path=db_path,
+            output_path=str(output_path),
+            timestamp_path=str(timestamp_path),
+        )
+
+    assert success is True
+    assert output_path.exists()
+    saved = json.loads(output_path.read_text(encoding="utf-8"))
+    assert saved["proactive_message"] == "Check-in from Director"
+
+
+@patch("research_scanner.director_run.subprocess.run")
+def test_run_director_step_no_fences_raw_json(mock_subproc_run, tmp_path):
+    """Verify Director step handles raw JSON without any markdown fences."""
+    vault_dir = tmp_path / "vault"
+    vault_dir.mkdir()
+    output_path = tmp_path / "director_output.json"
+    timestamp_path = tmp_path / "last_success.json"
+    db_path = str(tmp_path / "test.db")
+
+    director_response = {"proactive_message": "Check-in from Director"}
+    raw_response = json.dumps(director_response)
+    envelope = {"status": "success", "response": raw_response}
+
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+
+    with patch("research_scanner.director_apply.send_discord_message", return_value=True):
+        success = run_director_step(
+            vault_path=str(vault_dir),
+            db_path=db_path,
+            output_path=str(output_path),
+            timestamp_path=str(timestamp_path),
+        )
+
+    assert success is True
+    assert output_path.exists()
+    saved = json.loads(output_path.read_text(encoding="utf-8"))
+    assert saved["proactive_message"] == "Check-in from Director"
+
+

@@ -11,6 +11,7 @@ import argparse
 import json
 import logging
 import os
+import re
 import subprocess
 import sys
 from datetime import datetime
@@ -284,13 +285,9 @@ def run_director_step(
 
         # Clean optional markdown codeblock delimiters
         inner_response_clean = inner_response.strip()
-        if inner_response_clean.startswith("```"):
-            lines = inner_response_clean.splitlines()
-            if lines[0].startswith("```"):
-                lines = lines[1:]
-            if lines and lines[-1].startswith("```"):
-                lines = lines[:-1]
-            inner_response_clean = "\n".join(lines).strip()
+        match = re.search(r"```(?:json)?\s*\n(.*?)\n```", inner_response_clean, re.DOTALL | re.IGNORECASE)
+        if match:
+            inner_response_clean = match.group(1).strip()
 
         # Parse inner response JSON
         try:

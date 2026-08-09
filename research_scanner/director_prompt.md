@@ -53,6 +53,8 @@ keys with no content this run rather than including empty values):
   "escalation": {"theme": "...", "message": "...", "vault_note_path": "..."},
   "proactive_message": "a Discord message with no escalation attached, e.g. a status check-in or redirect request"
 }
+Output ONLY the raw JSON — no explanation, no commentary, before or after it. If there is nothing to report this cycle, output the appropriate empty/minimal valid JSON for your schema and nothing else.
+
 Do not take any action directly beyond producing this JSON. A separate
 deterministic script (director_apply.py, Build 5) applies it. This keeps
 your own permissions minimal and everything you decide auditable before it

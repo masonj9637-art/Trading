@@ -24,3 +24,5 @@ anyone until now. Only include what you'd stand behind as worth Director's
 or a human's time. Items you don't include in your decision list simply
 remain unconsumed and unpromoted - still available in SQLite for audit, not
 cluttering the vault.
+
+Output ONLY the raw JSON — no explanation, no commentary, before or after it. If there is nothing to report this cycle, output the appropriate empty/minimal valid JSON for your schema and nothing else.

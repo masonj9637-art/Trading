@@ -7,6 +7,7 @@ import argparse
 import json
 import logging
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -54,7 +55,9 @@ results is not 200 findings; most of it was never actually looked at by
 anyone until now. Only include what you'd stand behind as worth Director's
 or a human's time. Items you don't include in your decision list simply
 remain unconsumed and unpromoted - still available in SQLite for audit, not
-cluttering the vault."""
+cluttering the vault.
+
+Output ONLY the raw JSON — no explanation, no commentary, before or after it. If there is nothing to report this cycle, output the appropriate empty/minimal valid JSON for your schema and nothing else."""
 
 
 def is_quota_error(stderr: str = "", stdout: str = "", returncode: Optional[int] = None) -> bool:
@@ -262,13 +265,9 @@ def run_curator_export_step(
 
         # Clean optional markdown codeblock delimiters from inner response
         inner_response_clean = inner_response.strip()
-        if inner_response_clean.startswith("```"):
-            lines = inner_response_clean.splitlines()
-            if lines[0].startswith("```"):
-                lines = lines[1:]
-            if lines and lines[-1].startswith("```"):
-                lines = lines[:-1]
-            inner_response_clean = "\n".join(lines).strip()
+        match = re.search(r"```(?:json)?\s*\n(.*?)\n```", inner_response_clean, re.DOTALL | re.IGNORECASE)
+        if match:
+            inner_response_clean = match.group(1).strip()
 
         # 2. Parse inner response JSON into decision list
         try:

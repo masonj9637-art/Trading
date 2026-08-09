@@ -498,4 +498,68 @@ def test_run_curator_export_step_unicode_prompt_handling(mock_export, mock_subpr
         os.remove("curator_decisions.json")
 
 
+@patch("research_scanner.run_daemon.subprocess.run")
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_explanatory_text_after_fence(mock_export, mock_subproc_run, tmp_path):
+    """Verify Curator step handles valid JSON with explanatory commentary AFTER the closing fence."""
+    decisions = [{"fetched_item_id": 10, "category": "ml", "reasoning": "Fits priorities."}]
+    response_with_trailing = f"```json\n{json.dumps(decisions)}\n```\nNo unconsumed items were provided in the input payload."
+    envelope = {"conversation_id": "conv-after", "status": "success", "response": response_with_trailing}
+
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+    mock_export.return_value = {"found": 1, "exported": 1, "failed": 0}
+
+    stats = run_curator_export_step(vault_path=str(tmp_path))
+    assert stats == {"found": 1, "exported": 1, "failed": 0}
+    if os.path.exists("curator_decisions.json"):
+        os.remove("curator_decisions.json")
+
+
+@patch("research_scanner.run_daemon.subprocess.run")
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_explanatory_text_before_fence(mock_export, mock_subproc_run, tmp_path):
+    """Verify Curator step handles valid JSON with text BEFORE the opening fence."""
+    decisions = [{"fetched_item_id": 11, "category": "ml", "reasoning": "Fits priorities."}]
+    response_with_leading = f"Here are the decision items:\n```json\n{json.dumps(decisions)}\n```"
+    envelope = {"conversation_id": "conv-before", "status": "success", "response": response_with_leading}
+
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+    mock_export.return_value = {"found": 1, "exported": 1, "failed": 0}
+
+    stats = run_curator_export_step(vault_path=str(tmp_path))
+    assert stats == {"found": 1, "exported": 1, "failed": 0}
+    if os.path.exists("curator_decisions.json"):
+        os.remove("curator_decisions.json")
+
+
+@patch("research_scanner.run_daemon.subprocess.run")
+@patch("research_scanner.run_daemon.export_from_curator_decisions")
+def test_run_curator_export_step_no_fences_raw_json(mock_export, mock_subproc_run, tmp_path):
+    """Verify Curator step handles raw JSON without any markdown fences."""
+    decisions = [{"fetched_item_id": 12, "category": "ml", "reasoning": "Fits priorities."}]
+    raw_response = json.dumps(decisions)
+    envelope = {"conversation_id": "conv-raw", "status": "success", "response": raw_response}
+
+    mock_proc = MagicMock()
+    mock_proc.returncode = 0
+    mock_proc.stdout = json.dumps(envelope)
+    mock_proc.stderr = ""
+    mock_subproc_run.return_value = mock_proc
+    mock_export.return_value = {"found": 1, "exported": 1, "failed": 0}
+
+    stats = run_curator_export_step(vault_path=str(tmp_path))
+    assert stats == {"found": 1, "exported": 1, "failed": 0}
+    if os.path.exists("curator_decisions.json"):
+        os.remove("curator_decisions.json")
+
+
+
 
