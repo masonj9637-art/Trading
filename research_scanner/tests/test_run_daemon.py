@@ -349,6 +349,45 @@ def test_run_single_cycle(
     assert mock_build_index.call_args[0][0] == "/tmp/test_single_vault"
 
 
+@patch("research_scanner.run_daemon.run_scan_cycle")
+@patch("research_scanner.run_daemon.run_process_requests")
+@patch("research_scanner.run_daemon.run_curator_export_step")
+@patch("research_scanner.run_daemon.build_vault_index")
+def test_run_single_cycle_curator_success_updates_timestamp(
+    mock_build_index, mock_curator_export, mock_process_requests, mock_scan_cycle, tmp_path
+):
+    """Verify timestamp IS updated when run_curator_export_step returns a non-None result."""
+    mock_scan_cycle.return_value = {"arxiv": 1}
+    mock_curator_export.return_value = {"found": 1, "exported": 1, "failed": 0}
+    last_success_file = str(tmp_path / "last_success.json")
+
+    run_single_cycle(vault_path=str(tmp_path), iteration=1, last_success_path=last_success_file)
+
+    assert os.path.exists(last_success_file)
+    with open(last_success_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    assert "scan_and_curator" in data
+
+
+@patch("research_scanner.run_daemon.run_scan_cycle")
+@patch("research_scanner.run_daemon.run_process_requests")
+@patch("research_scanner.run_daemon.run_curator_export_step")
+@patch("research_scanner.run_daemon.build_vault_index")
+def test_run_single_cycle_curator_failure_skips_timestamp(
+    mock_build_index, mock_curator_export, mock_process_requests, mock_scan_cycle, tmp_path, caplog
+):
+    """Verify timestamp is NOT updated and a warning is logged when run_curator_export_step returns None."""
+    mock_scan_cycle.return_value = {"arxiv": 1}
+    mock_curator_export.return_value = None
+    last_success_file = str(tmp_path / "last_success.json")
+
+    with caplog.at_level(logging.WARNING):
+        run_single_cycle(vault_path=str(tmp_path), iteration=1, last_success_path=last_success_file)
+
+    assert not os.path.exists(last_success_file)
+    assert "Curator portion of the cycle failed" in caplog.text
+
+
 @patch("research_scanner.run_daemon.run_single_cycle")
 @patch("research_scanner.run_daemon.run_continuous_daemon")
 def test_main_once_flag(mock_continuous_daemon, mock_single_cycle):

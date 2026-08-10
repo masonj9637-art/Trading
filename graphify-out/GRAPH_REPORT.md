@@ -1,42 +1,41 @@
-# Graph Report - Trading  (2026-08-03)
+# Graph Report - Trading  (2026-08-10)
 
 ## Corpus Check
-- 249 files · ~667,285 words
+- 286 files · ~690,590 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1035 nodes · 1448 edges · 179 communities (152 shown, 27 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 40 edges (avg confidence: 0.52)
+- 1332 nodes · 1968 edges · 196 communities (146 shown, 50 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 51 edges (avg confidence: 0.58)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a8e47d6e`
+- Built from commit: `4b58e0ad`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- engine.py
+- bootstrap_model.py
 - .generate_signal
 - SECForm4Parser
-- get_db_connection
-- test_sources.py
+- test_scoring.py
+- config.py
 - OrderManager
 - PortfolioRanker
 - ChronosInference
 - **Advanced Methodologies for Decoupled Risk Management in Multi-Agent Algorithmic Trading Systems**
-- EnsembleAgent
+- db.py
 - GovernanceEngine
 - BacktestEngine
-- save_fetched_item
-- resolve_peak_nav
-- build_vault_index.py
-- config.py
+- .generate_signal
+- update_last_success
+- init_db
 - ThompsonSampler
 - verified_45_pipeline.py
 - pead_strategy_backtest.py
 - scan.py
-- db.py
-- .get_bracket_bounds
+- get_agy_executable_path
+- VolatilityGuard
 - test_leakage.py
 - SEC 8-K Price & Volume Reaction Comparison: "Yes" (Agent Flagged) vs. "No" (Random Matched Baseline)
 - check_unprotected_positions
@@ -48,9 +47,9 @@
 - pead_fast_universe_builder_v3.py
 - pead_fast_universe_builder_v5.py
 - pead_fast_universe_builder_v7.py
-- test_dashboard.py
-- init_db
-- send_discord_notification
+- save_fetched_item
+- TemporalAligner
+- director_apply.py
 - orchestrate_daily.py
 - Filtered SEC Filings Subset
 - pead_fast_universe_builder_v2.py
@@ -70,38 +69,43 @@
 - pead_fast_universe_builder.py
 - pead_universe_builder.py
 - scan_biotech.py
-- trading_system/main.py
+- engine.py
 - AI Arbitrage Backtest 2024 - Backtest Report
 - AI Arbitrage Backtest 2025 - Backtest Report
 - orchestrate_bootstrap.py
+- datetime
 - fetch_and_build_report.py
+- .isolate
 - scan_fintech.py
 - scan_mining.py
 - sec_scanner.py
 - Research Scanner - Agent Task Prompts
 - .fetch_historical_data
-- scoring.py
+- run_director_step
 - test_export_to_obsidian.py
+- package.json
+- test_log_trade.py
+- test_run_daemon.py
 - start.sh
 - Rules for Backtesting, Model Training, and Risk Parameters
 - rules/graphify.md
 - workflows/graphify.md
-- ConditionalAutoencoder
+- test_heartbeat_check.py
+- compilerOptions
+- .detect
+- index.ts
 - research_scanner
 - AI Hardware Accelerators
 - research_scanner/__init__.py
 - research_scanner/tests/__init__.py
-- test_bootstrap.py
 - current-priorities.md
-- LimitOrderRequest
-- process_requests.py
 - RegimeDetector
 - We aim to make Uttar Pradesh India’s AI, electronics and startup capital: IT Minister Sunil Sharma
 - Advancements in magnetic steering of soft magnetic continuum robots for medical applications
 - Advocating the potential of AI for syndrome discovery: a scoping review
 - Artificial Intelligence–Enabled mHealth Technologies for Rehabilitation in Patients with Cancer: A Scoping Review
 - Artificial Intelligence in Plant Sciences
-- Artificial Intelligence in Plant Sciences
+- Vault Index
 - Assessing the Role of Digital Transformation in Strengthening Customer Engagement: A Case Study of bKash
 - Avaliação tomográfica do seio frontal no dimorfismo sexual
 - Code and Experimental Data for Feasibility-Oriented Dung Beetle Optimization for Collision-Constrained Robotic Path Planning
@@ -112,7 +116,7 @@
 - Enabling Next-Generation Power Conversion: Design, Dynamic Characterization, and Application of Gallium Nitride Bidirectional Switches
 - Feature Importance and Growth Rate Prediction in SiC PVT Processes through Advanced Machine Learning Models
 - Funding Innovation for Future-Ready Healthcare Systems
-- Funding Innovation for Future-Ready Healthcare Systems
+- Google DeepMind Unveils Gemini Robotics 2: An AI Brain for Full-Body Humanoid Control
 - L’innovation locale et sa contribution au développement durable : pour une taxonomie du système local de transition
 - Management of healthcare risk waste and non-hazardous healthcare waste: the case of a public hospital in western France
 - Mechs
@@ -123,30 +127,49 @@
 - Specialeafhandling: Scaling AI in Organisations: An Empirical Study of Organisational Conditions Differentiating Enterprise Adoption from the Pilot Trap
 - Tuning of Magnetic Frustration Through Doping in a Group of Magnetic Semiconductors with the Chemical Formula CaMn2X2 (X = Pnictogen)
 - Vault Index
-- test_ofi_removal.py
-- .evaluate_trades
-- .generate_signal
-- DiscordAlerter
+- TradingSystem
+- Agent Evaluation & Benchmarking
+- Agentic Systems & Benchmarking
 - Artificial Intelligence
 - General Technology
 - Machine Learning
 - Quantum Computing
 - Robotics
 - Semiconductors
-- .align_and_pad
+- Agentic Systems & Debugging
 - context/README.md
+- Agentic Systems & Rag
+- Agentic Systems & Synthetic Data
+- AI Governance & Safety
+- Database Systems & Neurosymbolic AI
+- Llm Post-training & Reasoning
+- Llm Reasoning & Alignment
+- Llm Reinforcement Learning
+- Machine Learning Theory
+- Model Compression & Quantization
+- Multimodal Llms & Evaluation
+- Optimization & Ml Theory
+- Quantum Computing
+- Quantum Computing & Hardware
+- Quantum Computing & Qec
+- Robotics & Embodied AI
+- Robotics & World Models
+- Time Series & Quantitative Modeling
+- Autonomous Llm Agents & Sequential Decision Making
+- Fault-tolerant Quantum Computing & Error Correction
+- Physical Robotics & Humanoid Safety Control
 
 ## God Nodes (most connected - your core abstractions)
-1. `init_db()` - 29 edges
-2. `BacktestEngine` - 28 edges
-3. `get_db_connection()` - 26 edges
-4. `TradingSystem` - 22 edges
-5. `AlpacaDataFetcher` - 21 edges
-6. `save_fetched_item()` - 20 edges
-7. `SECForm4Parser` - 19 edges
-8. `OrderManager` - 17 edges
-9. `score_unscored_theses()` - 16 edges
-10. `PortfolioRanker` - 16 edges
+1. `init_db()` - 38 edges
+2. `get_db_connection()` - 29 edges
+3. `BacktestEngine` - 28 edges
+4. `save_fetched_item()` - 25 edges
+5. `run_curator_export_step()` - 23 edges
+6. `TradingSystem` - 22 edges
+7. `run_director_step()` - 21 edges
+8. `AlpacaDataFetcher` - 21 edges
+9. `score_unscored_theses()` - 19 edges
+10. `SECForm4Parser` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `BacktestEngine` --uses--> `DeepOrthogonalizer`  [INFERRED]
@@ -163,35 +186,35 @@
 ## Import Cycles
 - None detected.
 
-## Communities (179 total, 27 thin omitted)
+## Communities (196 total, 50 thin omitted)
 
-### Community 0 - "engine.py"
-Cohesion: 0.14
-Nodes (10): bootstrap(), DeepOrthogonalizer, AlphaIsolator, DataFrame, Strips out the autoregressive momentum component to calculate the adjusted predi, DeepOFIAgent, DEPRECATED / UNUSED MODULE  This agent uses a Volume-Weighted Return proxy to es, EMASmoother (+2 more)
+### Community 0 - "bootstrap_model.py"
+Cohesion: 0.12
+Nodes (12): ndarray, bootstrap(), ConditionalAutoencoder, DeepOrthogonalizer, DataFrame, Orthogonalizes returns using a Conditional Autoencoder in a strictly CAUSAL…, Deep neural network that learns complex, non-linear market beta conditioned on…, EMASmoother (+4 more)
 
 ### Community 1 - ".generate_signal"
 Cohesion: 0.50
-Nodes (3): DataFrame, Series, Since real L2 Limit Order Book data isn't available, we use a         Volume-Wei
+Nodes (3): DataFrame, Series, Calculates zero-lag momentum using an Adaptive Kalman Filter state-space model.…
 
 ### Community 2 - "SECForm4Parser"
 Cohesion: 0.06
-Nodes (29): InsiderClusterBacktester, Fetches historical daily bars for all symbols in a single batch call from Alpaca, Fetches Form 4 filings for a ticker via SEC Submissions API., Groups qualifying buys into cluster events (>= min_distinct_insiders distinct in, Downloads or loads SEC CIK-to-Ticker mapping from data.sec.gov.         Returns, Fetches small-cap universe ($50M-$500M market cap)., Parses Form 4 XML string. Extracts qualifying open-market purchases (Code "P"),, SECForm4Parser (+21 more)
+Nodes (29): InsiderClusterBacktester, Fetches historical daily bars for all symbols in a single batch call from…, Fetches Form 4 filings for a ticker via SEC Submissions API., Groups qualifying buys into cluster events (>= min_distinct_insiders distinct…, Downloads or loads SEC CIK-to-Ticker mapping from data.sec.gov. Returns a dict…, Fetches small-cap universe ($50M-$500M market cap)., Parses Form 4 XML string. Extracts qualifying open-market purchases (Code "P"),…, SECForm4Parser (+21 more)
 
-### Community 3 - "get_db_connection"
-Cohesion: 0.15
-Nodes (23): Connection, get_all_thesis_scores(), get_db_connection(), Creates and returns a SQLite connection with row factory set to sqlite3.Row., Saves an immutable audit thesis record into thesis_ledger.     Returns True if s, Retrieves all records from thesis_scores JOINed with thesis_ledger metadata., save_thesis_ledger_entry(), calculate_cost_adjusted_return() (+15 more)
+### Community 3 - "test_scoring.py"
+Cohesion: 0.11
+Nodes (37): get_all_thesis_scores(), Saves an immutable audit thesis record into thesis_ledger. Returns True if…, Retrieves all records from thesis_scores JOINed with thesis_ledger metadata., save_thesis_ledger_entry(), add_trading_days(), calculate_cost_adjusted_return(), generate_scoring_report(), get_alpaca_price() (+29 more)
 
-### Community 4 - "test_sources.py"
-Cohesion: 0.16
-Nodes (17): fetch_arxiv_items(), Any, Fetches recent papers from arXiv API for specified categories using feedparser., fetch_currents_items(), Any, Fetches tech & industry news items from Currents API matching keywords.      :pa, fetch_uspto_items(), Any (+9 more)
+### Community 4 - "config.py"
+Cohesion: 0.06
+Nodes (46): build_vault_index(), extract_first_sentence(), extract_gist(), extract_h1_title(), main(), parse_note(), parse_yaml_frontmatter(), Any (+38 more)
 
 ### Community 5 - "OrderManager"
-Cohesion: 0.09
-Nodes (12): AlpacaTradingClient, Retrieves current account equity for sizing limits., Retrieves the current market clock., Retrieves all currently open positions., Cancels all pending or open orders to prevent conflicting executions., Closes all open positions on Alpaca., Cancels all pending/open orders and blocks until Alpaca confirms they are fully, OrderManager (+4 more)
+Cohesion: 0.06
+Nodes (17): LimitOrderRequest, TimeInForce, AlpacaTradingClient, Retrieves current account equity for sizing limits., Retrieves the current market clock., Retrieves all currently open positions., Cancels all pending or open orders to prevent conflicting executions., Closes all open positions on Alpaca. (+9 more)
 
 ### Community 6 - "PortfolioRanker"
 Cohesion: 0.13
-Nodes (12): MeanReversionAgent, DataFrame, Series, Generates portfolio weights based on statistical mean reversion.         Assets, MomentumAgent, DataFrame, Series, Generates portfolio weights based on cross-sectional momentum.         close_dat (+4 more)
+Nodes (12): MeanReversionAgent, DataFrame, Series, Generates portfolio weights based on statistical mean reversion. Assets that…, MomentumAgent, DataFrame, Series, Generates portfolio weights based on cross-sectional momentum. close_data:… (+4 more)
 
 ### Community 7 - "ChronosInference"
 Cohesion: 0.17
@@ -201,61 +224,57 @@ Nodes (10): BaseModel, on_event, post, TimeSeriesDataFrame, forecast(), Forecast
 Cohesion: 0.10
 Nodes (19): **Addressing Non-Stationarity with CADTS**, **Advanced Methodologies for Decoupled Risk Management in Multi-Agent Algorithmic Trading Systems**, **AlphaEval Metrics: Information Coefficient (IC)**, **Average True Range (ATR) Dynamics**, **Conclusion**, **Continuous Adaptive Pipelines**, **Econometric Variance Forecasting: The GARCH Family**, **Institutional Decoupling of Alpha and Execution** (+11 more)
 
-### Community 9 - "EnsembleAgent"
-Cohesion: 0.29
-Nodes (3): EnsembleAgent, Executes Mean-Variance Thompson Sampling (MVTS) with Combinatorial Adaptive Disc, Updates the MVTS priors using CADTS geometric discounting based on continuous re
+### Community 9 - "db.py"
+Cohesion: 0.14
+Nodes (22): Connection, get_all_candidates(), get_all_ledger_entries(), get_all_trades(), get_db_connection(), get_unscored_ledger_entries(), is_item_fetched(), Any (+14 more)
 
 ### Community 10 - "GovernanceEngine"
-Cohesion: 0.22
-Nodes (8): AuditLogger, Commits blocked or modified trade rationales to an immutable log., GovernanceEngine, Assert that instantiating GovernanceEngine() with no arguments produces the new, Test drawdown circuit breaker edge cases: account_nav exactly at the drawdown th, test_drawdown_circuit_breaker_edge_cases(), test_governance_engine_conservative_defaults(), test_quantile_fan_var_scaling()
+Cohesion: 0.16
+Nodes (11): AuditLogger, Commits blocked or modified trade rationales to an immutable log., GovernanceEngine, DataFrame, Series, Applies agent-specific rules before blending, followed by global portfolio…, Assert that instantiating GovernanceEngine() with no arguments produces the new…, Test drawdown circuit breaker edge cases: account_nav exactly at the drawdown… (+3 more)
 
 ### Community 11 - "BacktestEngine"
-Cohesion: 0.16
-Nodes (11): BacktestEngine, DataFrame, load_data(), main(), run_backtest(), run_backtest(), run_backtest(), AlpacaDataFetcher (+3 more)
+Cohesion: 0.15
+Nodes (12): BacktestEngine, DataFrame, load_data(), main(), run_backtest(), run_backtest(), run_backtest(), AlpacaDataFetcher (+4 more)
 
-### Community 12 - "save_fetched_item"
-Cohesion: 0.22
-Nodes (14): compute_item_hash(), Computes a deterministic SHA256 hash for deduplication given a source and extern, Saves a newly fetched item into the fetched_items table.     Returns True if ins, Saves a candidate item scoring above threshold into the candidates table.     Re, save_candidate(), save_fetched_item(), fixture, temp_db_with_candidates() (+6 more)
+### Community 12 - ".generate_signal"
+Cohesion: 0.50
+Nodes (3): DataFrame, Series, Since real L2 Limit Order Book data isn't available, we use a Volume-Weighted…
 
-### Community 13 - "resolve_peak_nav"
-Cohesion: 0.28
-Nodes (5): DataFrame, Resolves the peak NAV using Redis with a disk-backed fallback., resolve_peak_nav(), Simulate Redis being unavailable (None or throwing exception) or returning no st, test_drawdown_persistence_redis_unavailable_disk_fallback()
+### Community 13 - "update_last_success"
+Cohesion: 0.67
+Nodes (3): Updates the shared last_success.json timestamp file for the specified key,…, update_last_success(), test_update_last_success_preserves_existing_keys()
 
-### Community 14 - "build_vault_index.py"
-Cohesion: 0.14
-Nodes (22): build_vault_index(), extract_first_sentence(), extract_gist(), extract_h1_title(), main(), parse_note(), parse_yaml_frontmatter(), Any (+14 more)
-
-### Community 15 - "config.py"
-Cohesion: 0.14
-Nodes (12): Configuration settings for research_scanner.  All settings (score threshold, Gem, arXiv API data fetcher using feedparser., Currents API news data fetcher., Data source modules for research_scanner (arXiv, USPTO, Currents API)., fetch_openalex_items(), Any, OpenAlex API data fetcher for global research papers, preprints, and patents. Op, Reconstructs clean text summary from OpenAlex's abstract_inverted_index.      :p (+4 more)
+### Community 14 - "init_db"
+Cohesion: 0.19
+Nodes (13): main(), Terminal CLI dashboard for research_scanner. Lists unreviewed candidate items…, Fetches and displays unreviewed candidates from the database in a terminal-…, render_dashboard(), init_db(), Initializes the SQLite database schema if tables do not exist., Unit tests for research_scanner.dashboard module., test_render_dashboard_min_score_filter() (+5 more)
 
 ### Community 16 - "ThompsonSampler"
 Cohesion: 0.31
-Nodes (3): Samples from the Beta distribution for each agent to determine dynamic trust wei, Update Beta priors based on binary trade outcomes.         profit_outcome: True, ThompsonSampler
+Nodes (3): Samples from the Beta distribution for each agent to determine dynamic trust…, Update Beta priors based on binary trade outcomes. profit_outcome: True if…, ThompsonSampler
 
 ### Community 17 - "verified_45_pipeline.py"
 Cohesion: 0.20
-Nodes (7): fetch_8k_filings(), fetch_filing_text(), get_cik(), End-to-end pipeline for the verified 45-ticker dataset:   1. For each ticker, fe, Fetch full text of an 8-K filing., Lookup CIK from EDGAR company tickers JSON., Fetch recent 8-K filings from EDGAR for a given CIK.
+Nodes (7): fetch_8k_filings(), fetch_filing_text(), get_cik(), End-to-end pipeline for the verified 45-ticker dataset: 1. For each ticker,…, Fetch full text of an 8-K filing., Lookup CIK from EDGAR company tickers JSON., Fetch recent 8-K filings from EDGAR for a given CIK.
 
 ### Community 18 - "pead_strategy_backtest.py"
 Cohesion: 0.53
 Nodes (7): compute_events_dataset(), find_effective_trading_date(), generate_random_baseline(), get_trading_days(), load_data(), run_pead_backtest(), test_pead_pipeline_integrity()
 
 ### Community 19 - "scan.py"
-Cohesion: 0.24
-Nodes (9): is_item_fetched(), Checks whether an item with the given hash has already been stored in fetched_it, Main scan entrypoint for research_scanner. Runs one full fetch -> deduplicate ->, Executes one full fetch + triage cycle across all configured data sources., run_scan_cycle(), fixture, Integration tests for research_scanner.scan entrypoint., temp_db_path() (+1 more)
+Cohesion: 0.19
+Nodes (11): Main scan entrypoint for research_scanner. Runs one full fetch -> deduplicate…, Executes one full fetch + triage cycle across all configured data sources.…, run_scan_cycle(), fetch_arxiv_items(), Any, Fetches recent papers from arXiv API for specified categories using feedparser.…, fixture, Integration tests for research_scanner.scan entrypoint. (+3 more)
 
-### Community 20 - "db.py"
-Cohesion: 0.16
-Nodes (14): get_all_candidates(), get_unconsumed_items(), get_unscored_ledger_entries(), mark_candidate_reviewed(), mark_item_consumed(), Any, Database storage module for research_scanner using SQLite. Stores fetched items, Retrieves all records from candidates table as a list of dicts. (+6 more)
+### Community 20 - "get_agy_executable_path"
+Cohesion: 0.17
+Nodes (12): get_agy_executable_path(), Returns the full absolute path to the agy executable. Priority: 1.…, Verify successful Curator CLI run with agy JSON envelope format., Verify FileNotFoundError handler logs the exact attempted path., Verify get_agy_executable_path returns default path when AGY_EXECUTABLE_PATH is…, Verify get_agy_executable_path returns path discovered by shutil.which when…, Verify get_agy_executable_path honors AGY_EXECUTABLE_PATH environment variable., test_get_agy_executable_path_default() (+4 more)
 
-### Community 21 - ".get_bracket_bounds"
-Cohesion: 0.50
-Nodes (3): Series, Fits a GJR-GARCH(1,1,1) model to the returns and predicts the next day's volatil, Returns (take_profit, stop_loss) based on asymmetric GJR-GARCH volatility foreca
+### Community 21 - "VolatilityGuard"
+Cohesion: 0.32
+Nodes (4): Series, Fits a GJR-GARCH(1,1,1) model to the returns and predicts the next day's…, Returns (take_profit, stop_loss) based on asymmetric GJR-GARCH volatility…, VolatilityGuard
 
 ### Community 22 - "test_leakage.py"
 Cohesion: 0.29
-Nodes (7): asyncio, Assert that the final out-of-sample evaluation window used to report Sharpe/CAGR, Assert that the date range bootstrap_model.py passes into ChronosInference.train, Assert that optimize_optuna.py's training window and test window are chronologic, test_bootstrap_model_train_window_leakage(), test_final_eval_window_no_overlap_with_finetune_window(), test_optuna_train_test_split_and_objective()
+Nodes (7): asyncio, Assert that the final out-of-sample evaluation window used to report…, Assert that the date range bootstrap_model.py passes into…, Assert that optimize_optuna.py's training window and test window are…, test_bootstrap_model_train_window_leakage(), test_final_eval_window_no_overlap_with_finetune_window(), test_optuna_train_test_split_and_objective()
 
 ### Community 23 - "SEC 8-K Price & Volume Reaction Comparison: "Yes" (Agent Flagged) vs. "No" (Random Matched Baseline)"
 Cohesion: 0.29
@@ -263,15 +282,15 @@ Nodes (6): 1. Dataset & Bar Window Coverage Summary, 2. Direct Comparison Result
 
 ### Community 24 - "check_unprotected_positions"
 Cohesion: 0.38
-Nodes (6): check_unprotected_positions(), Simulate a position existing in get_open_positions() with no matching open OCO o, Replicates the unprotected position verification routine in main.py, Simulate a position existing in get_open_positions() WITH a matching open OCO or, test_protected_position_no_alert(), test_unprotected_position_alerting_path()
+Nodes (6): check_unprotected_positions(), Simulate a position existing in get_open_positions() with no matching open OCO…, Replicates the unprotected position verification routine in main.py, Simulate a position existing in get_open_positions() WITH a matching open OCO…, test_protected_position_no_alert(), test_unprotected_position_alerting_path()
 
 ### Community 25 - "test_thesis_ledger.py"
 Cohesion: 0.13
-Nodes (25): parametrize, get_all_ledger_entries(), Retrieves all thesis_ledger records sorted by id DESC., fixture, Unit and integration tests for research_scanner.thesis_ledger module., temp_db(), temp_vault(), test_compute_ledger_hash() (+17 more)
+Nodes (23): parametrize, fixture, Unit and integration tests for research_scanner.thesis_ledger module., temp_db(), temp_vault(), test_compute_ledger_hash(), test_parse_fact_check_note_confidence_regex_patterns(), test_parse_fact_check_note_full_frontmatter() (+15 more)
 
 ### Community 26 - "AnalyticsEngine"
 Cohesion: 0.33
-Nodes (3): AnalyticsEngine, DataFrame, Takes the history dataframe from BacktestEngine and generates a quantstats HTML
+Nodes (3): AnalyticsEngine, DataFrame, Takes the history dataframe from BacktestEngine and generates a quantstats HTML…
 
 ### Community 27 - "PART 1 - CODE TO BUILD (send these five, in this order)"
 Cohesion: 0.15
@@ -297,17 +316,17 @@ Nodes (4): fetch_json(), is_common_stock(), main(), process_sec_item()
 Cohesion: 0.60
 Nodes (4): fetch_json(), is_common_stock(), main(), process_sec_item()
 
-### Community 33 - "test_dashboard.py"
-Cohesion: 0.33
-Nodes (7): main(), Terminal CLI dashboard for research_scanner. Lists unreviewed candidate items fr, Fetches and displays unreviewed candidates from the database in a terminal-frien, render_dashboard(), Unit tests for research_scanner.dashboard module., test_render_dashboard_min_score_filter(), test_render_dashboard_stdout()
+### Community 33 - "save_fetched_item"
+Cohesion: 0.16
+Nodes (21): compute_item_hash(), get_unconsumed_items(), mark_item_consumed(), mark_items_reviewed(), Computes a deterministic SHA256 hash for deduplication given a source and…, Saves a newly fetched item into the fetched_items table. Returns True if…, Saves a candidate item scoring above threshold into the candidates table.…, Retrieves all fetched items that have not yet been consumed by the curator. (+13 more)
 
-### Community 34 - "init_db"
-Cohesion: 0.27
-Nodes (9): init_db(), Initializes the SQLite database schema if tables do not exist., main(), director_apply.py  Applies Director's JSON output deterministically., setup_logging(), Sends a plain string message to Discord via REST POST.      :param content: The, send_discord_message(), fixture (+1 more)
+### Community 34 - "TemporalAligner"
+Cohesion: 0.32
+Nodes (4): DataFrame, Aligns a long-format DataFrame to a continuous time index, padding missing…, TemporalAligner, test_temporal_alignment()
 
-### Community 35 - "send_discord_notification"
-Cohesion: 0.29
-Nodes (8): Any, Discord REST notification dispatcher for research_scanner., Sends a Discord notification via direct REST POST to the specified channel., send_discord_notification(), Unit tests for research_scanner.notifier module., test_send_discord_notification_failure(), test_send_discord_notification_missing_credentials(), test_send_discord_notification_success()
+### Community 35 - "director_apply.py"
+Cohesion: 0.08
+Nodes (30): Exception, apply_director_output(), main(), director_apply.py Applies Director's JSON output deterministically., setup_logging(), Any, Discord REST notification dispatcher for research_scanner., Sends a Discord notification via direct REST POST to the specified channel.… (+22 more)
 
 ### Community 36 - "orchestrate_daily.py"
 Cohesion: 0.70
@@ -373,9 +392,9 @@ Nodes (3): check_sec_filings_and_mcap(), fetch_json(), main()
 Cohesion: 1.00
 Nodes (3): fetch_json(), main(), process_company()
 
-### Community 60 - "trading_system/main.py"
+### Community 60 - "engine.py"
 Cohesion: 0.12
-Nodes (12): TradingSystem, run_test(), AdaptiveKalmanAgent, PCAOrthogonalizer, DataFrame, Takes a DataFrame of returns (dates as index, assets as columns).         Extrac, DataFrame, Classifies the market regime using the benchmark symbol (e.g. SPY).         mark (+4 more)
+Nodes (10): EnsembleAgent, Executes Mean-Variance Thompson Sampling (MVTS) with Combinatorial Adaptive…, Updates the MVTS priors using CADTS geometric discounting based on continuous…, AlphaIsolator, DEPRECATED / UNUSED MODULE This agent uses a Volume-Weighted Return proxy to…, AdaptiveKalmanAgent, PCAOrthogonalizer, DataFrame (+2 more)
 
 ### Community 72 - "Research Scanner - Agent Task Prompts"
 Cohesion: 0.33
@@ -383,19 +402,39 @@ Nodes (5): Research Scanner - Agent Task Prompts, Task A: Curator, Task B: Direc
 
 ### Community 73 - ".fetch_historical_data"
 Cohesion: 0.40
-Nodes (3): DataFrame, Fetches daily bars for the given symbols from Alpaca.         Returns a wide-for, Fetches macroeconomic covariates (^VIX, ^TNX) from Yahoo Finance.         Return
+Nodes (3): DataFrame, Fetches daily bars for the given symbols from Alpaca. Returns a wide-format…, Fetches macroeconomic covariates (^VIX, ^TNX) from Yahoo Finance. Returns a…
 
-### Community 74 - "scoring.py"
-Cohesion: 0.24
-Nodes (9): add_trading_days(), generate_scoring_report(), get_alpaca_price(), hashlib_seed(), main(), Forward Performance Scoring Engine for research_scanner.  Evaluates thesis ledge, Prints an aggregate statistical report grouped by confidence_level and fact_chec, Estimates the exit calendar date corresponding to a given number of trading days (+1 more)
+### Community 74 - "run_director_step"
+Cohesion: 0.07
+Nodes (47): get_director_prompt(), main(), Any, director_run.py Director execution runner module for research_scanner. Invokes…, Validates that parsed JSON is a dict matching Director's expected schema.…, Updates the shared timestamp file at timestamp_path with the current ISO 8601…, Invokes Director via agy CLI, parses and validates output JSON, writes…, Constructs Director prompt by loading vault-index.md, current-priorities.md,… (+39 more)
 
 ### Community 75 - "test_export_to_obsidian.py"
 Cohesion: 0.09
-Nodes (39): get_fetched_item_by_id(), get_unreviewed_candidates(), Retrieves all unreviewed candidates (reviewed = 0 or NULL) scoring at or above m, Retrieves a fetched item by its database ID., clean_filename_title(), ensure_theme_note_exists(), export_candidate_to_vault(), export_from_curator_decisions() (+31 more)
+Nodes (41): get_fetched_item_by_id(), get_unreviewed_candidates(), mark_candidate_reviewed(), Retrieves all unreviewed candidates (reviewed = 0 or NULL) scoring at or above…, Marks a candidate as reviewed (reviewed = 1) given its database ID. Returns…, Retrieves a fetched item by its database ID., clean_filename_title(), ensure_theme_note_exists() (+33 more)
 
-### Community 108 - "ConditionalAutoencoder"
-Cohesion: 0.22
-Nodes (5): ndarray, ConditionalAutoencoder, DataFrame, Orthogonalizes returns using a Conditional Autoencoder in a strictly CAUSAL roll, Deep neural network that learns complex, non-linear market beta conditioned on f
+### Community 76 - "package.json"
+Cohesion: 0.10
+Nodes (19): bin, antigravity-bridge, dependencies, @modelcontextprotocol/sdk, zod, description, devDependencies, @types/node (+11 more)
+
+### Community 78 - "test_log_trade.py"
+Cohesion: 0.16
+Nodes (18): ArgumentParser, Namespace, build_parser(), main(), parse_args(), CLI module for manually logging real trade entries into research_scanner…, Constructs the command-line argument parser for logging trades., Parses and validates CLI arguments. (+10 more)
+
+### Community 79 - "test_run_daemon.py"
+Cohesion: 0.07
+Nodes (50): get_curator_prompt(), main(), Continuous daemon runner for research_scanner. Runs fetch -> process requests…, Constructs the Curator prompt by loading the base prompt template, fetching…, Step 3: Invokes Curator via agy CLI in headless mode, parses the JSON decision…, Executes a single cycle of the research_scanner pipeline: 1. Scan cycle…, Executes the research_scanner pipeline continuously every interval_seconds.…, run_continuous_daemon() (+42 more)
+
+### Community 94 - "test_heartbeat_check.py"
+Cohesion: 0.17
+Nodes (18): check_heartbeat(), get_timestamp_age_seconds(), main(), parse_iso_timestamp(), Any, Heartbeat monitor for research_scanner scheduled jobs. Checks…, Registers or updates the Task Scheduler entry for heartbeat_check.py to run…, Parses an ISO 8601 timestamp string into a datetime object. Returns None if… (+10 more)
+
+### Community 97 - "compilerOptions"
+Cohesion: 0.15
+Nodes (12): compilerOptions, esModuleInterop, forceConsistentCasingInFileNames, module, moduleResolution, outDir, rootDir, skipLibCheck (+4 more)
+
+### Community 110 - "index.ts"
+Cohesion: 0.29
+Nodes (8): CHECK_STATUS_TOOL, getRepoRoot(), handleCheckStatus(), handleRunAgent(), isQuotaError(), RUN_AGENT_TOOL, runCommand(), server
 
 ### Community 111 - "research_scanner"
 Cohesion: 0.12
@@ -405,17 +444,9 @@ Nodes (16): 1. Install Ollama & Pull Gemma Model, 1. Running the Fetch & Triage 
 Cohesion: 0.50
 Nodes (3): AI Hardware Accelerators, Investment Thesis Audits, Sub-topics & Architecture
 
-### Community 136 - "LimitOrderRequest"
-Cohesion: 0.25
-Nodes (4): LimitOrderRequest, TimeInForce, test_oco(), AdvancedLimitOrderRequest
-
-### Community 137 - "process_requests.py"
-Cohesion: 0.36
-Nodes (6): Entrypoint to process director requests. Polls the director_requests table and e, run_process_requests(), main(), Continuous daemon runner for research_scanner. Runs fetch -> process requests ->, Executes the research_scanner pipeline continuously every interval_seconds., run_continuous_daemon()
-
 ### Community 138 - "RegimeDetector"
 Cohesion: 0.33
-Nodes (3): DataFrame, Classifies market structure into distinct regimes.         market_returns: df wh, RegimeDetector
+Nodes (3): DataFrame, Classifies market structure into distinct regimes. market_returns: df where…, RegimeDetector
 
 ### Community 139 - "We aim to make Uttar Pradesh India’s AI, electronics and startup capital: IT Minister Sunil Sharma"
 Cohesion: 0.40
@@ -437,9 +468,9 @@ Nodes (4): Artificial Intelligence–Enabled mHealth Technologies for Rehabilita
 Cohesion: 0.40
 Nodes (4): Artificial Intelligence in Plant Sciences, Curator Reasoning, My Notes, Summary / Abstract
 
-### Community 144 - "Artificial Intelligence in Plant Sciences"
+### Community 144 - "Vault Index"
 Cohesion: 0.40
-Nodes (4): Artificial Intelligence in Plant Sciences, Curator Reasoning, My Notes, Summary / Abstract
+Nodes (4): Audits, Raw Signals, Themes, Vault Index
 
 ### Community 145 - "Assessing the Role of Digital Transformation in Strengthening Customer Engagement: A Case Study of bKash"
 Cohesion: 0.40
@@ -481,9 +512,9 @@ Nodes (4): Curator Reasoning, Feature Importance and Growth Rate Prediction in S
 Cohesion: 0.40
 Nodes (4): Curator Reasoning, Funding Innovation for Future-Ready Healthcare Systems, My Notes, Summary / Abstract
 
-### Community 155 - "Funding Innovation for Future-Ready Healthcare Systems"
+### Community 155 - "Google DeepMind Unveils Gemini Robotics 2: An AI Brain for Full-Body Humanoid Control"
 Cohesion: 0.40
-Nodes (4): Curator Reasoning, Funding Innovation for Future-Ready Healthcare Systems, My Notes, Summary / Abstract
+Nodes (4): Curator Reasoning, Google DeepMind Unveils Gemini Robotics 2: An AI Brain for Full-Body Humanoid Control, My Notes, Summary / Abstract
 
 ### Community 156 - "L’innovation locale et sa contribution au développement durable : pour une taxonomie du système local de transition"
 Cohesion: 0.40
@@ -525,37 +556,29 @@ Nodes (4): Curator Reasoning, My Notes, Summary / Abstract, Tuning of Magnetic F
 Cohesion: 0.40
 Nodes (4): Audits, Raw Signals, Themes, Vault Index
 
-### Community 166 - "test_ofi_removal.py"
-Cohesion: 0.40
-Nodes (4): Assert no references to ofi_active_orders.json or close_ofi_positions remain any, Assert 'deep_ofi' is not present in the EnsembleAgent agent_names list construct, test_deep_ofi_not_in_ensemble_agent_names(), test_no_ofi_references_in_main_py()
-
-### Community 167 - ".evaluate_trades"
-Cohesion: 0.50
-Nodes (3): DataFrame, Series, Applies agent-specific rules before blending, followed by global portfolio const
-
-### Community 168 - ".generate_signal"
-Cohesion: 0.50
-Nodes (3): DataFrame, Series, Calculates zero-lag momentum using an Adaptive Kalman Filter state-space model.
+### Community 166 - "TradingSystem"
+Cohesion: 0.24
+Nodes (7): DataFrame, TradingSystem, run_test(), Assert no references to ofi_active_orders.json or close_ofi_positions remain…, Assert 'deep_ofi' is not present in the EnsembleAgent agent_names list…, test_deep_ofi_not_in_ensemble_agent_names(), test_no_ofi_references_in_main_py()
 
 ## Knowledge Gaps
-- **170 isolated node(s):** `start.sh script`, `graphify`, `Workflow: graphify`, `graphify`, `1. Thesis Summary` (+165 more)
+- **217 isolated node(s):** `name`, `version`, `description`, `type`, `antigravity-bridge` (+212 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **27 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `AlpacaDataFetcher` connect `BacktestEngine` to `engine.py`, `.fetch_historical_data`, `SECForm4Parser`, `trading_system/main.py`?**
-  _High betweenness centrality (0.023) - this node is a cross-community bridge._
-- **Why does `init_db()` connect `init_db` to `test_dashboard.py`, `get_db_connection`, `process_requests.py`, `scoring.py`, `test_export_to_obsidian.py`, `save_fetched_item`, `scan.py`, `db.py`, `test_thesis_ledger.py`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `TradingSystem` connect `trading_system/main.py` to `engine.py`, `OrderManager`, `PortfolioRanker`, `test_ofi_removal.py`, `EnsembleAgent`, `GovernanceEngine`, `RegimeDetector`, `BacktestEngine`, `resolve_peak_nav`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `init_db()` connect `init_db` to `save_fetched_item`, `director_apply.py`, `test_scoring.py`, `db.py`, `test_export_to_obsidian.py`, `test_log_trade.py`, `test_run_daemon.py`, `scan.py`, `test_thesis_ledger.py`?**
+  _High betweenness centrality (0.040) - this node is a cross-community bridge._
+- **Why does `BacktestEngine` connect `BacktestEngine` to `bootstrap_model.py`, `PortfolioRanker`, `ChronosInference`, `RegimeDetector`, `GovernanceEngine`, `VolatilityGuard`, `test_leakage.py`, `engine.py`?**
+  _High betweenness centrality (0.040) - this node is a cross-community bridge._
+- **Why does `AlpacaDataFetcher` connect `BacktestEngine` to `bootstrap_model.py`, `SECForm4Parser`, `TradingSystem`, `.fetch_historical_data`, `engine.py`?**
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+- **Are the 7 inferred relationships involving `datetime` (e.g. with `test_fresh_timestamps_produce_no_alert()` and `test_missing_key_treated_as_stale()`) actually correct?**
+  _`datetime` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 11 inferred relationships involving `BacktestEngine` (e.g. with `DeepOrthogonalizer` and `EnsembleAgent`) actually correct?**
   _`BacktestEngine` has 11 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 13 inferred relationships involving `TradingSystem` (e.g. with `EnsembleAgent` and `RegimeDetector`) actually correct?**
-  _`TradingSystem` has 13 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 2 inferred relationships involving `AlpacaDataFetcher` (e.g. with `InsiderClusterBacktester` and `TradingSystem`) actually correct?**
-  _`AlpacaDataFetcher` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `start.sh script`, `graphify`, `Workflow: graphify` to the rest of the system?**
-  _170 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `name`, `version`, `description` to the rest of the system?**
+  _217 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `bootstrap_model.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.12121212121212122 - nodes in this community are weakly interconnected._

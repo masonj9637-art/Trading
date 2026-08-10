@@ -1,1817 +1,2152 @@
 {
   ".agents/rules/graphify.md": {
-    "mtime": 1785186502.0805633,
-    "ast_hash": "f1e53ecc9194573d3c28fc116c743a2e",
+    "mtime": 1785936982.2815228,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
     "semantic_hash": ""
   },
   ".agents/workflows/graphify.md": {
-    "mtime": 1785186502.0805633,
-    "ast_hash": "0bc020d491fca99550c1ea3de0a5f862",
+    "mtime": 1786287495.4690015,
+    "ast_hash": "a831cf3669f1e6ab85d8a80ebe655f99",
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1785186626.03022,
-    "ast_hash": "53ad5f65df23f92615c9078d201f9d96",
+    "mtime": 1785936982.2838326,
+    "ast_hash": "a54dfd30e4a430cca215ea5401b9f1ca",
     "semantic_hash": ""
   },
   "research_scanner/__init__.py": {
-    "mtime": 1785283923.967416,
-    "ast_hash": "0a20dfd1a2bb0fc8a26fab0dbbc6fc96",
+    "mtime": 1785936982.6218169,
+    "ast_hash": "f31323552695560eb315cf07d245de02",
     "semantic_hash": ""
   },
   "research_scanner/config.py": {
-    "mtime": 1785721512.6260421,
-    "ast_hash": "1dc0f289327e7aea6001e8c82b2e4431",
+    "mtime": 1786287312.9240365,
+    "ast_hash": "803fa00118bd006cbecb76fb631d26d6",
     "semantic_hash": ""
   },
   "research_scanner/db.py": {
-    "mtime": 1785534628.7483444,
-    "ast_hash": "e300234197c6a553f7f7dd45f93be9cc",
+    "mtime": 1786287289.4519827,
+    "ast_hash": "20eb68e0514e9ad21aac70cc97754182",
     "semantic_hash": ""
   },
   "research_scanner/notifier.py": {
-    "mtime": 1785534333.5085368,
-    "ast_hash": "c75d1140a510ac5bc3ab1c3f5ede612d",
+    "mtime": 1785936982.7086315,
+    "ast_hash": "de1fb7f01cbff9e6d8a5b78c8e749d8c",
     "semantic_hash": ""
   },
   "research_scanner/scan.py": {
-    "mtime": 1785720848.9361136,
-    "ast_hash": "5e9c37af3bb3bb20258c3b7b15e043fc",
+    "mtime": 1785936982.810137,
+    "ast_hash": "1d7c29ce03ae0312f9d33786259f388f",
     "semantic_hash": ""
   },
   "research_scanner/sources/__init__.py": {
-    "mtime": 1785720844.5951228,
-    "ast_hash": "2f025ea659d7e7adbfd9e500962f9428",
+    "mtime": 1785936982.8116796,
+    "ast_hash": "3b6fdf3454050acc354501110e65e930",
     "semantic_hash": ""
   },
   "research_scanner/sources/arxiv.py": {
-    "mtime": 1785723543.3526578,
-    "ast_hash": "1854194bf14bccfcd18b168489e139e9",
+    "mtime": 1785936982.8116796,
+    "ast_hash": "d6f4bb55cc0e16ef12aac766a1c575f3",
     "semantic_hash": ""
   },
   "research_scanner/sources/currents.py": {
-    "mtime": 1785283936.9032712,
-    "ast_hash": "9c3e0ff6702885af5104edcc2f1a9027",
+    "mtime": 1785936982.8127155,
+    "ast_hash": "aa96f6b01ecacbfafd56611b254a41cd",
     "semantic_hash": ""
   },
   "research_scanner/sources/uspto.py": {
-    "mtime": 1785283934.477298,
-    "ast_hash": "98cfa0adaa186c6eb244f10340ee766a",
+    "mtime": 1785936982.8137596,
+    "ast_hash": "a468b5ced225a2b9a9e0e06641b24abe",
     "semantic_hash": ""
   },
   "research_scanner/tests/__init__.py": {
-    "mtime": 1785283948.277147,
-    "ast_hash": "b9f61f56ac8c27fbb023c60c65f8cf83",
+    "mtime": 1785936982.816036,
+    "ast_hash": "937a29e3b72633e624bd724aa7ba5ac8",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_db.py": {
-    "mtime": 1785533142.9072824,
-    "ast_hash": "d22d364b6ca6a4be01cf1d1c6ffd90bf",
+    "mtime": 1786287322.1488206,
+    "ast_hash": "890cc0b12362f23ab788008ab1f51da2",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_notifier.py": {
-    "mtime": 1785283958.5040379,
-    "ast_hash": "ca2e26c3bb21e8ed4bf7f4f5e9ab18b9",
+    "mtime": 1785936982.8194978,
+    "ast_hash": "667406818ddd604d0b7625571d1c51ce",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_scan.py": {
-    "mtime": 1785720870.7080655,
-    "ast_hash": "195bbd3062122aaf8f7f291480d86039",
+    "mtime": 1785936982.8205435,
+    "ast_hash": "6e00a31e1605360d6dd66b697da9b481",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_sources.py": {
-    "mtime": 1785720858.6460924,
-    "ast_hash": "5b7842198f2aa06b391950442beaa249",
+    "mtime": 1785936982.821588,
+    "ast_hash": "c7608a93df0ac706076db1d1dbba0761",
     "semantic_hash": ""
   },
   "research_scanner/README.md": {
-    "mtime": 1785284641.5820038,
-    "ast_hash": "22df959110d767840c1a013939fbe33b",
+    "mtime": 1785938743.4943159,
+    "ast_hash": "c43767f4944ad56b01ec62e9c305a045",
     "semantic_hash": ""
   },
   "trading_system/backtest/__init__.py": {
-    "mtime": 1781902396.3168144,
+    "mtime": 1785936982.8347168,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/backtest/engine.py": {
-    "mtime": 1784763718.4257336,
-    "ast_hash": "eaa131fae498357eea9849260763954b",
+    "mtime": 1785936982.835725,
+    "ast_hash": "5b45f7bb9551cfb05c92b5b0145b170c",
     "semantic_hash": ""
   },
   "trading_system/backtest/insider_cluster_backtest.py": {
-    "mtime": 1785187094.1572917,
-    "ast_hash": "038bd97d45357d339736d61d88ad8487",
+    "mtime": 1785936982.835725,
+    "ast_hash": "57137b3b31c8f5438956f2056c500731",
     "semantic_hash": ""
   },
   "trading_system/backtest/metrics.py": {
-    "mtime": 1782078133.5749705,
-    "ast_hash": "8cd27875e7c6ed493421ac8127aee61d",
+    "mtime": 1785936982.8367252,
+    "ast_hash": "e199b78e13c78d9ebae21a866a273ced",
     "semantic_hash": ""
   },
   "trading_system/backtest/optimize_optuna.py": {
-    "mtime": 1784760149.0261383,
-    "ast_hash": "6be234a6f1b2a22f618c10befdab8620",
+    "mtime": 1785936982.8367252,
+    "ast_hash": "b4713378d01562687c0baf0516ed9496",
     "semantic_hash": ""
   },
   "trading_system/backtest/run_1_year_optimal.py": {
-    "mtime": 1784324903.2940123,
-    "ast_hash": "90fa0c21a62ae1c31a8ac0c57b007e21",
+    "mtime": 1785936982.8377352,
+    "ast_hash": "b38d4820e11e48d7a309099a7852b859",
     "semantic_hash": ""
   },
   "trading_system/backtest/run_2025_optimal.py": {
-    "mtime": 1784322750.960949,
-    "ast_hash": "a3c2f8685e79b9dc39992c2c16479854",
+    "mtime": 1785936982.8377352,
+    "ast_hash": "1ccf2cc467029450e4eedb24b3d9ee28",
     "semantic_hash": ""
   },
   "trading_system/backtest/run_2_year_optimal.py": {
-    "mtime": 1782263735.026173,
-    "ast_hash": "7cc450ba23f36e218cddec935d95cd3d",
+    "mtime": 1785936982.8377352,
+    "ast_hash": "c8eaf30249e9134afd14293ccf25ade1",
     "semantic_hash": ""
   },
   "trading_system/bootstrap_model.py": {
-    "mtime": 1784762600.6477652,
-    "ast_hash": "a4a1d83ec3bcc0d60d57b71cbbfcbf38",
+    "mtime": 1785936982.8388107,
+    "ast_hash": "90a1e4e39dde1f03924899cd32e66494",
     "semantic_hash": ""
   },
   "trading_system/core/__init__.py": {
-    "mtime": 1781901145.364338,
+    "mtime": 1785936982.8388107,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/core/conditional_autoencoder.py": {
-    "mtime": 1784324605.242609,
-    "ast_hash": "417b8fb077983dd29bdf36e6f0cc257f",
+    "mtime": 1785936982.8401804,
+    "ast_hash": "2910306fc5d9b67783e9a16941d6c972",
     "semantic_hash": ""
   },
   "trading_system/core/ensemble_agent.py": {
-    "mtime": 1782506752.18538,
-    "ast_hash": "8b87ff44c2318148d4d6a203aa64a94d",
+    "mtime": 1785936982.8401804,
+    "ast_hash": "9dd933f02052fa70cec4bbbddfc2696a",
     "semantic_hash": ""
   },
   "trading_system/core/regime_detector.py": {
-    "mtime": 1781901233.1296713,
-    "ast_hash": "85c0aba811bfa58148e68f642b36081a",
+    "mtime": 1785936982.8401804,
+    "ast_hash": "3718117c34b4bdbf355c615f1d2dcfc2",
     "semantic_hash": ""
   },
   "trading_system/core/thompson_sampling.py": {
-    "mtime": 1784324613.2895646,
-    "ast_hash": "601deb2fb1ba40bec422c93276c86c6d",
+    "mtime": 1785936982.8413682,
+    "ast_hash": "4bce44945daea60d64db3f3ce527a256",
     "semantic_hash": ""
   },
   "trading_system/data/__init__.py": {
-    "mtime": 1781901791.3624682,
+    "mtime": 1785936982.8413682,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/data/alpaca_fetcher.py": {
-    "mtime": 1783368693.2441711,
-    "ast_hash": "149b8369f35cf7b6ede80859f6e3ac90",
+    "mtime": 1785936982.842413,
+    "ast_hash": "e4df3dbad6b25bfd29f770743e120d8c",
     "semantic_hash": ""
   },
   "trading_system/data/insider_buys_cache.json": {
     "mtime": 1785187486.5120547,
-    "ast_hash": "123e6813fda41e2770223e7c7e948b93",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/data/insider_clusters_cache.json": {
     "mtime": 1785187486.5420568,
-    "ast_hash": "666cd457e94f121b55ccc28b7d927a34",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/data/sec_form4_parser.py": {
-    "mtime": 1785186856.4492676,
-    "ast_hash": "e9f628217ffeaf71729e45ad4ba8afed",
+    "mtime": 1785936982.844499,
+    "ast_hash": "19dc58a1cb6e05c44c3c0acf47abb8ca",
     "semantic_hash": ""
   },
   "trading_system/data/sec_tickers_map.json": {
     "mtime": 1785186859.6163092,
-    "ast_hash": "726b0f41f49c64d9e964d5b38279e017",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/eod_auditor.py": {
-    "mtime": 1783543665.031341,
-    "ast_hash": "635d061680fe94ec54cbd4a78ef4ac7e",
+    "mtime": 1785936982.8485408,
+    "ast_hash": "baf8bc6a5dc46a441b3a33175c1fd7b3",
     "semantic_hash": ""
   },
   "trading_system/execution/__init__.py": {
-    "mtime": 1781901145.364338,
+    "mtime": 1785936982.849566,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/execution/alpaca_client.py": {
-    "mtime": 1783367994.8109012,
-    "ast_hash": "39ee11fa764db10960f5094d4e25bbc4",
+    "mtime": 1785936982.8502645,
+    "ast_hash": "5e82a2aec32513e04f67a81748558c05",
     "semantic_hash": ""
   },
   "trading_system/execution/order_manager.py": {
-    "mtime": 1784324622.689513,
-    "ast_hash": "bccb695fb890b5c94eb6179e1cfe0edf",
+    "mtime": 1785936982.8502645,
+    "ast_hash": "32a0ae03008a869d065a4c7141c0609d",
     "semantic_hash": ""
   },
   "trading_system/governance/__init__.py": {
-    "mtime": 1781901145.364338,
+    "mtime": 1785936982.8513258,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/governance/audit.py": {
-    "mtime": 1781901255.3067622,
-    "ast_hash": "5694d7e91dc030bba2d4bf1517056316",
+    "mtime": 1785936982.8513258,
+    "ast_hash": "1f89dcff551c80e637f20e03da72f7ca",
     "semantic_hash": ""
   },
   "trading_system/governance/firewall.py": {
-    "mtime": 1784763706.3277273,
-    "ast_hash": "6abb63b2f57a2835ece269d9a3f66439",
+    "mtime": 1785936982.8523693,
+    "ast_hash": "a31384a09ea86db54543a9afacd83abe",
     "semantic_hash": ""
   },
   "trading_system/health_monitor.py": {
-    "mtime": 1782246999.661263,
-    "ast_hash": "ee6841759e90b24a05aabb7f0b97e0d7",
+    "mtime": 1785936982.8523693,
+    "ast_hash": "6ed789ff819afe2a9c163fb63bf55b54",
     "semantic_hash": ""
   },
   "trading_system/inference/__init__.py": {
-    "mtime": 1781901145.364338,
+    "mtime": 1785936982.853413,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/inference/main.py": {
-    "mtime": 1782160072.6303587,
-    "ast_hash": "5bacc08c888a1cb02dd317f4df215bae",
+    "mtime": 1785936982.853413,
+    "ast_hash": "704adf7fec40cccb4ed472ae9e66bd25",
     "semantic_hash": ""
   },
   "trading_system/inference/model.py": {
-    "mtime": 1784324613.2885647,
-    "ast_hash": "94c71b145be66440b751356179b4f366",
+    "mtime": 1785936982.853413,
+    "ast_hash": "beded582dddf40dafc50958a5631f773",
     "semantic_hash": ""
   },
   "trading_system/main.py": {
-    "mtime": 1784762705.6755674,
-    "ast_hash": "0daf0e67b2821f1e281962eb0fca1b6f",
+    "mtime": 1785936982.8544579,
+    "ast_hash": "3c86acfba6d00b50962d0c2f7fdec7e8",
     "semantic_hash": ""
   },
   "trading_system/orchestrate_bootstrap.py": {
-    "mtime": 1783975402.0401466,
-    "ast_hash": "795514bd404d8017eaa05bc229353894",
+    "mtime": 1785936982.856669,
+    "ast_hash": "46f395a9437b05576d79d18c1e07c79d",
     "semantic_hash": ""
   },
   "trading_system/orchestrate_daily.py": {
-    "mtime": 1784324626.8734899,
-    "ast_hash": "b1d46524879f6e4f43a06e1ae76e9dea",
+    "mtime": 1785936982.856669,
+    "ast_hash": "e4814ab138e179b9f073a37e76943789",
     "semantic_hash": ""
   },
   "trading_system/parse_pnl.py": {
-    "mtime": 1783713818.7441816,
-    "ast_hash": "521b3b7beaec1b65886a4a28b899cde5",
+    "mtime": 1785936982.856669,
+    "ast_hash": "6b7955a05b922407932fbf4ada9f75a2",
     "semantic_hash": ""
   },
   "trading_system/refactor.py": {
-    "mtime": 1783628859.4042468,
-    "ast_hash": "b75536a23cb3de908cbc46375e1e7da8",
+    "mtime": 1785936982.8577423,
+    "ast_hash": "1d646e31344e50c5a2ecd13186f03e32",
     "semantic_hash": ""
   },
   "trading_system/scratch/analyze_and_build_report.py": {
-    "mtime": 1784850486.9685926,
-    "ast_hash": "59ebce2749fde39040ef967eaf55c46f",
+    "mtime": 1785936982.8727875,
+    "ast_hash": "c5aaf3df3d5dfeb2cf6fa0b4d638b766",
     "semantic_hash": ""
   },
   "trading_system/scratch/analyze_filings.py": {
-    "mtime": 1784837506.2909718,
-    "ast_hash": "c23b83b5077179faa339db6378fee862",
+    "mtime": 1785936982.8727875,
+    "ast_hash": "b58f9c179c75e214e998c9998ddcac99",
     "semantic_hash": ""
   },
   "trading_system/scratch/analyze_fintech_filings.py": {
-    "mtime": 1784851157.7229161,
-    "ast_hash": "edd830fa1958b21d6405632e89c7bfd8",
+    "mtime": 1785936982.8740675,
+    "ast_hash": "4b4d9a90eb441f218c57005bb09353a4",
     "semantic_hash": ""
   },
   "trading_system/scratch/analyze_mining_filings.py": {
-    "mtime": 1784850836.5061374,
-    "ast_hash": "3a61968fefd16835c9e521cdfa0c0b06",
+    "mtime": 1785936982.8751595,
+    "ast_hash": "6e98127d0d484485ac0fce5f03422d63",
     "semantic_hash": ""
   },
   "trading_system/scratch/analyze_pnl.py": {
-    "mtime": 1784320588.7670496,
-    "ast_hash": "9604866b5307c0052b7af67ec53be92e",
+    "mtime": 1785936982.8751595,
+    "ast_hash": "3d260931529fcc0c5739ba49f7633fa0",
     "semantic_hash": ""
   },
   "trading_system/scratch/auto_shutdown_daemon.py": {
-    "mtime": 1784773808.0770168,
-    "ast_hash": "6478a3a31f146ea37834cf8aaa71aac1",
+    "mtime": 1785936982.8762047,
+    "ast_hash": "7cafd7897e154d7e19fd376f4597f448",
     "semantic_hash": ""
   },
   "trading_system/scratch/build_biotech_filings_md.py": {
-    "mtime": 1784850491.842597,
-    "ast_hash": "94669b6397ecd9c5efb9ba04afaab9ef",
+    "mtime": 1785936982.8772464,
+    "ast_hash": "43dffcaaac55c86decdf8cdd7db08e68",
     "semantic_hash": ""
   },
   "trading_system/scratch/build_clusters_direct.py": {
-    "mtime": 1785187021.979381,
-    "ast_hash": "544724d27d84031d0b41c044f5a0b772",
+    "mtime": 1785936982.8782969,
+    "ast_hash": "f5f6f1aefe26fc9b5c4df5a21c7472ae",
     "semantic_hash": ""
   },
   "trading_system/scratch/build_full_cluster_dataset.py": {
-    "mtime": 1785186869.2624347,
-    "ast_hash": "ce2ce86a5a2f2eaf7ba4fa828b71718c",
+    "mtime": 1785936982.8793378,
+    "ast_hash": "bd61666b8dea824d5750f4451467a5df",
     "semantic_hash": ""
   },
   "trading_system/scratch/cancel_all.py": {
-    "mtime": 1783714435.2415025,
-    "ast_hash": "4c5c24e5190cebcb4668bcb89fe51182",
+    "mtime": 1785936982.8793378,
+    "ast_hash": "18e2f38f46bfd15295fcc454672d38c3",
     "semantic_hash": ""
   },
   "trading_system/scratch/check_candidates.py": {
-    "mtime": 1784837150.7411017,
-    "ast_hash": "6c9f6046a2be625387040237b23707be",
+    "mtime": 1785936982.880387,
+    "ast_hash": "c45b91cfac0250c427bfa0fe8df05a9b",
     "semantic_hash": ""
   },
   "trading_system/scratch/check_positions.py": {
-    "mtime": 1783714094.2372456,
-    "ast_hash": "c824ca4d63f2a8a31f31da72b99af2a8",
+    "mtime": 1785936982.880387,
+    "ast_hash": "cd8dd4b546cc9a940ef6137162f340bd",
     "semantic_hash": ""
   },
   "trading_system/scratch/check_processed.py": {
-    "mtime": 1784850498.6866033,
-    "ast_hash": "96d09e6d3635aa20890e4e179468614b",
+    "mtime": 1785936982.8814163,
+    "ast_hash": "6814b9c77e0ceb5aef4b204882d00d07",
     "semantic_hash": ""
   },
   "trading_system/scratch/check_tp_sl.py": {
-    "mtime": 1783463295.4586332,
-    "ast_hash": "0819eca861f9d9519d0bed5dbaa7ea87",
+    "mtime": 1785936982.8821568,
+    "ast_hash": "3de0d85010d4c0c2e0a56c2ad574008a",
     "semantic_hash": ""
   },
   "trading_system/scratch/create_merged_filings.py": {
-    "mtime": 1784837665.280187,
-    "ast_hash": "1c40a1b0853c73b95aadfe097a1bb928",
+    "mtime": 1785936982.8831663,
+    "ast_hash": "cd005d4262a3803dae74c4b8ffb52d0f",
     "semantic_hash": ""
   },
   "trading_system/scratch/enrich_and_run_backtest.py": {
-    "mtime": 1785187106.6234488,
-    "ast_hash": "8acbc1d5cf01f12daea3d5c5a414aeef",
+    "mtime": 1785936982.8843932,
+    "ast_hash": "ee106791cdbcf77554113bb1f955d26d",
     "semantic_hash": ""
   },
   "trading_system/scratch/fast_cluster_finder.py": {
-    "mtime": 1785186891.9957287,
-    "ast_hash": "6eb8fe926c8efd32d18c7d1f8228b526",
+    "mtime": 1785936982.885398,
+    "ast_hash": "e8f1ef2673f6550fff838818106117b2",
     "semantic_hash": ""
   },
   "trading_system/scratch/fetch_all_8ks.py": {
-    "mtime": 1784837248.5965016,
-    "ast_hash": "64817b1b7a9eab41616a0dc273a66ed9",
+    "mtime": 1785936982.885398,
+    "ast_hash": "084bdd05a2c79f28611cca0c5947d371",
     "semantic_hash": ""
   },
   "trading_system/scratch/fetch_and_build_report.py": {
-    "mtime": 1784837176.7142131,
-    "ast_hash": "ed5b995ae749490e011c2b3fed77901c",
+    "mtime": 1785936982.886606,
+    "ast_hash": "960a0aa5ae2fc58a6cb288fa934453b5",
     "semantic_hash": ""
   },
   "trading_system/scratch/fetch_and_parse_filings.py": {
-    "mtime": 1784850445.3165605,
-    "ast_hash": "b7c79977dfce927fc0868d8d852385a0",
+    "mtime": 1785936982.886606,
+    "ast_hash": "7a1654c9697a42559116eab9226bc5a2",
     "semantic_hash": ""
   },
   "trading_system/scratch/fetch_and_parse_fintech_filings.py": {
-    "mtime": 1784851106.2057796,
-    "ast_hash": "da4028afd9597c79b8e1b4acc784e4c1",
+    "mtime": 1785936982.8876064,
+    "ast_hash": "4817fff20d2753727f641e5a37773142",
     "semantic_hash": ""
   },
   "trading_system/scratch/fetch_and_parse_mining_filings.py": {
-    "mtime": 1784850792.1320465,
-    "ast_hash": "284b93f4e7a3cb85c65799e895fab4f2",
+    "mtime": 1785936982.8879495,
+    "ast_hash": "709a33beb1231669678bab563fff3008",
     "semantic_hash": ""
   },
   "trading_system/scratch/filings_for_review.json": {
     "mtime": 1784850494.8755996,
-    "ast_hash": "317e8525c2d7e8dd05e34225ebb8a289",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/final_biotech_rows.json": {
     "mtime": 1784850506.2896104,
-    "ast_hash": "d2b63c998d79d167c88968a07af19d7f",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/final_fintech_rows.json": {
     "mtime": 1784851159.2749202,
-    "ast_hash": "c9a4a6cb22c3f5824869fa3a221d5cc4",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/final_mining_rows.json": {
     "mtime": 1784850837.9521403,
-    "ast_hash": "e00c10be67fd9c60c6dfb8f382acf0b9",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/format_final_markdown.py": {
-    "mtime": 1784850508.4636126,
-    "ast_hash": "c984c3269cec0559a9b684b3c7cc6b42",
+    "mtime": 1785936982.8954566,
+    "ast_hash": "4bd669fdf74f19d28a6b575151e933f8",
     "semantic_hash": ""
   },
   "trading_system/scratch/format_fintech_markdown.py": {
-    "mtime": 1784851161.9719276,
-    "ast_hash": "758f197537a27aecd8346110ce5efe93",
+    "mtime": 1785936982.8954566,
+    "ast_hash": "7a4e2157502345fb5ecadc024bc9e884",
     "semantic_hash": ""
   },
   "trading_system/scratch/format_mining_markdown.py": {
-    "mtime": 1784850840.3801455,
-    "ast_hash": "4122de8eb08ee56f40c44b8b090c9e26",
+    "mtime": 1785936982.896473,
+    "ast_hash": "a6696879c0e974590f708909cb4c6f5e",
     "semantic_hash": ""
   },
   "trading_system/scratch/generate_baseline.py": {
-    "mtime": 1784848010.7873428,
-    "ast_hash": "63d37df835984b58805b2d43df9951f2",
+    "mtime": 1785936982.897477,
+    "ast_hash": "ad256cf71752861ca18852ab378c9ea9",
     "semantic_hash": ""
   },
   "trading_system/scratch/generate_final_dataset.py": {
-    "mtime": 1784837325.9758058,
-    "ast_hash": "04f98d61b8ad59a07faa198f4848fe14",
+    "mtime": 1785936982.897477,
+    "ast_hash": "cacd0a135ce0772eb6c6a1298097377f",
     "semantic_hash": ""
   },
   "trading_system/scratch/generate_final_table.py": {
-    "mtime": 1784837537.351984,
-    "ast_hash": "8379311fbbc2d177079149531151b6c9",
+    "mtime": 1785936982.898466,
+    "ast_hash": "351a326427001c178bebf5a4d23400cb",
     "semantic_hash": ""
   },
   "trading_system/scratch/insider_cluster_backtest_results.json": {
     "mtime": 1785187110.8065014,
-    "ast_hash": "f169cdc9da26af8c23d235c1693573c6",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/inspect_details.py": {
-    "mtime": 1784851931.4668672,
-    "ast_hash": "27df7f6e0f848b7d5d288c202fd08c0e",
+    "mtime": 1785936982.8996408,
+    "ast_hash": "14581fd4b54cf94997519ee36a2fbd09",
     "semantic_hash": ""
   },
   "trading_system/scratch/inspect_filings.py": {
-    "mtime": 1784850482.5405889,
-    "ast_hash": "3ff65a7dd02b9f6dee07c26cb703f5fe",
+    "mtime": 1785936982.9009447,
+    "ast_hash": "6555b414195df0cb6b8a11317099fecf",
     "semantic_hash": ""
   },
   "trading_system/scratch/inspect_fintech_items.py": {
-    "mtime": 1784851152.792903,
-    "ast_hash": "20f57c090a4d396188fc332bc4a0a387",
+    "mtime": 1785936982.9014518,
+    "ast_hash": "36d2327c7211fe7c2e512af368535658",
     "semantic_hash": ""
   },
   "trading_system/scratch/inspect_metrics.py": {
-    "mtime": 1784837522.1959755,
-    "ast_hash": "c13da15ad1a6cd3e8ea89538640d910e",
+    "mtime": 1785936982.9014518,
+    "ast_hash": "e1f6326df3cfed6f0e22283eed1520aa",
     "semantic_hash": ""
   },
   "trading_system/scratch/parse_pnl.py": {
-    "mtime": 1783713824.42417,
-    "ast_hash": "6c8bfab86decee16a469ebc124708116",
+    "mtime": 1785936982.9050245,
+    "ast_hash": "995123dfc2e1e9623ab7d113fc4e835b",
     "semantic_hash": ""
   },
   "trading_system/scratch/parsed_8k_filings.json": {
     "mtime": 1784850480.2015867,
-    "ast_hash": "70920e089b3295c549458cfd9d16876a",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/parsed_fintech_8k_filings.json": {
     "mtime": 1784851143.7938788,
-    "ast_hash": "1e930edc00fc46eaa49ae136f2fe6ac4",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/parsed_mining_8k_filings.json": {
     "mtime": 1784850832.2281284,
-    "ast_hash": "11d1cd2f7fa9f23092d957dd38d8f85f",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_data_fetcher.py": {
-    "mtime": 1785186833.12696,
-    "ast_hash": "ca072cf1689b51cc51fd97de36ec1138",
+    "mtime": 1785936982.9104197,
+    "ast_hash": "1c25ef40a509484d7d228de241bbd142",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_fast_universe_builder.py": {
-    "mtime": 1785186864.5493734,
-    "ast_hash": "416c7573d7ceafa67e72040013fca29a",
+    "mtime": 1785936982.9114416,
+    "ast_hash": "bc2e12d357944124073ccbf000e28fd8",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_fast_universe_builder_v2.py": {
-    "mtime": 1785186883.7736228,
-    "ast_hash": "2576315bb692cec51b30f1336419ed83",
+    "mtime": 1785936982.9114416,
+    "ast_hash": "3bff0cc644fdacf431dbf74333094902",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_fast_universe_builder_v3.py": {
-    "mtime": 1785186901.1868467,
-    "ast_hash": "e7bf8afbd6e6f0d8126b2d167c9f1f3e",
+    "mtime": 1785936982.912659,
+    "ast_hash": "451f13d0b65a2acdb7f43a246eb327ba",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_fast_universe_builder_v4.py": {
-    "mtime": 1785186974.0237746,
-    "ast_hash": "f0bd7a8ebc4cee0e255ca29e894b8442",
+    "mtime": 1785936982.912659,
+    "ast_hash": "ace9aca2f4cf6a570d91844a09749867",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_fast_universe_builder_v5.py": {
-    "mtime": 1785187039.142598,
-    "ast_hash": "3687cef92750c5a2e0c17842ea3b959d",
+    "mtime": 1785936982.9137044,
+    "ast_hash": "74b399e2478e2f62fb0e33e602823458",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_fast_universe_builder_v6.py": {
-    "mtime": 1785187057.6898317,
-    "ast_hash": "81bdc37c8a9d605aedc8ed9d863b2133",
+    "mtime": 1785936982.9137044,
+    "ast_hash": "d9f0e6469def174b1c176671a39a2565",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_fast_universe_builder_v7.py": {
-    "mtime": 1785187076.5190692,
-    "ast_hash": "8dd9fca43f63cca2e803ff3b653c1e88",
+    "mtime": 1785936982.9147503,
+    "ast_hash": "a51dcc73482bc090274d22d04823ffef",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_liquid_universe.json": {
     "mtime": 1785187346.7024727,
-    "ast_hash": "c60ea5a431210ae1336221a01d763685",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_perfect_universe_builder.py": {
-    "mtime": 1785187252.6542883,
-    "ast_hash": "3a7ad3aecc043496cb6fa061f1e81476",
+    "mtime": 1785936982.9609928,
+    "ast_hash": "d4113a818ffdff6756e254263dc7433d",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_results_summary.json": {
     "mtime": 1785187372.939665,
-    "ast_hash": "60bb8882d145c6b4e9ef1131eb1f7632",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_strategy_backtest.py": {
-    "mtime": 1785187360.1476421,
-    "ast_hash": "13b4574a4a8c1ea0123a93e22d3b1951",
+    "mtime": 1785936982.9624996,
+    "ast_hash": "e85c7dcc877c5a48f3e07dfe0bf18e89",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_universe.json": {
     "mtime": 1785187332.0802886,
-    "ast_hash": "65273ab20e0eabb86800421f93706991",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/pead_universe_builder.py": {
-    "mtime": 1785186819.5117779,
-    "ast_hash": "95815471eb3d1b79450fefe65a8de97b",
+    "mtime": 1785936982.9681447,
+    "ast_hash": "dcba03451e64615ada75ffb909a60fd7",
     "semantic_hash": ""
   },
   "trading_system/scratch/perfect_summarizer.py": {
-    "mtime": 1784850504.830609,
-    "ast_hash": "eda3b960c961648cc76c947c231bd37d",
+    "mtime": 1785936982.9691453,
+    "ast_hash": "1d9e41773cdc8ef7f632ab219ff85077",
     "semantic_hash": ""
   },
   "trading_system/scratch/print_markdown_table.py": {
-    "mtime": 1784837546.6499913,
-    "ast_hash": "b17f0f15f389e0cbe101c4058e9c71bc",
+    "mtime": 1785936982.9701445,
+    "ast_hash": "4c5c951dac40f93a9919f0ccf32a8af6",
     "semantic_hash": ""
   },
   "trading_system/scratch/process_bars.py": {
-    "mtime": 1784837516.9829736,
-    "ast_hash": "e74f89254512dc6e131fefbe45f02764",
+    "mtime": 1785936982.971145,
+    "ast_hash": "1382c5bf5bef37102e13d5fc22a63d84",
     "semantic_hash": ""
   },
   "trading_system/scratch/processed_rows.json": {
     "mtime": 1784850496.6686013,
-    "ast_hash": "d519fb66154dfc9f4a058ff2fffe0ef5",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/reformat.py": {
-    "mtime": 1784321537.025384,
-    "ast_hash": "f43b751364d1f517f512ffa619397ef0",
+    "mtime": 1785936982.973145,
+    "ast_hash": "094773c61e1a080f766eeda7d1665aba",
     "semantic_hash": ""
   },
   "trading_system/scratch/run_comparison_analysis.py": {
-    "mtime": 1784851913.0320039,
-    "ast_hash": "52abce02b569a49d7ed175cc302e605a",
+    "mtime": 1785936982.9742672,
+    "ast_hash": "e7668891d6e315fc7774145b3ee8e5ad",
     "semantic_hash": ""
   },
   "trading_system/scratch/run_full_comparison.py": {
-    "mtime": 1784851923.9589221,
-    "ast_hash": "e3ffe1b9fa4911ceb615ab1435989f11",
+    "mtime": 1785936982.975278,
+    "ast_hash": "111e2c886efe2e84a4170876c9489c49",
     "semantic_hash": ""
   },
   "trading_system/scratch/scan_biotech.py": {
-    "mtime": 1784850251.2435443,
-    "ast_hash": "e9f537fa0357c65eb6d061956a07f097",
+    "mtime": 1785936982.9762766,
+    "ast_hash": "2a29dc0b229e1ceefc50bf6611a62c55",
     "semantic_hash": ""
   },
   "trading_system/scratch/scan_fintech.py": {
-    "mtime": 1784850933.3503518,
-    "ast_hash": "c8f68e75f4394c3a6bea610b92b078e9",
+    "mtime": 1785936982.9772773,
+    "ast_hash": "2f49999008e0cb1a3d1e9b9c60655633",
     "semantic_hash": ""
   },
   "trading_system/scratch/scan_mining.py": {
-    "mtime": 1784850723.837917,
-    "ast_hash": "648548d37042e625252f6ac2bf43fdb9",
+    "mtime": 1785936982.9772773,
+    "ast_hash": "f163dcf9911961d24b69b8e13c178764",
     "semantic_hash": ""
   },
   "trading_system/scratch/sec_scanner.py": {
-    "mtime": 1784837135.517032,
-    "ast_hash": "2cf3177f4cdd07aa80343a6b96f12f52",
+    "mtime": 1785936982.9793048,
+    "ast_hash": "8b915ed28f9e02760fb9977365310708",
     "semantic_hash": ""
   },
   "trading_system/scratch/seed_clusters.py": {
-    "mtime": 1785187065.4119291,
-    "ast_hash": "950fa7ec5378102cdccea33ec4b1938d",
+    "mtime": 1785936982.9805167,
+    "ast_hash": "20b58bc04d172c59b9e593a65f3eb4b1",
     "semantic_hash": ""
   },
   "trading_system/scratch/solve_paradox.py": {
-    "mtime": 1783714528.8847198,
-    "ast_hash": "659c7e6ab0700aa89e86b9a5f3c970f2",
+    "mtime": 1785936982.9835272,
+    "ast_hash": "148169f3155b3db1cb129e84f0e201f2",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_alpaca_err.py": {
-    "mtime": 1783714159.117397,
-    "ast_hash": "189a73d1fc32a26f4d320315427b8052",
+    "mtime": 1785936982.9844217,
+    "ast_hash": "8eb9fdb87b0f5452e4faafad82e3103b",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_alpaca_err2.py": {
-    "mtime": 1783714202.7668676,
-    "ast_hash": "ab5a6a3b20b2434ce8ae7ebd2aa4667a",
+    "mtime": 1785936982.9854782,
+    "ast_hash": "518417e8c1521636cee872e7530c73fd",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_alpaca_err3.py": {
-    "mtime": 1783714404.144781,
-    "ast_hash": "7ce138904aeafe667ba01b4c4608ace3",
+    "mtime": 1785936982.9854782,
+    "ast_hash": "d2cf3be32be8430e9ca944171f0a617a",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_alpaca_err4.py": {
-    "mtime": 1783714421.1326277,
-    "ast_hash": "a5f707b4aedfcb64722f01a7aea46135",
+    "mtime": 1785936982.9866028,
+    "ast_hash": "931d02b22aaa60f9dd7d6d6752c41c53",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_cancel_oco.py": {
-    "mtime": 1783714554.0545225,
-    "ast_hash": "515104a5edda447f5cfa67e74f577e6d",
+    "mtime": 1785936982.9866028,
+    "ast_hash": "e973405b8826ac33c82871d40925a39c",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_classification.py": {
-    "mtime": 1784837530.3069794,
-    "ast_hash": "059605668b3d30bcbff4739cb91089fe",
+    "mtime": 1785936982.987778,
+    "ast_hash": "d7c75ebcac019999a6aee37a5d9e9480",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_cross.py": {
-    "mtime": 1783713991.6277611,
-    "ast_hash": "87770cdf394f16f625b60520275be3a9",
+    "mtime": 1785936982.988823,
+    "ast_hash": "aa153c9c48bbca4608031f5ce0a619a6",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_import.py": {
-    "mtime": 1783714323.86555,
-    "ast_hash": "3b10f75ba9b9a80aa44687a1562cc1f0",
+    "mtime": 1785936982.990849,
+    "ast_hash": "b7b7f2baba4926cfad7516fcda2cc382",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_logic.py": {
-    "mtime": 1783714120.1608973,
-    "ast_hash": "15bcac6675ec1aa903b02a0dedf0ac90",
+    "mtime": 1785936982.9918547,
+    "ast_hash": "0406e513d67865dfcbfc17230c001064",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_oco.py": {
-    "mtime": 1783367831.307949,
-    "ast_hash": "5e492aa79f597a9cfd66b2325e8402c5",
+    "mtime": 1785936982.9928703,
+    "ast_hash": "3669148505a5d0ce31161d6f49a5c3b9",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_oco_alpaca.py": {
-    "mtime": 1783714272.110088,
-    "ast_hash": "50f8cf7431b015bbddd35f9e437f8386",
+    "mtime": 1785936982.9945385,
+    "ast_hash": "c6484bc01ff110e5dd22bc45397575f4",
     "semantic_hash": ""
   },
   "trading_system/scratch/test_oco_real.py": {
-    "mtime": 1784320442.3307967,
-    "ast_hash": "33ad05cb47aed92de76fcc82eaf5c046",
+    "mtime": 1785936982.9955516,
+    "ast_hash": "4b9293ff1fd412ba5df916e140bbd216",
     "semantic_hash": ""
   },
   "trading_system/scratch/valid_biotech_companies.json": {
     "mtime": 1784850442.6175587,
-    "ast_hash": "283292e7fa74b917e5f8d1b5fcaf4dfe",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/valid_fintech_companies.json": {
     "mtime": 1784851103.1187716,
-    "ast_hash": "b84aba3ee029bd4ed8df957186847ea7",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/valid_mining_companies.json": {
     "mtime": 1784850788.87204,
-    "ast_hash": "a7e75986a7eb3ca9d33ef972a37525ca",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/verified_45_comparison.py": {
-    "mtime": 1785188130.4086764,
-    "ast_hash": "11be0223d2e1750ab571eee5bf683159",
+    "mtime": 1785936983.0015497,
+    "ast_hash": "bb381e4cbe95be0f6d29d9c7fa6fc2b7",
     "semantic_hash": ""
   },
   "trading_system/scratch/verified_45_filings.json": {
     "mtime": 1785188061.5988376,
-    "ast_hash": "40eba569ee5e6df3c0c4cea5c849edd1",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "trading_system/scratch/verified_45_pipeline.py": {
-    "mtime": 1785187999.533099,
-    "ast_hash": "0ecc6383f9f156b205265cfedfb9a6be",
+    "mtime": 1785936983.0055356,
+    "ast_hash": "24b782718734ff478871b3cda16b3231",
     "semantic_hash": ""
   },
   "trading_system/scratch/yes_vs_no_comparison.py": {
-    "mtime": 1785186913.533005,
-    "ast_hash": "50b8c17b784c2eb69d2a82aa6899272a",
+    "mtime": 1785936983.0085905,
+    "ast_hash": "90eaf9b0bb906d3adca172eb1a542300",
     "semantic_hash": ""
   },
   "trading_system/signals/__init__.py": {
-    "mtime": 1781901145.364338,
+    "mtime": 1785936983.0107327,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/signals/alpha_isolation.py": {
-    "mtime": 1781901184.4484804,
-    "ast_hash": "d988b19fb85d82e9d06064222d3ed3ca",
+    "mtime": 1785936983.0117428,
+    "ast_hash": "94df4c215cf40f99b7f4db162e9d02ed",
     "semantic_hash": ""
   },
   "trading_system/signals/deep_ofi_agent.py": {
-    "mtime": 1784760305.132649,
-    "ast_hash": "dc4f01b95b9d66769646fd6a1996bf87",
+    "mtime": 1785936983.0117428,
+    "ast_hash": "5fcd18edbb292c970046a9b0b62a7e8e",
     "semantic_hash": ""
   },
   "trading_system/signals/kalman_agent.py": {
-    "mtime": 1784324613.2895646,
-    "ast_hash": "196ca41a025c8372d621f8012d6d7ac6",
+    "mtime": 1785936983.0127418,
+    "ast_hash": "c56c9fe80427fdfe1c911c1f78ff7a26",
     "semantic_hash": ""
   },
   "trading_system/signals/mean_reversion_agent.py": {
-    "mtime": 1781906577.3686035,
-    "ast_hash": "4b5fa40c0ab7170d2cbe32a68ebb94f2",
+    "mtime": 1785936983.0137742,
+    "ast_hash": "a2a424062543f09c5b08b4db1581dce1",
     "semantic_hash": ""
   },
   "trading_system/signals/momentum_agent.py": {
-    "mtime": 1781906575.3615801,
-    "ast_hash": "e63b3cb966f12dc79310a8f7cd170806",
+    "mtime": 1785936983.0149379,
+    "ast_hash": "59443558464abe55d8bfdc2d141bc4ab",
     "semantic_hash": ""
   },
   "trading_system/signals/pca_orthogonalization.py": {
-    "mtime": 1784324605.242609,
-    "ast_hash": "28b19f6be5699839e55f8a5838742a27",
+    "mtime": 1785936983.0160253,
+    "ast_hash": "2a19f0a3c3b0789f057bb5cfec40470d",
     "semantic_hash": ""
   },
   "trading_system/signals/ranking.py": {
-    "mtime": 1781901186.457488,
-    "ast_hash": "6f69cf316dbea20d78803c3b5691de02",
+    "mtime": 1785936983.0160253,
+    "ast_hash": "727a90b79636206d3d38c0e3e5d0bce0",
     "semantic_hash": ""
   },
   "trading_system/signals/regime_detector.py": {
-    "mtime": 1781906551.5312955,
-    "ast_hash": "c1bbc5cfd520d8da75bab7a8998ce3db",
+    "mtime": 1785936983.0170355,
+    "ast_hash": "cb5be1be6a154c398572049852dc9719",
     "semantic_hash": ""
   },
   "trading_system/signals/smoothing.py": {
-    "mtime": 1781901182.441473,
-    "ast_hash": "83b8b3fb7f78a6c0b667822cde9b3c39",
+    "mtime": 1785936983.0170355,
+    "ast_hash": "0a7b91b88a4c0fd24f1c1a036f393570",
     "semantic_hash": ""
   },
   "trading_system/signals/temporal_alignment.py": {
-    "mtime": 1781901164.444406,
-    "ast_hash": "4d23b835797fba3a5efdd1fdc8d17fab",
+    "mtime": 1785936983.0180342,
+    "ast_hash": "b2b81f8c00531105732cb75b52f985f3",
     "semantic_hash": ""
   },
   "trading_system/signals/volatility_guard.py": {
-    "mtime": 1784324622.690513,
-    "ast_hash": "a92d499a127bd4a57e072972b2f4c34e",
+    "mtime": 1785936983.0190375,
+    "ast_hash": "3f3f62f90ef8768263d66480bc4af130",
     "semantic_hash": ""
   },
   "trading_system/start.sh": {
-    "mtime": 1782162417.9946437,
-    "ast_hash": "77a56b28cf529e17204dfebc3c5ca8b3",
+    "mtime": 1785936983.0190375,
+    "ast_hash": "bb05431d25655bd632ed6faf98574156",
     "semantic_hash": ""
   },
   "trading_system/test_alpaca_advanced.py": {
-    "mtime": 1783023362.5942254,
-    "ast_hash": "0e6932126efc853a38df021c663f3da0",
+    "mtime": 1785936983.0200343,
+    "ast_hash": "b44352729167a5cc82f8b5f4284bcbe1",
     "semantic_hash": ""
   },
   "trading_system/test_crypto.py": {
-    "mtime": 1783023246.4181385,
-    "ast_hash": "b06451b31dabaf3543743bb7916a6b44",
+    "mtime": 1785936983.0200343,
+    "ast_hash": "9717aace4b488da8c7813ab551876540",
     "semantic_hash": ""
   },
   "trading_system/tests/__init__.py": {
-    "mtime": 1781901145.364338,
+    "mtime": 1785936983.0237627,
     "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
     "semantic_hash": ""
   },
   "trading_system/tests/test_bootstrap.py": {
-    "mtime": 1784762723.0685344,
-    "ast_hash": "27ebccce6384b3468682958ea9383488",
+    "mtime": 1785936983.024897,
+    "ast_hash": "b5889215d458c997f7b926e4febe0ca2",
     "semantic_hash": ""
   },
   "trading_system/tests/test_cost_model.py": {
-    "mtime": 1784762127.426584,
-    "ast_hash": "c4beae7ed00cde2e626c8b7a8745adb8",
+    "mtime": 1785936983.024897,
+    "ast_hash": "725d67507f5052429319a1c52edc22a3",
     "semantic_hash": ""
   },
   "trading_system/tests/test_drawdown_persistence.py": {
-    "mtime": 1784762695.6005867,
-    "ast_hash": "170a628ea5a3940a9720ad0260e29396",
+    "mtime": 1785936983.0262825,
+    "ast_hash": "345b68a9015849db81daf53ee71347f6",
     "semantic_hash": ""
   },
   "trading_system/tests/test_entry_protection.py": {
-    "mtime": 1784762176.6495063,
-    "ast_hash": "e5f009ef0019996c0424a063ae20e9d9",
+    "mtime": 1785936983.0275874,
+    "ast_hash": "edbaf7f1735b23d7e80a40d9887cdbfc",
     "semantic_hash": ""
   },
   "trading_system/tests/test_governance.py": {
-    "mtime": 1784762153.477543,
-    "ast_hash": "b27a0b2c5f04d6f69392123d968ab4d6",
+    "mtime": 1785936983.0275874,
+    "ast_hash": "b8ea24f35783c1b38890f08c3e6c0d3d",
     "semantic_hash": ""
   },
   "trading_system/tests/test_insider_cluster.py": {
-    "mtime": 1785186917.4990559,
-    "ast_hash": "2b5554f3121e84c495462f8d7ad276ad",
+    "mtime": 1785936983.029054,
+    "ast_hash": "1ca8861fabfefa8bb0c32027fa4c0277",
     "semantic_hash": ""
   },
   "trading_system/tests/test_leakage.py": {
-    "mtime": 1784762106.3156164,
-    "ast_hash": "bd2c24d33c35ccafd688c0f412c6760c",
+    "mtime": 1785936983.0300949,
+    "ast_hash": "d9dcba7ff05786e9ce30e7f5eed6c41a",
     "semantic_hash": ""
   },
   "trading_system/tests/test_ofi_removal.py": {
-    "mtime": 1784762187.1844895,
-    "ast_hash": "f9ba4d7b4233ffd7e8eb015841fcb288",
+    "mtime": 1785936983.0313206,
+    "ast_hash": "d6735bcef514d771734cd717c2913139",
     "semantic_hash": ""
   },
   "trading_system/tests/test_order_manager.py": {
-    "mtime": 1783023087.2387598,
-    "ast_hash": "135b1aad327104996c01c5fdfc3e882f",
+    "mtime": 1785936983.0321133,
+    "ast_hash": "6b8766287fdebb591178fcb111d12db0",
     "semantic_hash": ""
   },
   "trading_system/tests/test_pead_pipeline.py": {
-    "mtime": 1785187367.6551478,
-    "ast_hash": "fa4f33493cbed913a6c7a6e3c397d161",
+    "mtime": 1785936983.0321133,
+    "ast_hash": "693230d574977219eb1f8ae7b08a7124",
     "semantic_hash": ""
   },
   "trading_system/tests/test_signals.py": {
-    "mtime": 1784324613.2885647,
-    "ast_hash": "1244e79f0e57c06289a904c74cd602b4",
+    "mtime": 1785936983.0331507,
+    "ast_hash": "eccd921ae48fa8eb5c86609b3c4cd0c9",
     "semantic_hash": ""
   },
   "trading_system/tests/test_temporal.py": {
-    "mtime": 1781901335.710946,
-    "ast_hash": "ec7b33e47110af43fb84f638719a7143",
+    "mtime": 1785936983.0331507,
+    "ast_hash": "f122797fdf0a1f1551e80099e9a6d229",
     "semantic_hash": ""
   },
   "trading_system/utils/discord_alert.py": {
-    "mtime": 1783628826.782487,
-    "ast_hash": "653e4e20c381f2af1678dff035fa8b33",
+    "mtime": 1785936983.0353632,
+    "ast_hash": "866409637d1ffd98d9a05f9566884b91",
     "semantic_hash": ""
   },
   "trading_system/utils/logger.py": {
-    "mtime": 1783628824.755502,
-    "ast_hash": "7fe26cc576f69b058b39a659ab8cbec4",
+    "mtime": 1785936983.0353632,
+    "ast_hash": "af8428b4c6d09c3546abeccd843cb2c1",
     "semantic_hash": ""
   },
   "trading_system/verify_alpaca_routing.py": {
-    "mtime": 1783022996.871248,
-    "ast_hash": "fde4dac0d85fed5d8ffc22e881aa3afe",
+    "mtime": 1785936983.0368853,
+    "ast_hash": "bae5ebb20fba3c5090e37a8a75a554be",
     "semantic_hash": ""
   },
   "trading_system/Backtest reports/AI_Arbitrage_Backtest_2024_20260621_172459.md": {
-    "mtime": 1782077472.4651275,
-    "ast_hash": "53cd85ade4ef862c8b1917eaa2fd05ab",
+    "mtime": 1785936982.8236737,
+    "ast_hash": "c0d67bca564a63d62a077851e5361637",
     "semantic_hash": ""
   },
   "trading_system/Backtest reports/AI_Arbitrage_Backtest_2025_20260621_172830.md": {
-    "mtime": 1782077474.4711125,
-    "ast_hash": "ae3e6bed541e08d7329acba0f9aaf523",
+    "mtime": 1785936982.8236737,
+    "ast_hash": "660bf01481c251a8cd921a86a63fad09",
     "semantic_hash": ""
   },
   "trading_system/Backtest reports/AI_Statistical_Arbitrage_Backtest_20260621_175031.md": {
-    "mtime": 1782078631.0883708,
-    "ast_hash": "679460680924112e81dd5fea6cf4cff5",
+    "mtime": 1785936982.8250058,
+    "ast_hash": "e41683ec722551bc32d2a5419d49db95",
     "semantic_hash": ""
   },
   "trading_system/Backtest reports/Deep_OFI_Agent_Only_(2020-2022)_20260621_181117.md": {
-    "mtime": 1782079877.1097956,
-    "ast_hash": "3389074c96fa42f422a4a5dc20c127d5",
+    "mtime": 1785936982.8250058,
+    "ast_hash": "cfcdfb751ee0c30bbe8b0560208a3b53",
     "semantic_hash": ""
   },
   "trading_system/Deep Research/AI Trading Setup Guide.txt": {
-    "mtime": 1781906308.490289,
+    "mtime": 1785936982.8261378,
     "ast_hash": "a40a859463170ed198a183ec5b7d71b3",
     "semantic_hash": ""
   },
   "trading_system/Deep Research/Algorithmic Trading System Upgrade Roadmap.txt": {
-    "mtime": 1781908694.7795877,
+    "mtime": 1785936982.8272376,
     "ast_hash": "e61536e88adbef931172291741ee59e7",
     "semantic_hash": ""
   },
   "trading_system/Deep Research/Amazon Chronos Trading Research.txt": {
-    "mtime": 1781906321.173281,
+    "mtime": 1785936982.828271,
     "ast_hash": "abcaefb7c8c24c44c9cf9d1258f934a4",
     "semantic_hash": ""
   },
   "trading_system/Deep Research/Current_Architecture_Context.txt": {
-    "mtime": 1781907931.9515452,
-    "ast_hash": "941cafe85c00b20cac3003870461c0b0",
+    "mtime": 1785936982.828271,
+    "ast_hash": "71601e53370e52a5fa50c7db40473ff6",
     "semantic_hash": ""
   },
   "trading_system/Deep Research/Intraday Algorithmic Trading Architecture.md": {
-    "mtime": 1784321591.4211812,
-    "ast_hash": "f9720f8ba50243d1966b1dc54214b3a7",
+    "mtime": 1785936982.8293107,
+    "ast_hash": "56cd52ba5723aa74337b4382f24540b5",
     "semantic_hash": ""
   },
   "trading_system/Deep Research/Multi-Agent Trading Exit Strategies.md": {
-    "mtime": 1782259194.9224763,
-    "ast_hash": "c608108cf951f6252af90541b8333dbf",
+    "mtime": 1785936982.8303878,
+    "ast_hash": "1b35f66b2fd2b9802cfdae64c27ff92c",
     "semantic_hash": ""
   },
   "trading_system/docker-compose.yml": {
-    "mtime": 1784760301.7516596,
-    "ast_hash": "8403b93a35c41cde46251d3ff7afbd92",
+    "mtime": 1785936982.8479357,
+    "ast_hash": "a24a0e4ee64a7b69c10a21e91ed928e1",
     "semantic_hash": ""
   },
   "trading_system/model_data/version.txt": {
-    "mtime": 1784763680.769713,
+    "mtime": 1785936982.8555,
     "ast_hash": "35c36e89ef751b74c7aa3b07d7e0f6b6",
     "semantic_hash": ""
   },
   "trading_system/reports/1_year_optimal_backtest.html": {
-    "mtime": 1784325398.467451,
-    "ast_hash": "d47a9b96866cee5918af100cfd92547a",
+    "mtime": 1785936982.8610604,
+    "ast_hash": "5ff536c57c4be13be0a44744093b3c09",
     "semantic_hash": ""
   },
   "trading_system/reports/2025_optimal_backtest.html": {
-    "mtime": 1784323764.1509542,
-    "ast_hash": "0301c444ed4a83fb59e9cd3fa4060686",
+    "mtime": 1785936982.8635025,
+    "ast_hash": "cc79123f50ebda2efaf29d42dbef95f5",
     "semantic_hash": ""
   },
   "trading_system/reports/2_year_optimal_backtest.html": {
-    "mtime": 1782264354.1490576,
-    "ast_hash": "26a3d1a45e6849a36f8714cbb264947b",
+    "mtime": 1785936982.8660233,
+    "ast_hash": "b573f7e6defe8effe5461b9f02ea5b93",
     "semantic_hash": ""
   },
   "trading_system/reports/tearsheet.html": {
-    "mtime": 1782079877.1037955,
-    "ast_hash": "43b636fcdc446415fe34069cd3ef78b2",
+    "mtime": 1785936982.8705964,
+    "ast_hash": "8b4d4048a6e94bac5c28ee978b7c68b6",
     "semantic_hash": ""
   },
   "trading_system/requirements.txt": {
-    "mtime": 1784322786.4047766,
-    "ast_hash": "7b4fbdd6f92672b2e24e717f37055c7c",
+    "mtime": 1785936982.8716235,
+    "ast_hash": "becdece8771fb6c51639a117f4c58bdf",
     "semantic_hash": ""
   },
   "trading_system/scratch/biotech_8k_review.md": {
-    "mtime": 1784850509.921614,
-    "ast_hash": "7449dd57f2a42d19d1f84e84501542ad",
+    "mtime": 1785936982.8772464,
+    "ast_hash": "652e16b186fc31be1f4ec85350f43fab",
     "semantic_hash": ""
   },
   "trading_system/scratch/filings.md": {
-    "mtime": 1784837668.2551935,
-    "ast_hash": "d7fdc1b6ab3ea7c6daf08b15aa4aeb74",
+    "mtime": 1785936982.8889852,
+    "ast_hash": "ed2c061e48baa9a0add677db0377770b",
     "semantic_hash": ""
   },
   "trading_system/scratch/filings_table.md": {
-    "mtime": 1784837334.203838,
-    "ast_hash": "eacfee566c6b8dc8d034dfa1a9503b9b",
+    "mtime": 1785936982.8912218,
+    "ast_hash": "8d1eaca0913e00afdeee18d8cd4b62b6",
     "semantic_hash": ""
   },
   "trading_system/scratch/filtered_filings_subset.md": {
-    "mtime": 1784848242.2130857,
-    "ast_hash": "95958f2956ddee40ac154c6691a0d8a1",
+    "mtime": 1785936982.892244,
+    "ast_hash": "b99277247ac66e6524b93bf7c1e3f212",
     "semantic_hash": ""
   },
   "trading_system/scratch/fintech_8k_review.md": {
-    "mtime": 1784851163.9239328,
-    "ast_hash": "3f08a6be1944e2291111fa248268355c",
+    "mtime": 1785936982.8942418,
+    "ast_hash": "7ff625c9f0e0ba7559dc1fc2ee77029a",
     "semantic_hash": ""
   },
   "trading_system/scratch/insider_cluster_backtest_report.md": {
-    "mtime": 1785187110.8065014,
-    "ast_hash": "bfc9253bc59b304b516a45da704b785d",
+    "mtime": 1785936982.8996408,
+    "ast_hash": "13adc711673e7aaf8d5deb710cde40a1",
     "semantic_hash": ""
   },
   "trading_system/scratch/random_baseline_filings.md": {
-    "mtime": 1784848012.8383203,
-    "ast_hash": "ca09fe793e6e2980c8dc25c793d700e3",
+    "mtime": 1785936982.973145,
+    "ast_hash": "3bf91fc41926e507cfbfe3e0385e91ce",
     "semantic_hash": ""
   },
   "trading_system/scratch/sec_8k_comparison_results.md": {
-    "mtime": 1784852040.9851708,
-    "ast_hash": "1d06981ed97551ef255a3d0620cab70f",
+    "mtime": 1785936982.9782777,
+    "ast_hash": "9e1c4976bd23c47a9dbb542debf9efc5",
     "semantic_hash": ""
   },
   "trading_system/scratch/small_cap_8k_filings_master_review.md": {
-    "mtime": 1784854247.9758735,
-    "ast_hash": "0ec1bb160795e514e31acaca0fa410b6",
+    "mtime": 1785936982.9825275,
+    "ast_hash": "64ff4f6e90a8f9961d90b36e44cf4432",
     "semantic_hash": ""
   },
   "trading_system/test_model_data/version.txt": {
-    "mtime": 1783884346.8685904,
+    "mtime": 1785936983.0221064,
     "ast_hash": "35c36e89ef751b74c7aa3b07d7e0f6b6",
     "semantic_hash": ""
   },
   "trading_system/test_model_data_3/version.txt": {
-    "mtime": 1783884522.9985335,
+    "mtime": 1785936983.0221064,
     "ast_hash": "35c36e89ef751b74c7aa3b07d7e0f6b6",
     "semantic_hash": ""
   },
   "trading_system/Deep Research/Multi-Agent Trading Exit Strategies.pdf": {
-    "mtime": 1782259407.2689762,
+    "mtime": 1785936982.8328736,
     "ast_hash": "b2b29839f801663f972d2d95f43c519b",
     "semantic_hash": ""
   },
   "research_scanner/dashboard.py": {
-    "mtime": 1785284448.8676798,
-    "ast_hash": "d14240ca39cce4163397c637cb7deaca",
+    "mtime": 1785936982.6262498,
+    "ast_hash": "e9c22427c64ee420f41a38eb0dc67d99",
     "semantic_hash": ""
   },
   "research_scanner/export_to_obsidian.py": {
-    "mtime": 1785724134.028728,
-    "ast_hash": "5cb51073bfc061c00c6042f47cc5e07e",
+    "mtime": 1785936982.6284354,
+    "ast_hash": "b22dbd56fdc501235fa7065e237122da",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_dashboard.py": {
-    "mtime": 1785284455.3595185,
-    "ast_hash": "8c901bd5c731037bd7c3a5ef40a37f88",
+    "mtime": 1785936982.8174086,
+    "ast_hash": "5bf1f71759e2e6d4f72f9cfd326500d5",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_export_to_obsidian.py": {
-    "mtime": 1785721383.3825157,
-    "ast_hash": "e4f25a11db87d783b96b8957fef5df64",
+    "mtime": 1785936982.818452,
+    "ast_hash": "386c78f21a3e24c07bbc978104a5ce3a",
     "semantic_hash": ""
   },
   "research_scanner/scoring.py": {
-    "mtime": 1785691254.5722115,
-    "ast_hash": "f5871ef1ba6f404e7d276fa6146ba435",
+    "mtime": 1786286962.7809775,
+    "ast_hash": "eee4cf15ebb0226cee5951aae4704a0a",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_scoring.py": {
-    "mtime": 1785691238.251323,
-    "ast_hash": "b29821b7456de8f02e52f03d89beb13e",
+    "mtime": 1786286905.7457078,
+    "ast_hash": "3f8254324eef41bf703457fde9b170ec",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_thesis_ledger.py": {
-    "mtime": 1785371748.541205,
-    "ast_hash": "6714a4e62325e0249817bf237146bf6f",
+    "mtime": 1785936982.821588,
+    "ast_hash": "90f40250f1fa70d6e841ac19a22dd7c0",
     "semantic_hash": ""
   },
   "research_scanner/thesis_ledger.py": {
-    "mtime": 1785534531.3654273,
-    "ast_hash": "7ea16c47f8ff76e26f730327e45b04c7",
+    "mtime": 1785936982.8226333,
+    "ast_hash": "cfe3e53d2c13d19ce1b4c9c9c9edca60",
     "semantic_hash": ""
   },
   "obsidian_vault/audits/NVDA_AI_Hardware_Accelerators_Thesis_Audit.md": {
-    "mtime": 1785284634.3442137,
-    "ast_hash": "cfef4ee4d2c97f44a876d10699c38fb5",
+    "mtime": 1785936982.6186745,
+    "ast_hash": "3d72a445c393f7ba4e167238063219b7",
     "semantic_hash": ""
   },
   "obsidian_vault/themes/AI Hardware Accelerators.md": {
-    "mtime": 1785284636.2261577,
-    "ast_hash": "337d40fbec0a307c82918077a0e9abbf",
+    "mtime": 1785936982.6197524,
+    "ast_hash": "e25a7cef9f56fb96e008f97d2b8d531e",
     "semantic_hash": ""
   },
   "research_scanner/process_requests.py": {
-    "mtime": 1785534405.6985087,
-    "ast_hash": "505c38c405c059cf22be3bdc512c48ce",
+    "mtime": 1785936982.803874,
+    "ast_hash": "7473124cf975debf87ef6880fa1e19c9",
     "semantic_hash": ""
   },
   "parse_prompts.py": {
-    "mtime": 1785534025.5723433,
-    "ast_hash": "11a5fa787928e50cfce8eca01caaf136",
+    "mtime": 1785936982.6207826,
+    "ast_hash": "1c37166d286c9ee3b2b8ffd8e10a3f89",
     "semantic_hash": ""
   },
   "research_scanner/director_apply.py": {
-    "mtime": 1785724140.5386925,
-    "ast_hash": "ec469faa93a8bc3a3578a51548b3f3b2",
+    "mtime": 1786287341.8395793,
+    "ast_hash": "70de0abd7a5a24413411f636f7190723",
     "semantic_hash": ""
   },
   "research_scanner/test_director.json": {
     "mtime": 1785534821.7381506,
-    "ast_hash": "0b6beb49822adde591bab180239c4684",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "research_scanner/test_director_invalid.json": {
     "mtime": 1785534852.3911173,
-    "ast_hash": "797dc4cd178ae90085c6b289cee01f6b",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "research_scanner/director_prompt.md": {
-    "mtime": 1785535157.2967691,
-    "ast_hash": "9cd153b6b869f7305edc81132cd613d7",
+    "mtime": 1786305549.3869646,
+    "ast_hash": "ebdabac68b7105a6f49909ad68e84c82",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/current-priorities.md": {
-    "mtime": 1785723951.2137601,
-    "ast_hash": "32564878bd43a508ed6bafe8804a06b1",
+    "mtime": 1786189624.69827,
+    "ast_hash": "0cdc367eed000f4b146f11e952af7af9",
     "semantic_hash": ""
   },
   "research_scanner/prompts.md": {
-    "mtime": 1785535157.2437692,
-    "ast_hash": "7882e467fe7aa35e029e1b99ed011314",
+    "mtime": 1786305169.9202638,
+    "ast_hash": "ba7d918b7f3de9cd6b163a4ea49be3e9",
     "semantic_hash": ""
   },
   "research_scanner/research_scanner_multiagent_architecture.md": {
-    "mtime": 1785717274.4789922,
-    "ast_hash": "de9baa14b5e33a0bc2a6bbfce2164696",
+    "mtime": 1786190029.8310747,
+    "ast_hash": "6a25e549b4638af110cb2f59eecca2d0",
     "semantic_hash": ""
   },
   "research_scanner/build_vault_index.py": {
-    "mtime": 1785724161.9355767,
-    "ast_hash": "e4e70e4df9a029ded1f37b3092f5247f",
+    "mtime": 1785936982.6231267,
+    "ast_hash": "a4a7940c3bc37942519d13d90009ae62",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/.obsidian/app.json": {
-    "mtime": 1785721284.535861,
+    "mtime": 1785936982.7086315,
     "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/.obsidian/appearance.json": {
     "mtime": 1785721284.5368612,
-    "ast_hash": "99914b932bd37a50b983c5e7c90ae93b",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/.obsidian/core-plugins.json": {
     "mtime": 1785721284.0568628,
-    "ast_hash": "7c877bea49eaeabb100563bd157b9051",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/.obsidian/graph.json": {
     "mtime": 1785724359.246,
-    "ast_hash": "1aa4c16c6a73c07fe0fb4c6c7cf76c4c",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/.obsidian/workspace.json": {
     "mtime": 1785724363.673519,
-    "ast_hash": "868dcd0dfc26b28cb410a78da4a79b5f",
+    "ast_hash": "",
     "semantic_hash": ""
   },
   "research_scanner/run_daemon.py": {
-    "mtime": 1785722077.7258239,
-    "ast_hash": "1707d3f72fe031e5467aa32f0be1d7db",
+    "mtime": 1786377327.550148,
+    "ast_hash": "135adac981e82f0bd063ebc2c610a4da",
     "semantic_hash": ""
   },
   "research_scanner/sources/openalex.py": {
-    "mtime": 1785720842.245128,
-    "ast_hash": "fa69d22d7f1931b9bf3641022377486b",
+    "mtime": 1785936982.8127155,
+    "ast_hash": "2abffcf4956af8b21709f9b496783aea",
     "semantic_hash": ""
   },
   "research_scanner/tests/test_build_vault_index.py": {
-    "mtime": 1785717285.1809628,
-    "ast_hash": "0e716f3afcbc5d8cbf2984d17dd0bf72",
+    "mtime": 1785936982.8174086,
+    "ast_hash": "5d044dbb48f2757eaf4896e5badf2a43",
     "semantic_hash": ""
   },
   "research_scanner/context/README.md": {
-    "mtime": 1785717262.9750216,
-    "ast_hash": "093e6171f51a3812812623524a10c733",
+    "mtime": 1785936982.625201,
+    "ast_hash": "926eb0c2dc9a51c846c5b75b3a8e37cc",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/news/We aim to make Uttar Pradesh India\u2019s AI, electronics and startup.md": {
-    "mtime": 1785722004.368119,
-    "ast_hash": "00914fcaa02e2469c075b0a7d7928300",
+    "mtime": 1785936982.7792075,
+    "ast_hash": "44abff2430340cec1bb6cb85f5623973",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Advancements in magnetic steering of soft magnetic continuum robots.md": {
-    "mtime": 1785722004.4421186,
-    "ast_hash": "e8386cc123c4a7f1d4d698182ead8f23",
+    "mtime": 1785936982.78023,
+    "ast_hash": "a17708e08cfd3cd9004e12f9d7bc41c6",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Advocating the potential of AI for syndrome discovery - a scoping.md": {
-    "mtime": 1785722004.1741197,
-    "ast_hash": "6f4f60aaa86cb123ddef7aa55b218f44",
-    "semantic_hash": ""
-  },
-  "research_scanner/obsidian_vault/raw-signals/openalex/Artificial Intelligence in Plant Sciences (1).md": {
-    "mtime": 1785722004.2051196,
-    "ast_hash": "8090b567298cd10133715ad5b89a29f9",
+    "mtime": 1785936982.7812662,
+    "ast_hash": "2f645555ae8653ca9928919fe39d0dc3",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Artificial Intelligence in Plant Sciences.md": {
-    "mtime": 1785722004.2021196,
-    "ast_hash": "1a7bb0caa841cdfea230f89cccbe5c7a",
+    "mtime": 1785936982.7831895,
+    "ast_hash": "dd682e995b82c4a53f55859744623c4b",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Artificial Intelligence\u2013Enabled mHealth Technologies.md": {
-    "mtime": 1785722004.2111197,
-    "ast_hash": "51e0986e67a6991c5376ae5f46ea9b94",
+    "mtime": 1785936982.784418,
+    "ast_hash": "e6ed0438ba921e09920486422b910d56",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Assessing the Role of Digital Transformation in Strengthening.md": {
-    "mtime": 1785722004.3731189,
-    "ast_hash": "717b1fcc70f9e1372c114da8dacfdb70",
+    "mtime": 1785936982.784418,
+    "ast_hash": "84321d33306d2e5c89754113b8490a53",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Avalia\u00e7\u00e3o tomogr\u00e1fica do seio frontal no dimorfismo sexual.md": {
-    "mtime": 1785722004.4461186,
-    "ast_hash": "796c42e96fe369d2a294ef92f60568fb",
+    "mtime": 1785936982.784418,
+    "ast_hash": "5a08dbee59d3429a6f1b9b1e617a83af",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Code and Experimental Data for Feasibility-Oriented Dung Beetle.md": {
-    "mtime": 1785722004.4711187,
-    "ast_hash": "134561f9d7e0a4a2b7504c9fe9c83ce9",
+    "mtime": 1785936982.785724,
+    "ast_hash": "eab827e1c03b00a5ad49600935ffe4b4",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Combating foreign bribery and corruption - an integrated corporate.md": {
-    "mtime": 1785722004.4561186,
-    "ast_hash": "e6fb5ddc094b694dbcc6655a2e010d67",
+    "mtime": 1785936982.785724,
+    "ast_hash": "d60cd452365020f7e15b2583cb240e3e",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/DESIGNING AND EXPERIMENTING AS THE NEW WAY OF LEARNING \u2013 EDUCATIONAL.md": {
-    "mtime": 1785722004.1531198,
-    "ast_hash": "4f6e11f37e0aa2efd515887fb19b9963",
+    "mtime": 1785936982.7867706,
+    "ast_hash": "399df249939aa252384825f1ddd1fdac",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Des villes en pixels aux cit\u00e9s r\u00e9elles - influence des jeux vid\u00e9o sur.md": {
-    "mtime": 1785722004.4521186,
-    "ast_hash": "cbb8682221939b0bd94f6cefb14e8f05",
+    "mtime": 1785936982.7867706,
+    "ast_hash": "817bf905ef1ae9e23f578c5567b87ef7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Development of an Advanced Artificial Intelligence-based Model (Deep.md": {
-    "mtime": 1785722004.377119,
-    "ast_hash": "426a0744f3f7cb4b647fd66607226658",
+    "mtime": 1785936982.7878132,
+    "ast_hash": "93b18c987fd66a0c573f11dbd512a42e",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Enabling Next-Generation Power Conversion - Design, Dynamic.md": {
-    "mtime": 1785722004.4381187,
-    "ast_hash": "384761cedf6df3c4a8feec52e8a16f52",
+    "mtime": 1785936982.788856,
+    "ast_hash": "b3470726a896b145cfecf7c046544107",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Feature Importance and Growth Rate Prediction in SiC PVT Processes.md": {
-    "mtime": 1785722004.2081196,
-    "ast_hash": "0f7fde0d0649dc1ce6f964a31fbfe13c",
-    "semantic_hash": ""
-  },
-  "research_scanner/obsidian_vault/raw-signals/openalex/Funding Innovation for Future-Ready Healthcare Systems (1).md": {
-    "mtime": 1785722004.4681187,
-    "ast_hash": "2e2467917ec29652049f0066d94dd32c",
+    "mtime": 1785936982.788856,
+    "ast_hash": "c9e444d1caf760f733213cc1c8533cf2",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Funding Innovation for Future-Ready Healthcare Systems.md": {
-    "mtime": 1785722004.4641187,
-    "ast_hash": "2c879983b5c50ce7fb2bd78170b6b8db",
+    "mtime": 1785936982.7909293,
+    "ast_hash": "cf343847568b5a5c88117ba107d2742c",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/L\u2019innovation locale et sa contribution au d\u00e9veloppement durable.md": {
-    "mtime": 1785722004.4491186,
-    "ast_hash": "04e6e9d72ae0ec97789ae2fea9e1f6b7",
+    "mtime": 1785936982.7919667,
+    "ast_hash": "480309af239b948931ed5f6df04c201b",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/MODELING HOSPITALITY AND TOURISM STRATEGIES.md": {
-    "mtime": 1785722004.11912,
-    "ast_hash": "e73ae0d404641906a374973a65e0fd44",
+    "mtime": 1785936982.7919667,
+    "ast_hash": "e363fa24a2c6462251118de12d2459ba",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Management of healthcare risk waste and non-hazardous healthcare.md": {
-    "mtime": 1785722004.4341187,
-    "ast_hash": "09ad1c00c174ca72248be4d36f32d14d",
+    "mtime": 1785936982.7919667,
+    "ast_hash": "8a3c9197021ed8c8a64501c4003b1070",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Mechs.md": {
-    "mtime": 1785722004.2361195,
-    "ast_hash": "9cf2c141e25cc378904b27a47ee0ce65",
+    "mtime": 1785936982.793315,
+    "ast_hash": "0c2aaa9f59cb7a4565fa5a0a33f20ea5",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/On the Analysis of Potential Games - From Constraints, Price.md": {
-    "mtime": 1785722004.12212,
-    "ast_hash": "78f28fea0e70c6f6c1845207ae05dc56",
+    "mtime": 1785936982.7945302,
+    "ast_hash": "63739937eaf635dfe7658407d64fe16d",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Places and Non-Places for Language.md": {
-    "mtime": 1785722004.1761198,
-    "ast_hash": "07e881e45b3f44a1b873b309335d379c",
+    "mtime": 1785936982.7955723,
+    "ast_hash": "b7445e7d66fde050207fdfb9409f7c63",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Progress of major emitters towards climate targets - 2025 Update.md": {
-    "mtime": 1785722004.4601185,
-    "ast_hash": "2ddfde2cdbb2aedf36e14f41f441ed7f",
+    "mtime": 1785936982.7955723,
+    "ast_hash": "92c10c413c6ce8a485402718c0f74b9a",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Specialeafhandling - Scaling AI in Organisations - An Empirical Study.md": {
-    "mtime": 1785722004.11612,
-    "ast_hash": "029e778d98e0f508934c0377cc5f0ec4",
+    "mtime": 1785936982.7966056,
+    "ast_hash": "11512d7d988567bdd5c55657229dac76",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/openalex/Tuning of Magnetic Frustration Through Doping in a Group of Magnetic.md": {
-    "mtime": 1785722004.2951193,
-    "ast_hash": "ae3ed1fe8c0ff6fefd5a242844a0da96",
+    "mtime": 1785936982.797641,
+    "ast_hash": "8ec538fab7de43ee63e177a0b7999e95",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/themes/Artificial Intelligence.md": {
-    "mtime": 1785721170.298238,
-    "ast_hash": "f550d4df4604c240b177ab97350280af",
+    "mtime": 1785936982.7985456,
+    "ast_hash": "20463eda96685771dcce1460d1cb28c7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/themes/General Technology.md": {
-    "mtime": 1785722004.4601185,
-    "ast_hash": "56752d1a721f4e36b0dc15ad5c8cac18",
+    "mtime": 1785936982.7985456,
+    "ast_hash": "a619216762eee7da9800166272372e0c",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/themes/Machine Learning.md": {
-    "mtime": 1785721170.298238,
-    "ast_hash": "9953110551896ad9ebe7bf0b682b4670",
+    "mtime": 1785936982.8007631,
+    "ast_hash": "e72b3e40b0d7edd937ed6c74f30f5387",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/themes/Quantum Computing.md": {
-    "mtime": 1785721170.298238,
-    "ast_hash": "eb17dccba8cb5aeeeaba7c02d09840e5",
+    "mtime": 1785936982.8007631,
+    "ast_hash": "926c6c3447acead7234054552db235d5",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/themes/Robotics.md": {
-    "mtime": 1785721170.298238,
-    "ast_hash": "4b08953d3456ddc57ee0710787d846d2",
+    "mtime": 1785936982.8018034,
+    "ast_hash": "d91457099b5845a5fd62e2bee7e603e5",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/themes/Semiconductors.md": {
-    "mtime": 1785721170.298238,
-    "ast_hash": "d679783820b6856b2e34c272980be2bc",
+    "mtime": 1785936982.8018034,
+    "ast_hash": "0498a9ab7d9da62f379d471d648dfaf5",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/vault-index.md": {
-    "mtime": 1785724153.0726244,
-    "ast_hash": "3586a79ec1e69eaad6d00345ff0bd291",
+    "mtime": 1786213758.7321455,
+    "ast_hash": "a672905f55177ada0043644db8333a0d",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/$\u03b2$-OPSD - Deriving with Policy Optimization, Training.md": {
-    "mtime": 1785722004.391119,
-    "ast_hash": "0c334e1ba85492690ab81a813822247f",
+    "mtime": 1785936982.7146766,
+    "ast_hash": "53eeff59adcfbf1e476eb174247f01bd",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/A Human-Centered Validation of the Explainability-Performance.md": {
-    "mtime": 1785722004.2671194,
-    "ast_hash": "ecd6c2fe59781117050ecb703af1b0f0",
+    "mtime": 1785936982.715757,
+    "ast_hash": "fa64f26015e31a4ee61e038082463308",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/A Neurosymbolic Approach for Explainable Early Diagnosis.md": {
-    "mtime": 1785722004.5301185,
-    "ast_hash": "de09051f3bec42153e8ae8a30903a556",
+    "mtime": 1785936982.715757,
+    "ast_hash": "d6d0a6b51f625a316e8e9a6e64ff7ba9",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/A Provable Oracle-Free Quantum Algorithm for Nonlinear Dynamics.md": {
-    "mtime": 1785722004.399119,
-    "ast_hash": "b4a2803abeaec57b9fa3913634a9e54e",
+    "mtime": 1785936982.7173316,
+    "ast_hash": "950b27eded290f8a59155103e0a5b3b4",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/AISPA - User-Centric System Prompt Auditing for Large Language Model.md": {
-    "mtime": 1785722004.1261199,
-    "ast_hash": "b6ee735963bf873866b0e429085a7f2c",
+    "mtime": 1785936982.7173316,
+    "ast_hash": "9de10fe5843bc2d4ff5a37b486f140e2",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/AMTFV - Agentic Mathematical Tool-Flow Verification for LLM.md": {
-    "mtime": 1785722004.359119,
-    "ast_hash": "96464bb67cf28ea16574bc1c5a5948d0",
+    "mtime": 1785936982.718782,
+    "ast_hash": "2955012ca95703ca667482866b78e4fb",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/APO - Unsupervised Atomic Policy Optimization for 3D Structure.md": {
-    "mtime": 1785722004.3131192,
-    "ast_hash": "73d5c6e07ec186370e5bb511c8464080",
+    "mtime": 1785936982.718782,
+    "ast_hash": "1001b4676ad10ac1196535bafc306d71",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/ARB - A Matched Authorship-Rewriting Benchmark Dataset for AI-Text.md": {
-    "mtime": 1785722004.2801194,
-    "ast_hash": "beacac9e65ecc59b5870c0d2816b7e8e",
+    "mtime": 1785936982.7198305,
+    "ast_hash": "0012ff03e836f924a88a786449593880",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Adaptive FastOPD - Progress-Aware Rollout Horizon Expansion.md": {
-    "mtime": 1785722004.2921193,
-    "ast_hash": "b2b56c396589a38e29ed1e09795e1b41",
+    "mtime": 1785936982.7198305,
+    "ast_hash": "a1299e116666bf0dfec34e37779545e5",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/AgentHPOBench - A Benchmark For Evaluating LLM Agents as Sequential.md": {
-    "mtime": 1785722004.409119,
-    "ast_hash": "b7ebedcecb86a934e69504ed3fef3d85",
+    "mtime": 1785936982.72087,
+    "ast_hash": "6505361a1aa42851940f3336e183a689",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Agents That Certify Their Own Exploits - Confidence-Scheduled.md": {
-    "mtime": 1785722004.2561195,
-    "ast_hash": "5a0a32b939045979b71772fda7a5e4c4",
+    "mtime": 1785936982.72087,
+    "ast_hash": "59d8798eefae8942ccc910cae30877ff",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Algorithms for Structured Elections under Thiele Voting Rules.md": {
-    "mtime": 1785722004.4841185,
-    "ast_hash": "f3831103ed9148b0a66db5f5ee7ed06e",
+    "mtime": 1785936982.72087,
+    "ast_hash": "1893c4c5a1a39d669984b55b72309fae",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/AskChem - Claim-Centered Infrastructure for Chemistry Literature.md": {
-    "mtime": 1785722004.2991192,
-    "ast_hash": "a18053121d999229aa8ba91ab1889777",
+    "mtime": 1785936982.721904,
+    "ast_hash": "496bfb66732c3091414d41bf03ebd3b1",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Balancing of Humanoid with Object Mass - Trade-off Analyses.md": {
-    "mtime": 1785722004.3291192,
-    "ast_hash": "09c2c801ced7d6fccad76a00ddc7236b",
+    "mtime": 1785936982.7229428,
+    "ast_hash": "3f21edeb07e7d24dfe4a9a4add69c5ef",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Benchmarking Quantum Simulations of the Lipkin-Meshkov-Glick Model.md": {
-    "mtime": 1785722004.1331198,
-    "ast_hash": "3e573090ea3da083afb8d7c54715e0f4",
+    "mtime": 1785936982.7229428,
+    "ast_hash": "0c66ff46252043e474d3bcb15bcb93cd",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Bootstrapping Self-Supervised Learning of Binary Classification Using.md": {
-    "mtime": 1785722004.1891198,
-    "ast_hash": "e7e398294cef9ba8ee57ee566f54d42d",
+    "mtime": 1785936982.7239914,
+    "ast_hash": "273e572cb9d11bfcef44fc393ad8d699",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/CENDRe - Concept Extraction with Natural Domain Representations.md": {
-    "mtime": 1785722004.2231195,
-    "ast_hash": "85cf3ffd9c279eeb2761b83f2c1ada27",
+    "mtime": 1785936982.7239914,
+    "ast_hash": "412d8e43126ebe104a663bbdb9e2acaf",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/COntExt - Towards Context-Aware Ontology Extension from Operational.md": {
-    "mtime": 1785722004.5261183,
-    "ast_hash": "85ec88ba416855306b56460ab6d55271",
+    "mtime": 1785936982.7239914,
+    "ast_hash": "ec1fb53d19f09d00cfa14ffc58b5e924",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Change2Task - From Repository Changes to Executable Coding Agent.md": {
-    "mtime": 1785722004.4741185,
-    "ast_hash": "17e14d0b8f01ebec5646e25e7db0129a",
+    "mtime": 1785936982.7250931,
+    "ast_hash": "5da1d5107eb0d9ddb9a1f66f707d3939",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Comparison of Spatial Entanglement between dissociated atom and ion.md": {
-    "mtime": 1785722004.5201185,
-    "ast_hash": "28f5dcbeff09de1c44f647d08a00ef21",
+    "mtime": 1785936982.7261384,
+    "ast_hash": "de0b44db89979f63a9a0e39cea315d2f",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Convergence and Regret of the Policy Gradient for Multi-Armed Bandits.md": {
-    "mtime": 1785722004.2741194,
-    "ast_hash": "a2cc0596ceb7a76be513b2300c5dc3d2",
+    "mtime": 1785936982.7261384,
+    "ast_hash": "1e284f64ecb3970b013a59ff76ded1e7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Delayed Formation of Landau Polaritons in Phase-Resolved THz.md": {
-    "mtime": 1785722004.4271188,
-    "ast_hash": "c3418130cc1c74e3245c8e17898ca3dd",
+    "mtime": 1785936982.7271242,
+    "ast_hash": "ead2806f3fc6f1f9107ac71f35d00bb7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Doubly Robust Functional Representation Learning for Longitudinal.md": {
-    "mtime": 1785722004.3091192,
-    "ast_hash": "a492952ed0a1a459c2b4dede15e37fbe",
+    "mtime": 1785936982.7276306,
+    "ast_hash": "09cbbda7d902efee72686d30259dd90a",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/DreamQAS - Learning a Decision-Useful World Model for VQE-Efficient.md": {
-    "mtime": 1785722004.11212,
-    "ast_hash": "251cf30f11c2c24d3bc09d77337a9fbe",
+    "mtime": 1786213728.3272707,
+    "ast_hash": "2d7df2a3331f26de7c34e142a532c43a",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/DualG-MRAG - Decoupling Macro-Reasoning and Micro-Matching.md": {
-    "mtime": 1785722004.395119,
-    "ast_hash": "61285af6287c1f1bca02ade76a2db21e",
+    "mtime": 1785936982.7287064,
+    "ast_hash": "7ec8463d442f994d9ae8cac501b9a3c4",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/DungeonBench - A Benchmark for Rules-Rich Tactical Reasoning.md": {
-    "mtime": 1785722004.2761195,
-    "ast_hash": "608115097ba80d30ee7802d5765060a1",
+    "mtime": 1785936982.7297368,
+    "ast_hash": "dfa5f421451b4cdf4816d3e35907900a",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Evidence-Type Competition - When Can Interventional Data Teach.md": {
-    "mtime": 1785722004.365119,
-    "ast_hash": "5224599e43f46a5d9089ffcb09ae9e81",
+    "mtime": 1785936982.7307677,
+    "ast_hash": "b03f135f0d5bf847b2b7d8a4b22b4f06",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Exact chiral symmetry with quantum signal processing.md": {
-    "mtime": 1785722004.2211196,
-    "ast_hash": "b0bb9028ee9dca32d7eb48244aa9f7fd",
+    "mtime": 1785936982.7307677,
+    "ast_hash": "c99668fb62a83331e852ecda1dbde9d1",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Explicit Matrices over $mathbb Z_2$ with CNOT and Row Complexity.md": {
-    "mtime": 1785722004.2421196,
-    "ast_hash": "4611dbb0a37e5dafae737a00d231a1b3",
+    "mtime": 1785936982.7317898,
+    "ast_hash": "3e9c11c7b803c12419943dbc4c55928c",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/FA-RDP - A Frequency-Adaptive Reactive Diffusion Policy.md": {
-    "mtime": 1785722004.388119,
-    "ast_hash": "488a61c01f5142db77d9cd62b03c06ec",
+    "mtime": 1785936982.7317898,
+    "ast_hash": "01071b9e23b9135787ea0c5c88b21761",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/FibVLA - An Efficient Temporal Vision-Language-Action Model.md": {
-    "mtime": 1785722004.3421192,
-    "ast_hash": "0cf9fa92f01b23f2b0d237201a6a1418",
+    "mtime": 1785936982.7333825,
+    "ast_hash": "fb9843c9530c38133a4199ead2a69873",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/FriendBench - Benchmarking Dyadic Familiarity Inference in Humans.md": {
-    "mtime": 1785722004.338119,
-    "ast_hash": "be46367d896ddf6f0bf35dcb148e40c3",
+    "mtime": 1785936982.7333825,
+    "ast_hash": "6760d24a2a3ae5a5939765f7663ff030",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/From Code Review to Code Critique - Intent, Drift, and Spotlight.md": {
-    "mtime": 1785722004.1951196,
-    "ast_hash": "989eef313a658ae0949223ed0c317f15",
+    "mtime": 1785936982.734635,
+    "ast_hash": "3f81edecc0c572a7394db4fd2814d314",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Generating broadband optical squeezing via Cascaded Micro-Ring.md": {
-    "mtime": 1785722004.4061189,
-    "ast_hash": "f781fbecf5a7544b4b1d4c802308b55a",
+    "mtime": 1785936982.734635,
+    "ast_hash": "2ef22c7f69379f6f2e3c74d8163befa4",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Graph Neural Network Force Fields for Spin Dynamics in Metallic.md": {
-    "mtime": 1785722004.2531195,
-    "ast_hash": "3965a61f8587e8139aae589f5c824381",
+    "mtime": 1785936982.735644,
+    "ast_hash": "b23b350362ba6a68f357e310be610934",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/HAM-VLN - Harnessing Hierarchical Agentic Memory for Zero-Shot.md": {
-    "mtime": 1785722004.2711194,
-    "ast_hash": "f9de1a84046b12028a604e36ae40dcd8",
+    "mtime": 1785936982.735644,
+    "ast_hash": "3b7f1c1e702694379d5f59557d6931a8",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Homotopy-Aware Corridor Generation without Predefined Reference Paths.md": {
-    "mtime": 1785722004.5341184,
-    "ast_hash": "6c79ada9bb2849bd3dfbf058be2bf039",
+    "mtime": 1785936982.7370515,
+    "ast_hash": "725c5568928e15853479dc379adf9b82",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/InfoOps Bench - A live information operations safety benchmark.md": {
-    "mtime": 1785722004.1591198,
-    "ast_hash": "6b257767fb9c39b3b63f803d78c280b1",
+    "mtime": 1785936982.7370515,
+    "ast_hash": "82969832af45bf3c054aaf2239595afd",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/KAISEN - Reproducible Subgroup Fairness Auditing for Clinical Risk.md": {
-    "mtime": 1785722004.381119,
-    "ast_hash": "a2f3087a771261f13e6a0edce081abc9",
+    "mtime": 1785936982.7380972,
+    "ast_hash": "ec7241f09780e514b5982b33af6a2410",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/LEMUR - Learning to Align with Multi-Objective Reinforcement Learning.md": {
-    "mtime": 1785722004.1461198,
-    "ast_hash": "b8f5cfa5141c84f2c55f3fb62dc2303e",
+    "mtime": 1785936982.7389715,
+    "ast_hash": "3eee27366eff2d28f3fc14e287b65f2e",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Learning Arbitrary Lindbladians from Time Evolution.md": {
-    "mtime": 1785722004.1791198,
-    "ast_hash": "35cc5ad953e212a5b7341bd4c4dc5e06",
+    "mtime": 1785936982.7389715,
+    "ast_hash": "19e7813a2dcfb28958d0d7183b63077c",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Learning to Trace Seiberg Dualities.md": {
-    "mtime": 1785721156.759281,
-    "ast_hash": "a154580649a85dab3292556f9d7c10ed",
+    "mtime": 1785936982.7399797,
+    "ast_hash": "35e4d8dcaabe4d4ecb0e66b64018cbd7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Leveraging Transfer Learning with Class-Specific Decoders.md": {
-    "mtime": 1785722004.1701198,
-    "ast_hash": "abff54f2000d82c4b4ef8727e9bb070b",
+    "mtime": 1785936982.7399797,
+    "ast_hash": "c1e9b08bc31d2d60d84a5c6b5a3b4cab",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Lifting Lifted Product Codes.md": {
-    "mtime": 1785721156.7622807,
-    "ast_hash": "29bdce1a8670e959b93108d92605ebb6",
+    "mtime": 1785936982.7409804,
+    "ast_hash": "306ca59d656f76984acdea45be08bf41",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Logical computation with canonical lifted product codes.md": {
-    "mtime": 1785722004.2391195,
-    "ast_hash": "3005d9c2a09950704be497ed347a3b73",
+    "mtime": 1785936982.7420464,
+    "ast_hash": "5a70a7b826b5525a436c9241a29f2762",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/MANTA - Multi-Agent Network Topology Adaptation for Self-Evolving.md": {
-    "mtime": 1785722004.4031188,
-    "ast_hash": "e9f446d76400dba4066ac9b79f37f2bd",
+    "mtime": 1785936982.7431476,
+    "ast_hash": "a5b2a155806607dca6d2a9e06bb549d7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/MOT-SR - Multi-Objective Tool-Augmented Scientific Equation Discovery.md": {
-    "mtime": 1785722004.4211187,
-    "ast_hash": "ccb28252e2c229ef21054f3dad9a8a55",
+    "mtime": 1785936982.7431476,
+    "ast_hash": "a3ea456531dae197a1ed8f2ff73807bc",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/MixFrag - Fragility-Guided Mixed-Precision Post-Training Quantization.md": {
-    "mtime": 1785722004.4771185,
-    "ast_hash": "fe5849e1504a2d4ed58b9584f3d1234c",
+    "mtime": 1785936982.7444825,
+    "ast_hash": "f6c990f3c73a0af363c056242074aa67",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/ORCA-bench - How Ready Are Language Model Agents for Oncall.md": {
-    "mtime": 1785722004.3191192,
-    "ast_hash": "4b2233ff27c10635d4e5527f3191da0e",
+    "mtime": 1785936982.745522,
+    "ast_hash": "cc4a9917a158e48ed586fa8f871a3fee",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/OSReward - Instituting Standardized Evaluation for Cross-Platform.md": {
-    "mtime": 1785722004.3031192,
-    "ast_hash": "88b176767a556a301bd980b951398ce2",
+    "mtime": 1785936982.745522,
+    "ast_hash": "7b31741a9ac51fd68eec3b4146f95a67",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/On Optimal Measurement-State Preparation via Geometric Transport.md": {
-    "mtime": 1785721156.7672808,
-    "ast_hash": "d0111cf9486ecdc74853b1fd09506ce5",
+    "mtime": 1785936982.746572,
+    "ast_hash": "0c65fa8a86b229b0f2833b5917feb9e8",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/On the Emergence of Exponential Decay from Discrete Spectra.md": {
-    "mtime": 1785722004.4291186,
-    "ast_hash": "305c6d0ab32c7ce0e2db5de91aeeab72",
+    "mtime": 1785936982.7476122,
+    "ast_hash": "65fe5c56119ad7e626db02fadf936e87",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Ordered-to-disordered transfer learning with graph neural networks.md": {
-    "mtime": 1785722004.1981196,
-    "ast_hash": "322af4f2437ac4a27c799f1e5256ffb2",
+    "mtime": 1785936982.7485147,
+    "ast_hash": "d0f4862df86a3c4ce8c07d5b2a70ab7b",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/PAC-MAN - Perception-Aware CBF-RL for Whole-Body Safety in Humanoid.md": {
-    "mtime": 1785721156.7642808,
-    "ast_hash": "01265653e322d76150a0d647073943f2",
+    "mtime": 1786213728.3283093,
+    "ast_hash": "0706c40f8022c2427759bfe322dc403a",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/PAIChecker - Uncovering and Checking PR-Issue Misalignment.md": {
-    "mtime": 1785722004.4801185,
-    "ast_hash": "d403b857eff52ed6b01f1ce8f0a55012",
+    "mtime": 1785936982.7495272,
+    "ast_hash": "5f8af8dec1ec7160f02442739238d9d7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Pauli Encodings & Unclonable Encryption.md": {
-    "mtime": 1785722004.3061192,
-    "ast_hash": "fb5c4be8d28a4635ae7776e7a7375922",
+    "mtime": 1785936982.7495272,
+    "ast_hash": "24d9e5cef2a4a3186a61bef83b9108be",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Pyramidal Width Can Increase Under Vertex Insertion.md": {
-    "mtime": 1785722004.5231183,
-    "ast_hash": "9482c71de8280a3006f0eeeeaf5df717",
+    "mtime": 1785936982.7495272,
+    "ast_hash": "9cb2ffbd22d157d940d1acfa9c208a25",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/QASP - Query-Adaptive Robust Vector Search Policy.md": {
-    "mtime": 1785722004.4171188,
-    "ast_hash": "7cc2a71e652579431521b30fe6dea4de",
+    "mtime": 1785936982.750873,
+    "ast_hash": "dbbe6ccac3e7ddb001c049c971098a34",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Quantum Chaos and Diffusive Transport from Geometric Randomness.md": {
-    "mtime": 1785722004.1821198,
-    "ast_hash": "e4d7196bc5947453b62e7b4daed823b2",
+    "mtime": 1785936982.751908,
+    "ast_hash": "a59243b6fd5a852b6bc5851848de3f68",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Quantum Computing Enabled ab initio Molecular Dynamics Simulations.md": {
-    "mtime": 1785722004.1561198,
-    "ast_hash": "d0284aa10378a66c7998a4c16136f952",
+    "mtime": 1785936982.751908,
+    "ast_hash": "0123beb48a61da1268d59107b3699dc8",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Quantum Fidelity-per-Cost - A Metric for Evaluation of Quantum.md": {
-    "mtime": 1785722004.1291199,
-    "ast_hash": "8f6da48b323d7ad099bbd041e0987296",
+    "mtime": 1785936982.751908,
+    "ast_hash": "6827929d0ef395c96303d95fc577d470",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Quantum computing-based solver for interacting power grids.md": {
-    "mtime": 1785722004.1401198,
-    "ast_hash": "02000a76b641603898b3ae1ce90240bd",
+    "mtime": 1785936982.75295,
+    "ast_hash": "99c13562e884f30c89bdf0f8f62e26df",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Quantum geometric potential induced conformational transitions.md": {
-    "mtime": 1785722004.13712,
-    "ast_hash": "1d8807ef4cafe970bd534ab5e734d420",
+    "mtime": 1785936982.7539878,
+    "ast_hash": "d1d6150ed0a78fc272bdaa34cd3b21a7",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Quantum tomography of inelastic electron scattering emph{via} orbital.md": {
-    "mtime": 1785722004.1431198,
-    "ast_hash": "3b7712501188b2f01b5d0f1182f697a2",
+    "mtime": 1785936982.7550385,
+    "ast_hash": "d6cc8e77aa7e107dcee120934ecb505d",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Qubit Loss Inference with Stabilizer Codes without Leakage Detection.md": {
-    "mtime": 1785722004.335119,
-    "ast_hash": "545620d54703c414034fb007112b28a2",
+    "mtime": 1785936982.7550385,
+    "ast_hash": "8e8a63056cbed14770312dc17adfcdf2",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/RayViT - Ray-Conditioned Visual Representations for Viewpoint-Robust.md": {
-    "mtime": 1785722004.2631195,
-    "ast_hash": "0977395f901ee7e4b5797d9e7da0fc66",
+    "mtime": 1785936982.7572558,
+    "ast_hash": "47f8294da0e655ccbe8353316712a348",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/ReToken - One Token to Improve Vision-Language Models for Visual.md": {
-    "mtime": 1785721156.756281,
-    "ast_hash": "7865328b8dd64493a1ea22f90f1736bf",
+    "mtime": 1785936982.7572558,
+    "ast_hash": "44b25c5b7071291f09ba65bd63680a28",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Rethinking Inference-Time Scaling in Local Computer-Use Agents.md": {
-    "mtime": 1785722004.4881184,
-    "ast_hash": "916d1245dd30d91c20beb0c5695f8638",
+    "mtime": 1785936982.7572558,
+    "ast_hash": "72ad99b40e32f27084163725df39e41b",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/STAGE - STyle-controllable Action GEneration for personalized.md": {
-    "mtime": 1785722004.362119,
-    "ast_hash": "937b9c4cec807bc4821cb3604b5ca1ac",
+    "mtime": 1785936982.7582934,
+    "ast_hash": "c1746b337e7dffbf883e633b08e9c20d",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Safe Vision Language Action Models via Barrier Enhanced Flow Matching.md": {
-    "mtime": 1785722004.1911197,
-    "ast_hash": "beca059a0b4ae84176b1ad27f4103364",
+    "mtime": 1785936982.759299,
+    "ast_hash": "d20e79c8fef5b42f5fadd565688081a6",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Same Graph Cross-Task Transfer in GNNs - Protocols and Predictors.md": {
-    "mtime": 1785722004.4981184,
-    "ast_hash": "8e7ca72d6fef1aa4ba0823b90d2392e6",
+    "mtime": 1785936982.759299,
+    "ast_hash": "780889369db44dd2687ee17bedaaabcc",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Sample More, Reflect Less - Self-Refine and Reflexion Lose.md": {
-    "mtime": 1785722004.2141197,
-    "ast_hash": "694c2cc79ce38fa83c593ddf3145038e",
+    "mtime": 1785936982.7603056,
+    "ast_hash": "208aca74a922a086825e63ca1622a5d2",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/ScaFE - Data-Efficient Scar Classification with LLM-Generated.md": {
-    "mtime": 1785722004.2491195,
-    "ast_hash": "2c3eda79ae048d7aa851a0d63f45fdcf",
+    "mtime": 1785936982.7603056,
+    "ast_hash": "dc3bbf4f827deb80b4fb3a6afb5f21b4",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Selective Credibility-Limited Belief Update.md": {
-    "mtime": 1785722004.5011184,
-    "ast_hash": "1d433dd91900ca9f62f8c94a8eea1a00",
+    "mtime": 1785936982.7616866,
+    "ast_hash": "b6143b07603bb38ff7ebe35ae20cd239",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Spacetime Layout and Logical Compilation of Color Code.md": {
-    "mtime": 1785724143.4606767,
-    "ast_hash": "1084fb0ba13b5140a05adc2f74a8c4a1",
+    "mtime": 1785936982.7616866,
+    "ast_hash": "9e1a25d57c6aceeaff4833f62628c0c9",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Spectral gaps of ironed two-qubit gadgets matching the iSWAP gap.md": {
-    "mtime": 1785722004.5051184,
-    "ast_hash": "4467caffd0bbfe296e02445de9a60494",
+    "mtime": 1785936982.7624817,
+    "ast_hash": "be0d743c67f2436d32603492a7832718",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Stage-Replay Divergence Follows the KV Cache - Fixed-Prefix Precision.md": {
-    "mtime": 1785722004.5081184,
-    "ast_hash": "453354d7d476d8428e2de562feaaf190",
+    "mtime": 1785936982.7629933,
+    "ast_hash": "56b0634cc5307f37ba254712df387528",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Statistically secure uncloneable encryption of arbitrary messages.md": {
-    "mtime": 1785722004.4911184,
-    "ast_hash": "29056eccbc02916bd3c1d626bad637ca",
+    "mtime": 1785936982.7629933,
+    "ast_hash": "b37d2d6af0ef821d8668301d1d29a5c2",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Structure-Preserving Quantum Simulation of Wave Equations.md": {
-    "mtime": 1785722004.2591195,
-    "ast_hash": "93dec6b73a1dbf4871f91dd1ebce0812",
+    "mtime": 1785936982.7640238,
+    "ast_hash": "d8cf4b1a9117d555a920eb6c97df2bb6",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/SymFT - Universal Fault-Tolerant Quantum Circuit Simulation.md": {
-    "mtime": 1785722004.385119,
-    "ast_hash": "ca719f5cb909e0ed014cb8f68379c80a",
+    "mtime": 1785936982.7650433,
+    "ast_hash": "d901381cc753f12b2b69b77ab445331e",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/TCA-SIR - Learning Target-Conditioned Abstractions for Scientific.md": {
-    "mtime": 1785722004.3251193,
-    "ast_hash": "46fed65eaf54fe8a9b59825ec24819b3",
+    "mtime": 1785936982.7660568,
+    "ast_hash": "35592da477d504b40d8b8a5957b89a3e",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/TOOD - Task-Aware Out-of-Distribution Score Calibration for Continual.md": {
-    "mtime": 1785722004.347119,
-    "ast_hash": "0decf93e3c9493d04eddc84a400433a5",
+    "mtime": 1785936982.767052,
+    "ast_hash": "3a16306f06c75a4f67e310927796ca9b",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Telecom-compatible polarization-to-time-bin conversion of atom-photon.md": {
-    "mtime": 1785722004.1671197,
-    "ast_hash": "642022ff6c48cc179372038b89cbaab4",
+    "mtime": 1785936982.767052,
+    "ast_hash": "d9c855dbdf4ce7882423f63a8b6adc54",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Temporal Policy - History-Initialized Action Generation for Robotic.md": {
-    "mtime": 1785722004.2321196,
-    "ast_hash": "56a84379e70cb5f4e01685ac64b11cb5",
+    "mtime": 1785936982.7680626,
+    "ast_hash": "24455f1659ae4fe86de69d62e9ca6604",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/TerraNova - A Foundation Model for the Anthropocene.md": {
-    "mtime": 1785722004.2831194,
-    "ast_hash": "2a7638edf870ddd1b38a2b3373017999",
+    "mtime": 1785936982.7680626,
+    "ast_hash": "a366ccecc9dafc0ebe1d229e3dbdd3ce",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/The Grokked Illusion - True Equilibrium Mitigates Catastrophic.md": {
-    "mtime": 1785722004.1491199,
-    "ast_hash": "62759cf8769c1ea4eadd192e5c4ca8ec",
+    "mtime": 1785936982.769093,
+    "ast_hash": "482b5508b1a1cdea3a7eed624b1a356b",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/The Parts Are Greater Than the Sum - Automated Task Sequencing.md": {
-    "mtime": 1785722004.5131185,
-    "ast_hash": "cbaa71a2022f1096f37b3fb298defd38",
+    "mtime": 1785936982.769093,
+    "ast_hash": "fe20390a37236351af65363d79f85b69",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/The Role of Causality in Algorithmic Recourse.md": {
-    "mtime": 1785722004.1851196,
-    "ast_hash": "dbb08f4e17c8023751a4604935feff3c",
+    "mtime": 1785936982.7704804,
+    "ast_hash": "2b2c133fee858271533deab5e4caa6f2",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/The Theoretical Foundation of Socratic Tests - Dynamic, Multimodal,.md": {
-    "mtime": 1785722004.3321192,
-    "ast_hash": "63a8f970df34ed3efafdf6824b32f8eb",
+    "mtime": 1785936982.7704804,
+    "ast_hash": "306f70549c92f2874af6c23680b145b8",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/TraceViT - Grounded Trace Supervision for Visual Abstract Reasoning.md": {
-    "mtime": 1785722004.3531191,
-    "ast_hash": "9eac5536d800717ac965070e96b8cb60",
+    "mtime": 1785936982.7717843,
+    "ast_hash": "74b3397641b3afe77668d3a9ec5e7192",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/TransGraspNet - Physically and Geometrically Consistent Manipulation.md": {
-    "mtime": 1785722004.5171185,
-    "ast_hash": "8f6547d3c0dac01dad2eed94156cdade",
+    "mtime": 1785936982.7717843,
+    "ast_hash": "86c487f128e4347e6accf9dfc5da9a6a",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Transcript-Managed Transformers - Monotone Multi-Agent Collapse.md": {
-    "mtime": 1785722004.2861192,
-    "ast_hash": "599fc3fc25257338fbf25db09de204b7",
+    "mtime": 1785936982.772817,
+    "ast_hash": "458136be9abfa67087ca3040de5721b4",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Tri-Space Operational Control of Redundant Multilink and Hybrid.md": {
-    "mtime": 1785722004.2291195,
-    "ast_hash": "ddf0770c0e9d3f9c5517de2c6d2fb6a0",
+    "mtime": 1785936982.772817,
+    "ast_hash": "854e21018482fd37e95ee657178fc3ba",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/Unwithered Majorana fermions in the bulk of a quantum chain.md": {
-    "mtime": 1785722004.4131188,
-    "ast_hash": "f63d9a938f9f896a6cefe3bc70704fbe",
+    "mtime": 1785936982.7738442,
+    "ast_hash": "460d8fd1576f865f58717bbd750a3291",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/WCM - A World Critic Model for Vision-Language-Action Reinforcement.md": {
-    "mtime": 1785722004.1621199,
-    "ast_hash": "9603bff53923dbdb5a82252a4c68f487",
+    "mtime": 1785936982.7748716,
+    "ast_hash": "697ddffbd314abfc14232a4e5e4e062d",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/What to Remove, What to Preserve - Dual-Ambiguity Rectification.md": {
-    "mtime": 1785722004.4951184,
-    "ast_hash": "10f1607be5eba11dca7681f25c04f29a",
+    "mtime": 1785936982.7748716,
+    "ast_hash": "3cd2afa3255b24494df1df3557d329ec",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/When Does On-Policy Interaction Help Representational Tradeoffs.md": {
-    "mtime": 1785722004.2261195,
-    "ast_hash": "41dcaf314c487c746ecfcbc1fe666d32",
+    "mtime": 1785936982.775905,
+    "ast_hash": "0eb14a0e410dd065d74642c4f5add370",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/When quantum thermal states look classical.md": {
-    "mtime": 1785722004.2171197,
-    "ast_hash": "f382f451f0d92fc88582db07d718b6e1",
+    "mtime": 1785936982.7769496,
+    "ast_hash": "c883cb0cf5b9c12bf9fffcc6f4f11739",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/X-NavDP - Generalizing Navigation Diffusion Policy to Novel Behavior.md": {
-    "mtime": 1785722004.2451196,
-    "ast_hash": "37cb889e7a48e4055daf9815a353b064",
+    "mtime": 1785936982.7769496,
+    "ast_hash": "c50c23f36d45d420ce1b3ab806572615",
     "semantic_hash": ""
   },
   "research_scanner/obsidian_vault/raw-signals/arxiv/iSWAP maximises the second-moment spectral gap in random quantum.md": {
-    "mtime": 1785722004.4241188,
-    "ast_hash": "44bc58ea924e9216a1a948fc9b5d0ea3",
+    "mtime": 1785936982.7781749,
+    "ast_hash": "54e11c5a0eb5acc55c84ff42a543b9b6",
+    "semantic_hash": ""
+  },
+  "antigravity-bridge/package.json": {
+    "mtime": 1786189624.6898303,
+    "ast_hash": "0784055f8f95513e23a11d2951b2bc72",
+    "semantic_hash": ""
+  },
+  "antigravity-bridge/src/index.ts": {
+    "mtime": 1786189624.6962337,
+    "ast_hash": "6b15073931eb1c571b9a826f0e9b9ae8",
+    "semantic_hash": ""
+  },
+  "antigravity-bridge/tsconfig.json": {
+    "mtime": 1786189624.6962337,
+    "ast_hash": "e9055ab3409693284adb957df682786d",
+    "semantic_hash": ""
+  },
+  "research_scanner/director_run.py": {
+    "mtime": 1786305538.789657,
+    "ast_hash": "79d25636ffd728413846ea3c8a94a1e3",
+    "semantic_hash": ""
+  },
+  "research_scanner/heartbeat_check.py": {
+    "mtime": 1786287331.9768283,
+    "ast_hash": "464fddb9dca4e7558c316036a79128f3",
+    "semantic_hash": ""
+  },
+  "research_scanner/log_trade.py": {
+    "mtime": 1786287294.4192774,
+    "ast_hash": "25816009d4c681997accafe6e6dd2151",
+    "semantic_hash": ""
+  },
+  "research_scanner/tests/test_director_apply.py": {
+    "mtime": 1786199779.1511314,
+    "ast_hash": "549b6903cebc03048c722d624aa0dd0b",
+    "semantic_hash": ""
+  },
+  "research_scanner/tests/test_director_run.py": {
+    "mtime": 1786305570.1749816,
+    "ast_hash": "f0bb8e039d2312a6b0ecd713ccddfa1c",
+    "semantic_hash": ""
+  },
+  "research_scanner/tests/test_heartbeat_check.py": {
+    "mtime": 1786287337.480549,
+    "ast_hash": "945a6d962e31deeb3dcf8e30a80064bd",
+    "semantic_hash": ""
+  },
+  "research_scanner/tests/test_log_trade.py": {
+    "mtime": 1786287328.184086,
+    "ast_hash": "8fb5dac7727d682bfb5191a0d93e4f85",
+    "semantic_hash": ""
+  },
+  "research_scanner/tests/test_run_daemon.py": {
+    "mtime": 1786377312.4255147,
+    "ast_hash": "2fdd6c8a2b2442751124c32f0a59efb8",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/current-priorities.md": {
+    "mtime": 1786304632.2205791,
+    "ast_hash": "91a2b48a2eef39f480b57f2f1fab7a8e",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/AI Governance & Safety.md": {
+    "mtime": 1786201553.8817978,
+    "ast_hash": "99190b5a287696ea0b0d12232d528b40",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Agent Evaluation & Benchmarking.md": {
+    "mtime": 1786201553.8537838,
+    "ast_hash": "7eb08453e890326ea1c94f14cbcb1823",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Agentic Systems & Benchmarking.md": {
+    "mtime": 1786201554.091923,
+    "ast_hash": "6c2f77803ed852ec3ccb3943b777058b",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Agentic Systems & Debugging.md": {
+    "mtime": 1786201553.9443293,
+    "ast_hash": "04eeed4e7d3a27c4cb39a175f2e71044",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Agentic Systems & Rag.md": {
+    "mtime": 1786201554.0632381,
+    "ast_hash": "83ae7b3696e4099b84d9275f854cd436",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Agentic Systems & Synthetic Data.md": {
+    "mtime": 1786201553.8962195,
+    "ast_hash": "02107a717b5faa9112eda5487e3aa96d",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Database Systems & Neurosymbolic AI.md": {
+    "mtime": 1786201554.0255344,
+    "ast_hash": "43b443b878553768bdf43e6ff94f7374",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Llm Post-training & Reasoning.md": {
+    "mtime": 1786201554.105553,
+    "ast_hash": "1985542a1086c569585186d00859186e",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Llm Reasoning & Alignment.md": {
+    "mtime": 1786201553.7294965,
+    "ast_hash": "d3536895060be21f636a9d56cc46cef0",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Llm Reinforcement Learning.md": {
+    "mtime": 1786201554.0481255,
+    "ast_hash": "f4bed8b4a9c6fc1b47bc59ea46494248",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Machine Learning Theory.md": {
+    "mtime": 1786201553.8393357,
+    "ast_hash": "5908d3a67486fe2e7e557785620202c5",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Model Compression & Quantization.md": {
+    "mtime": 1786201554.119254,
+    "ast_hash": "247c04c43d1cc6f90878eea87150bab9",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Multimodal Llms & Evaluation.md": {
+    "mtime": 1786201553.8673909,
+    "ast_hash": "1f71a188d453c0d8e57e79aa1ce97b85",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Optimization & Ml Theory.md": {
+    "mtime": 1786201554.1314223,
+    "ast_hash": "d2783ed02dc9445490b317cbc68d9764",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Quantum Computing & Hardware.md": {
+    "mtime": 1786201554.0365472,
+    "ast_hash": "296a7d3882e78e9fc3db787b09760c72",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Quantum Computing & Qec.md": {
+    "mtime": 1786201554.0773394,
+    "ast_hash": "a544512f8a797106b06354576d409673",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Quantum Computing.md": {
+    "mtime": 1786201553.9700215,
+    "ast_hash": "19fc0f81f49ab8a0a89bb9399036d516",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Robotics & Embodied AI.md": {
+    "mtime": 1786201553.7469764,
+    "ast_hash": "e3031c3e8da453c4368c13b19007ccd5",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Robotics & World Models.md": {
+    "mtime": 1786201554.0132823,
+    "ast_hash": "74a60ac88df2e26fc2c87450e3bac1ee",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/themes/Time Series & Quantitative Modeling.md": {
+    "mtime": 1786201553.9857342,
+    "ast_hash": "84aac4c0597f6d14c06f8f86fa46c1a5",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/vault-index.md": {
+    "mtime": 1786305783.1347003,
+    "ast_hash": "4d8d2374ceca90637115cffb83a82288",
+    "semantic_hash": ""
+  },
+  "research_scanner/curator_prompt.md": {
+    "mtime": 1786305527.311387,
+    "ast_hash": "5ffbbbedb7165fbd891935d503eb1446",
+    "semantic_hash": ""
+  },
+  "research_scanner/obsidian_vault/raw-signals/news/Google DeepMind Unveils Gemini Robotics 2 - An AI Brain for Full-Body.md": {
+    "mtime": 1786189624.7046165,
+    "ast_hash": "08b4cbad1298a907b4f6df615615584d",
+    "semantic_hash": ""
+  },
+  "research_scanner/obsidian_vault/themes/Autonomous Llm Agents & Sequential Decision Making.md": {
+    "mtime": 1786189624.704973,
+    "ast_hash": "7a62e74cf3dff2a6c87b48548e0abf54",
+    "semantic_hash": ""
+  },
+  "research_scanner/obsidian_vault/themes/Fault-tolerant Quantum Computing & Error Correction.md": {
+    "mtime": 1786189624.7060065,
+    "ast_hash": "6aceff55c1c438d2c744ce31762941f6",
+    "semantic_hash": ""
+  },
+  "research_scanner/obsidian_vault/themes/Physical Robotics & Humanoid Safety Control.md": {
+    "mtime": 1786189624.7060065,
+    "ast_hash": "db528207c47a536c4230d22a1003f4ee",
+    "semantic_hash": ""
+  },
+  "research_scanner/requirements.txt": {
+    "mtime": 1786286746.619042,
+    "ast_hash": "5650975ef5b98334281922cc0287a34a",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/$\u03c9$-0 - A Latent Predictive World Action Model for Concurrent.md": {
+    "mtime": 1786201553.7492287,
+    "ast_hash": "69e82446e5d83a74a08fb25f41f6c3ac",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/AV-AIVAT - 74x Cheaper Agent Evaluation with Certified Anytime-Valid.md": {
+    "mtime": 1786201553.8548903,
+    "ast_hash": "342e7e93115fbe21fa366a7ce1411cc3",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/An Optimal Agnostic PAC Algorithm.md": {
+    "mtime": 1786201553.8421242,
+    "ast_hash": "0bb3293d07e8c3457e5d9ebf4db52f21",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Approximate Quantum Error Correction at Chiral Topological Edges.md": {
+    "mtime": 1786201554.1688557,
+    "ast_hash": "c4d6edf348834579054fbe9db38c8eac",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/BaKron - Efficient Quantization with Kronecker-Factored Hessians.md": {
+    "mtime": 1786201554.1203694,
+    "ast_hash": "ef7d0694e135fc713cb28b2ba946334a",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Beyond Top-K - Replacing Black-Box Retrieval with Interpretable.md": {
+    "mtime": 1786304632.2351534,
+    "ast_hash": "025e406eed6123a7d50067b768dff58b",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Breaking Memory Bottlenecks in Quantum Control Systems for More.md": {
+    "mtime": 1786201554.037629,
+    "ast_hash": "7f09ee7eb752f18ae4b6dd2f40e02a96",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/CalibForge - Adversarial Solver Calibration for Scaling Learnable.md": {
+    "mtime": 1786201553.8981316,
+    "ast_hash": "09e2b293e1c7f16b72a38740afae351e",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/DASH - Divergence-Adaptive Supervision Horizons for On-Policy.md": {
+    "mtime": 1786201554.1930583,
+    "ast_hash": "1a357f8162a01d68b2ec52dc3fc0c152",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Dimension-Free Polylogarithmic Quantum Shadow Tomography from.md": {
+    "mtime": 1786201553.971021,
+    "ast_hash": "87b284887559ddee3e6d7151fa96654f",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/DyPES-VLA - Learning Shared Dynamics Priors and Embodiment-Specific.md": {
+    "mtime": 1786201553.8265913,
+    "ast_hash": "51c94918edbcd3c3e67f3e49452a5228",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Exponential logical-error reduction in quantum memories via optimal.md": {
+    "mtime": 1786201554.2044842,
+    "ast_hash": "0b31bec159aa62846495423d389391d7",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/GeniWorld - A Generalizable Interactive World Model for Robotic.md": {
+    "mtime": 1786201554.0149262,
+    "ast_hash": "1f6fd1a15c3ea34932d1d8d995ad077a",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/HarnessOpt-Bench - Evaluating LLMs at Harness Optimization.md": {
+    "mtime": 1786201554.093222,
+    "ast_hash": "5b5f258d9b50ccc0a67a5a20be6af721",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Hypothesis Testing with Conditional Queries - Learnability.md": {
+    "mtime": 1786201554.1562047,
+    "ast_hash": "1e8f562fcb93842d389b290bf2a71b71",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Learning When to Trust via Selective Context Preference Optimization.md": {
+    "mtime": 1786201553.7309647,
+    "ast_hash": "7dbbf0ba0fdd412d721830866c20f3a3",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Minimax Optimal Early-Stopped Gradient Descent for Gaussian Mixture.md": {
+    "mtime": 1786201554.1806507,
+    "ast_hash": "e5447caaebec8ecc18ab01196a62c331",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/On-Policy Self-Distillation without Any Supervision.md": {
+    "mtime": 1786201554.1065726,
+    "ast_hash": "0dcd842dd9cbc49815ef7923dd066e03",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Optimal Rates for Learning with Monotone Adversaries.md": {
+    "mtime": 1786201554.00274,
+    "ast_hash": "1eaf4551cf89a1d282b50a4558bde536",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/RRC - Unlocking Generative Reward Models in LLM Reinforcement.md": {
+    "mtime": 1786201554.049854,
+    "ast_hash": "93db161780f08ee2d358c02f97c57533",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Resourced Authority A Mechanism-Design Model for Participatory.md": {
+    "mtime": 1786201553.8831067,
+    "ast_hash": "58d7625d6daebc309877924c54a28fda",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Scalable estimation of VARMA models.md": {
+    "mtime": 1786201553.9870613,
+    "ast_hash": "011c51b556c75a0a57b82cf4b079469e",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/TRAJDEBUG - Tracing Error Lifecycle to Identify Critical Failures.md": {
+    "mtime": 1786201553.9453287,
+    "ast_hash": "ba4346508d198a254ec55d8fdf0a9f7a",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/The Illusion of Visual Tool-Use - A Causal Audit of Thinking.md": {
+    "mtime": 1786201554.1449432,
+    "ast_hash": "b2fb22d933585e4197dc2d0d88d3965c",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/The Low Frequency Trap - Video Language Models Fail at Simple Event.md": {
+    "mtime": 1786201553.8689187,
+    "ast_hash": "f73a0fc46d8d8c33785fb38b406a7a2b",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/The Tamed Subgradient Unadjusted Langevin Algorithm beyond Convexity.md": {
+    "mtime": 1786201554.132604,
+    "ast_hash": "90e1f8edb64a9b850abb742c02b2167b",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Time-Reversal Selection Rules for Quantum Error Correction.md": {
+    "mtime": 1786201554.079296,
+    "ast_hash": "3c6f94c4efcdba64842dff9cf582073f",
+    "semantic_hash": ""
+  },
+  "obsidian_vault/raw-signals/arxiv/Tytan - Interactive Neurosymbolic Construction of Analytic Semantic.md": {
+    "mtime": 1786201554.026678,
+    "ast_hash": "eedcd52e9da49c3356893c250615a27a",
+    "semantic_hash": ""
+  },
+  "research_scanner/obsidian_vault/raw-signals/arxiv/Argus - A General-Purpose Agentic Runtime for Long-Horizon Reasoning.md": {
+    "mtime": 1786189624.6994712,
+    "ast_hash": "69b88ddddaf26dda0c6f370f1e29a954",
+    "semantic_hash": ""
+  },
+  "research_scanner/obsidian_vault/raw-signals/arxiv/BridgeVLA++ - A Data-Efficient, Generalizable, and Memory-Augmented.md": {
+    "mtime": 1786189624.7007415,
+    "ast_hash": "533fadad972ff4d1018b97c5a682e1a4",
     "semantic_hash": ""
   }
 }

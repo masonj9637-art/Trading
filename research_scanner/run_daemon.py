@@ -377,18 +377,23 @@ def run_single_cycle(
     run_process_requests(db_path=db_path)
 
     # Step 3: Curator agent CLI evaluation & Obsidian export
-    run_curator_export_step(vault_path=vault_path, db_path=db_path)
+    curator_result = run_curator_export_step(vault_path=vault_path, db_path=db_path)
 
     # Step 4: Rebuild Obsidian vault index
     build_vault_index(vault_path)
     logger.info("Obsidian vault index rebuilt.")
 
-    # Step 5: Update last_success timestamp
-    try:
-        ts = update_last_success("scan_and_curator", filepath=last_success_path)
-        logger.info("Updated last_success.json with scan_and_curator timestamp: %s", ts)
-    except Exception as e:
-        logger.warning("Failed to update last_success.json: %s", e)
+    # Step 5: Update last_success timestamp only if Curator export succeeded
+    if curator_result is not None:
+        try:
+            ts = update_last_success("scan_and_curator", filepath=last_success_path)
+            logger.info("Updated last_success.json with scan_and_curator timestamp: %s", ts)
+        except Exception as e:
+            logger.warning("Failed to update last_success.json: %s", e)
+    else:
+        logger.warning(
+            "Curator portion of the cycle failed (returned None). Skipping 'scan_and_curator' timestamp update."
+        )
 
 
 
